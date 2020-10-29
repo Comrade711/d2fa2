@@ -7,7 +7,7 @@ function Alternate01Create (keys)
 		print('skin gilgamesh casual')
 		caster:SetModel("models/updated_by_seva_and_hudozhestvenniy_film_spizdili/gilgamesh/gilgameshcasualunanim.vmdl")
 		caster:SetOriginalModel("models/updated_by_seva_and_hudozhestvenniy_film_spizdili/gilgamesh/gilgameshcasualunanim.vmdl")
-		caster:SetModelScale(1.2)
+		caster:SetModelScale(1.4)
 		print('skin gilgamesh change')
 	end
 
