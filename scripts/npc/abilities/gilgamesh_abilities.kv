@@ -1,0 +1,2811 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Gilgamesh : Inate : Golden Rule
+	//=================================================================================================================
+	"gilgamesh_golden_rule"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/gilgamesh_golden_rule"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"gold_gain"				"15"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_golden_rule"
+			{
+				"Passive"			"1"
+	            "ThinkInterval"		"1.0"
+	            "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"			"OnGoldenRuleThink"
+					}
+				}
+			}
+		}
+	}	
+	//=================================================================================================================
+	// Gilgamesh : Inate : Golden Rule (Improve Golden Rule SA)
+	//=================================================================================================================
+	"gilgamesh_golden_rule_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/gilgamesh_golden_rule"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"gold_gain"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounty_bonus"			"50"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_golden_rule"
+			{
+				"Passive"			"1"
+	            "ThinkInterval"		"1.0"
+	            "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"			"OnGoldenRuleThink"
+					}
+				}
+			}
+		}
+	}	
+
+	//=====================================
+	// Gilgamesh : Inate : Gram
+	//=====================================
+	"gilgamesh_gram"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_gram"
+		
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"850"
+		"AbilityCastRangeBuffer"		"150"
+		"AbilityCooldown"				"3"
+		"AbilityManaCost"				"100"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK2"
+		"AnimationPlaybackRate" 		"0.9"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast_c.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"			
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"850"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_swords"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnGramStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnGramHit"
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Inate : Gram (Power of Sumer SA)
+	//=====================================
+	"gilgamesh_gram_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_gram"
+		
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"850"
+		"AbilityCastRangeBuffer"		"150"
+		"AbilityCooldown"				"3"
+		"AbilityManaCost"				"100"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK2"
+		"AnimationPlaybackRate" 		"0.9"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast_c.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"			
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"850"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"125"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_swords"			"4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnGramStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnGramHit"
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Enkidu
+	//=====================================
+	"gilgamesh_enkidu"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_enkidu"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"1.0"
+
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"350"
+		"AbilityCastRangeBuffer"		"100"
+		"AbilityCooldown"				"19 17 15 13 11"
+		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enkidu.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"350"				
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.25 1.5 1.75 2.0 2.25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_divine"			"1.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"window"				"4.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnChainStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_enkidu_hold"
+			{
+				"IsPurgable"	"0"
+				"IsDebuff"		"1"
+				"Duration"		"%duration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnChainCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnChainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnChainDeath"
+					}
+				}
+	            "ThinkInterval"		"0.33"
+	            "OnIntervalThink"
+	         	{
+	         		"RunScript"
+	         		{
+	         			"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+	         			"Function"		"OnChainThink"
+	         		}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_final_hour_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnFinalHourWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnFinalHourWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnFinalHourWindowDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage
+	//=====================================
+	"gilgamesh_sword_barrage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"75 90 105 120 135"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"375 450 525 600 675"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strike_amount"			"5"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage (Rain of Swords SA)
+	//=====================================
+	"gilgamesh_sword_barrage_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"75 90 105 120 135"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"375 450 525 600 675"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"strike_amount"				"5"
+			}			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"350"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attribute_bonus_aoe"		"50"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"75"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"			"4.0"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_stack"					"5"
+			}	
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnRainUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_rain_of_swords"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%stack_duration"
+		
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage (Rain of Swords SA)
+	//=====================================
+	"gilgamesh_sword_barrage_upgrade_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"240"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"90 105 120 135 150"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"450 525 600 675 750"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strike_amount"			"5"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attribute_bonus_aoe"		"50"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"75"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"					"4.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"5"
+			}	
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnRainUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_rain_of_swords"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%stack_duration"
+		
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage (Rain of Swords SA)
+	//=====================================
+	"gilgamesh_sword_barrage_upgrade_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"280"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"105 120 135 150 165"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"525 600 675 750 825"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strike_amount"			"5"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attribute_bonus_aoe"		"50"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"75"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"					"4.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"5"
+			}	
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnRainUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_rain_of_swords"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%stack_duration"
+		
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage (Rain of Swords SA)
+	//=====================================
+	"gilgamesh_sword_barrage_upgrade_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"320"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"120 135 150 165 180"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"600 675 750 825 900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strike_amount"			"5"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attribute_bonus_aoe"		"50"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"75"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"					"4.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"5"
+			}	
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnRainUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_rain_of_swords"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%stack_duration"
+		
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage (Rain of Swords SA)
+	//=====================================
+	"gilgamesh_sword_barrage_upgrade_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"360"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"135 150 165 180 195"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"675 750 825 900 975"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strike_amount"			"5"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"550"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attribute_bonus_aoe"		"50"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"75"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"					"4.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"5"
+			}	
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnRainUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_rain_of_swords"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%stack_duration"
+		
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Sword Barrage (Rain of Swords SA)
+	//=====================================
+	"gilgamesh_sword_barrage_upgrade_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"3.0"
+
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"	
+			
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.15"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"150 165 180 195 210"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"total_damage"				"750 825 900 975 1050"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strike_amount"			"5"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attribute_bonus_aoe"		"50"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"75"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"					"4.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"5"
+			}	
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnBarrageStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnRainUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_rain_of_swords"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%stack_duration"
+		
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnRainDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Gate of Babylon
+	//=====================================
+	"gilgamesh_gate_of_babylon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_gate_of_babylon"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"10.0"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
+			"particle"		"particles/econ/items/tinker/boots_of_travel/teleport_start_bots_ground_glow.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_gob_model.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_gob.vpcf"
+			"particle"		"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"30 45 60 75 90"
+			}
+			
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"150"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"8"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"window"			"4"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnGOBStart"
+			 	"Target"		"POINT"
+			 	"Damage"		"%damage"
+			 	"Duration"		"%duration"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnGOBHit"
+			 	"Damage"		"%damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_gob_thinker"
+			{
+				"Duration"			"%duration"
+	            "ThinkInterval"		"0.06"
+	            "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+					 	"Function"		"OnGOBThink"
+					}
+				}	
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+					 	"Function"		"OnGOBEnd"
+					}					
+				}			
+			}
+			"modifier_max_enuma_elish_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnMaxEnumaWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnMaxEnumaWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnMaxEnumaWindowDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Gate of Babylon (Power Of Sumer SA)
+	//=====================================
+	"gilgamesh_gate_of_babylon_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_gate_of_babylon"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"10.0"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
+			"particle"		"particles/econ/items/tinker/boots_of_travel/teleport_start_bots_ground_glow.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_gob_model.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_gob.vpcf"
+			"particle"		"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"30 45 60 75 90"
+			}
+			
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"150"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"8"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"window"			"4"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"atk_ratio"			"0.2"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnGOBStart"
+			 	"Target"		"POINT"
+			 	"Damage"		"%damage"
+			 	"Duration"		"%duration"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnGOBHit"
+			 	"Damage"		"%damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_gob_thinker"
+			{
+				"Duration"			"%duration"
+	            "ThinkInterval"		"0.06"
+	            "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+					 	"Function"		"OnGOBThink"
+					}
+				}	
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+					 	"Function"		"OnGOBEnd"
+					}					
+				}			
+			}
+			"modifier_max_enuma_elish_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnMaxEnumaWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnMaxEnumaWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnMaxEnumaWindowDeath"
+					}
+				}
+			}
+		}
+	}
+	//=======================================
+	// Gilgamesh : GOB Toggle
+	//=======================================
+	"gilgamesh_gate_of_babylon_toggle"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/gilgamesh_gate_of_babylon"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnToggleOn"
+		{	
+		}
+		"OnSpellStart"
+		{
+		}
+		"OnUpgrade"
+		{		
+		}
+		"Modifiers"
+		{
+			"modifier_gob_toggle_respawn_check"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnRespawn"
+				{
+					 "RunScript"
+					 {
+					 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+					 	"Function"		"ToggleGOBOn"
+					 }
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Enuma Elish
+	//=====================================
+	"gilgamesh_enuma_elish"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"precache"
+			{
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enuma_elish_charge_wave.vpcf"
+			"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+			"particle"		"particles/custom/gilgamesh/enuma_elish/projectile.vpcf"			
+			"particle"		"particles/custom/gilgamesh/enuma_elish/charging_sparkles.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1700"
+		"AbilityCastPoint"				"0.2"
+		"AbilityChannelTime"      		"4.5"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"47.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+
+		// AbilitySpecial
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"activation"			"1.5"
+			}
+			"02"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"mana_penalty"			"400"
+			}
+			"03"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"cd_penalty"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_duration"		"5.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"			"250"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"endradius_per_charge"	"10"
+			}
+			"12"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradius_total"		"500"
+			}
+			"13"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradiusmax"			"750"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1700"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"700 900 1100 1300 1500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"endcast_pause"			"1.0"
+			}
+			
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_charge"		"8 11 14 17 20"
+			}
+			"15"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"damage_total"			"400 550 700 850 1000"
+			}
+			// Tool Tip variables
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damagemax"				"1100 1450 1800 2150 2500"
+			}
+			
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnEnumaCast"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnEnumaInterrupt"
+			}			
+		}
+		
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnEnumaInterrupt"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnEnumaElishHit"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_enuma_elish_thinker"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"Duration"			"%charge_duration"
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishThink"
+					}
+				}
+			}
+			"modifier_enuma_elish_animation"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%charge_duration"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishModelChangeStart"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishModelChangeDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishModelChangeDeath"
+					}
+				}
+			}
+			"modifier_enuma_elish_activate"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%charge_duration"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeStart"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Enuma Elish (Sword of Creation SA)
+	//=====================================
+	"gilgamesh_enuma_elish_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"precache"
+			{
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enuma_elish_charge_wave.vpcf"
+			"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+			"particle"		"particles/custom/gilgamesh/enuma_elish/projectile.vpcf"			
+			"particle"		"particles/custom/gilgamesh/enuma_elish/charging_sparkles.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1900"
+		"AbilityCastPoint"				"0.2"
+		"AbilityChannelTime"      		"5.0"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"47.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+
+		// AbilitySpecial
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"activation"			"1.5"
+			}
+			"02"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"mana_penalty"			"400"
+			}
+			"03"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"cd_penalty"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_duration"		"5.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"			"500"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"endradius_per_charge"	"10"
+			}
+			"12"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradius_total"		"500"
+			}
+			"13"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradiusmax"			"1000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1900"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1200 1400 1600 1800 2000"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"endcast_pause"			"1.0"
+			}
+			
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_charge"		"8 11 14 17 20"
+			}
+			"15"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"damage_total"			"400 550 700 850 1000"
+			}
+			// Tool Tip variables
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damagemax"				"1600 1950 2300 2650 3000"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnEnumaCast"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnEnumaInterrupt"
+			}			
+		}
+		
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnEnumaInterrupt"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"			"OnEnumaElishHit"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_enuma_elish_thinker"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"Duration"			"%charge_duration"
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishThink"
+					}
+				}
+			}
+			"modifier_enuma_elish_animation"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%charge_duration"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishModelChangeStart"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishModelChangeDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishModelChangeDeath"
+					}
+				}
+			}
+			"modifier_enuma_elish_activate"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%charge_duration"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeStart"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Enuma Elish ACTIVATE
+	//=====================================
+	"gilgamesh_enuma_elish_activate"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+		"OnSpellStart"
+		{
+
+		}
+	}	
+	//=====================================
+	// Gilgamesh : MAX Enuma Elish
+	//=====================================
+	"gilgamesh_max_enuma_elish"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"AbilityTextureName"			"custom/gilgamesh_max_enuma_elish"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+			"particle"		"particles/custom/screen_scarlet_splash.vpcf"
+			"particle"		"particles/custom/gilgamesh/enuma_elish.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enuma_elish_charge.vpcf"
+			"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1700"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cast_delay"		"4.5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"5000"
+			}
+			
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"start_radius"		"250"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"end_radius"		"500"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1700"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"1000"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnMaxEnumaStart"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnMaxEnumaHit"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_max_enuma_elish_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"max_enuma_elish_anim"
+			{
+				"Duration"	"6.0"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_6"
+			}
+			"modifier_enuma_elish_animation"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%cast_delay"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumElishaChargeStart"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : MAX Enuma Elish (Sword of Creation SA)
+	//=====================================
+	"gilgamesh_max_enuma_elish_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"AbilityTextureName"			"custom/gilgamesh_max_enuma_elish"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+			"particle"		"particles/custom/screen_scarlet_splash.vpcf"
+			"particle"		"particles/custom/gilgamesh/enuma_elish.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enuma_elish_charge.vpcf"
+			"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1900"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cast_delay"		"4.5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"40000"
+			}
+			
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"start_radius"		"750"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"end_radius"		"1000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1900"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"1000"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnMaxEnumaStart"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+			 	"Function"		"OnMaxEnumaHit"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_max_enuma_elish_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"max_enuma_elish_anim"
+			{
+				"Duration"	"6.0"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_6"
+			}
+			"modifier_enuma_elish_animation"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%cast_delay"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumElishaChargeStart"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnEnumaElishChargeDeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Combo : Final Hour
+	//=====================================
+	"gilgamesh_combo_final_hour"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh/gilgamesh_final_hour"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"450"
+		"AbilityCastRangeBuffer"		"150"
+		"AbilityCooldown"				"160"
+		"AbilityManaCost"				"100"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate" 		"1.2"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast_c.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_sword_barrage_model.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enkidu.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"550"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"125"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"4.1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"num_swords"			"40"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnFinalHourStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnFinalHourHit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_gilgamesh_combo_active"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%stun_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_gilgamesh_final_hour_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_enkidu_hold"
+			{
+				"IsPurgable"	"0"
+				"IsDebuff"		"1"
+				"TextureName"	"custom/gilgamesh_enkidu"
+				"Duration"		"%stun_duration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnChainCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnChainDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+						"Function"		"OnChainDeath"
+					}
+				}
+	            "ThinkInterval"		"0.33"
+	            "OnIntervalThink"
+	         	{
+	         		"RunScript"
+	         		{
+	         			"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+	         			"Function"		"OnChainThink"
+	         		}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//=======================================
+	// Gilgamesh Attribute : Improve Golden Rule
+	//=======================================
+	"gilgamesh_attribute_improve_golden_rule"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/gilgamesh_attribute_improve_golden_rule"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"10"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bounty_bonus"		"50"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"gold_bonus"		"30"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnImproveGoldenRuleAcquired"
+			}
+		}
+	}
+	//=======================================
+	// Gilgamesh Attribute : Power of Sumer
+	//=======================================
+	"gilgamesh_attribute_power_of_sumer"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/gilgamesh_attribute_power_of_sumer"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"11"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"atk_ratio"			"0.2"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_gram"		"4"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnPowerOfSumerAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Gilgamesh Attribute : Rain of Swords
+	//=======================================
+	"gilgamesh_attribute_rain_of_swords"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/gilgamesh/rain_of_swords"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"11"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"75"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_aoe"			"50"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_mana_cost"	"40"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"reset_timer"		"4"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_stack"			"5"
+			}			
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnRainOfSwordsAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Gilgamesh Attribute : Sword of Creation
+	//=======================================
+	"gilgamesh_attribute_sword_of_creation"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/gilgamesh_attribute_sword_of_creation"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"14"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"enuma_range"		"200"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"enuma_radius"		"250"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"enuma_damage"		"500"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_enuma_damage"	"35000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_enuma_radius"	"500"
+			}
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_enuma_range"		"200"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gilgamesh/gilgamesh_abilities"
+				"Function"		"OnSwordOfCreationAcquired"
+			}
+		}
+	}
+}	

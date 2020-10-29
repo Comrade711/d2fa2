@@ -1,0 +1,2065 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Lancer : Battle Continuation
+	//=================================================================================================================
+	"lancer_battle_continuation"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"LevelsBetweenUpgrades"			"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_battle_continuation"
+		"AbilityCooldown"				"90"
+
+		"precache"
+		{
+			"particle"	"particles/items_fx/aegis_respawn.vpcf"
+
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"revive_health"			"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_dur"			"1.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+		}
+
+		"Modifiers"
+		{
+			"modifier_battle_continuation"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"LancerOnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+			}
+			"modifier_battle_continuation_active"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%active_dur"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnBattleContEnd"
+					}
+				}
+			}
+			"modifier_battle_continuation_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}	
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Battle Continuation (Upgraded)
+	//=================================================================================================================
+	"lancer_battle_continuation_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"LevelsBetweenUpgrades"			"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_battle_continuation"
+		"AbilityCooldown"				"100"
+
+		"precache"
+		{
+			"particle"	"particles/items_fx/aegis_respawn.vpcf"
+
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"1300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"revive_health"			"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_dur"			"2.5"
+			}
+		}
+
+		"OnSpellStart"
+		{
+		}
+
+		"Modifiers"
+		{
+			"modifier_battle_continuation"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"LancerOnTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+			}
+			"modifier_battle_continuation_active"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%active_dur"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnBattleContEnd"
+					}
+				}
+			}
+			"modifier_battle_continuation_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}	
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Protection from Arrows
+	//=================================================================================================================
+	"lancer_protection_from_arrows"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_protection_from_arrows"
+		"AbilityCooldown"				"60"
+
+		"Precache"
+		{
+			"particle"		"particles/customgames/capturepoints/cp_wind.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"4"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"evasion"			"35.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_block"		"15"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnPFAStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_lancer_protection_from_arrows"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion"
+					"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%damage_block"
+				}
+			}
+			"modifier_lancer_protection_from_arrows_active"
+			{
+				"EffectName"		"particles/customgames/capturepoints/cp_wind.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"Duration"		"%duration"
+				
+				"ThinkInterval"					"0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnPFAThink"
+					}
+				}
+			}
+		}	
+	}
+	//=================================================================================================================
+	// Lancer : Rune Magic
+	//=================================================================================================================
+	"lancer_rune_magic"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_magic"
+		"AbilityCooldown"				"20.0"
+		"AbilityCastPoint"				"0.0"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneMagicStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneMagicUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_magic_check"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"0" 
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+		
+				"OnCreated"
+				{ // change skill layout
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneMagicOpen"
+					}
+				}
+				"OnDestroy"
+				{ // change skill back to default
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneMagicClose"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune Magic (Upgraded)
+	//=================================================================================================================
+	"lancer_rune_magic_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_magic"
+		"AbilityCooldown"				"0.0"
+		"AbilityCastPoint"				"0.0"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneMagicStart"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneMagicUpgrade"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_magic_check"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"0" 
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+		
+				"OnCreated"
+				{ // change skill layout
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneMagicOpen"
+					}
+				}
+				"OnDestroy"
+				{ // change skill back to default
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneMagicClose"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune Magic : Closed (F)
+	//=================================================================================================================
+	"lancer_rune_magic_close"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		//หารูปมาใส่
+		"AbilityTextureName"			"silencer_last_word"
+		"MaxLevel"						"1"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"0"
+		"precache"
+		{
+		}
+		"AbilitySpecial"
+		{
+			
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{ 
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneMagicCloseStart"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Disengage
+	//=================================================================================================================
+	"lancer_rune_of_disengage"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"phantom_lancer_juxtapose"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityManaCost"				"100"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCooldown"				"30"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_INTEGER"
+				"distance"		"600 700 800 900 1000"
+			}
+		}
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"Disengage"
+				"Distance"		"%distance"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_PhantomLancer.Doppelwalk"
+				"Target"		"CASTER"
+			}
+			"AttachEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"			"CASTER"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Disengage (Upgraded)
+	//=================================================================================================================
+	"lancer_rune_of_disengage_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"phantom_lancer_juxtapose"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityManaCost"				"0"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCooldown"				"7.5"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_INTEGER"
+				"distance"		"600 700 800 900 1000"
+			}
+		}
+
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"Disengage"
+				"Distance"		"%distance"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_PhantomLancer.Doppelwalk"
+				"Target"		"CASTER"
+			}
+			"AttachEffect"
+			{
+				"EffectName"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"			"CASTER"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Flame
+	//=================================================================================================================
+	"lancer_rune_of_flame"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AOERadius"						"%radius"
+		"AbilityTextureName"			"templar_assassin_psionic_trap"
+		"AbilityManaCost"				"100"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"10"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"model"					"models/props_gameplay/rune_haste01.vmdl"
+		}
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"400"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"30.0"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"100 150 200 250 300"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_duration"	"0.35"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnTrapStart"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_TemplarAssassin.Trap.Cast"
+				"Target"			"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_flame"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+		
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "0.25"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnTrapThink"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnTrapDestroy"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Flame (Upgraded)
+	//=================================================================================================================
+	"lancer_rune_of_flame_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AOERadius"						"%radius"
+		"AbilityTextureName"			"templar_assassin_psionic_trap"
+		"AbilityManaCost"				"0"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"2.5"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"model"					"models/props_gameplay/rune_haste01.vmdl"
+		}
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"400"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"30.0"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"100 150 200 250 300"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"stun_duration"	"0.35"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnTrapStart"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_TemplarAssassin.Trap.Cast"
+				"Target"			"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_flame"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+		
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"  "0.25"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnTrapThink"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnTrapDestroy"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Combat
+	//=================================================================================================================
+	"lancer_rune_of_combat"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_of_combat"
+		"AbilityManaCost"				"100"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCooldown"				"40"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_FLOAT"
+				"duration"		"9"
+			}
+			"02"
+			{
+				"var_type" 		"FIELD_INTEGER"
+				"bonus_atk"		"1 2 3 4 5"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnCombatStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_combat"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+		
+				"OnAttackLanded"
+				// "%attack_damage" is set to the damage value before mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnCombatAttack"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_atk"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Combat (Upgraded)
+	//=================================================================================================================
+	"lancer_rune_of_combat_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_of_combat"
+		"AbilityManaCost"				"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCooldown"				"10"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_FLOAT"
+				"duration"		"9"
+			}
+			"02"
+			{
+				"var_type" 		"FIELD_INTEGER"
+				"bonus_atk"		"1 2 3 4 5"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnCombatStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_combat"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+		
+				"OnAttackLanded"
+				// "%attack_damage" is set to the damage value before mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnCombatAttack"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_atk"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Ferocity
+	//=================================================================================================================
+	"lancer_rune_of_ferocity"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_of_ferocity"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"attack_speed_loss"		"200 150 100 75 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reset_timer"			"4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_aspd"				"600"
+			}
+		}
+
+		"OnSpellStart"
+		{
+		}
+
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_ferocity"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnFerocityStop"
+					}
+				}
+				"OnAttack"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnFerocityAttack"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "1"
+				}
+			}
+			"modifier_lancer_rune_of_ferocity_progress"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Duration"			"%reset_timer"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnFerocityStop"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Protection
+	//=================================================================================================================
+	"lancer_rune_of_protection"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_of_protection"
+		"AbilityManaCost"				"100"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCooldown"				"60"
+
+		"precache"
+		{
+			"particle"				"particles/prototype_fx/item_linkens_buff.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_FLOAT"
+				"duration"		"1.0 1.5 2.0 2.5 3.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneProtectionStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_protection"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneProtectionCreate"
+					}
+				}	
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneProtectionDestroy"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Rune of Protection (Upgraded)
+	//=================================================================================================================
+	"lancer_rune_of_protection_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_rune_of_protection"
+		"AbilityManaCost"				"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCooldown"				"15"
+
+		"precache"
+		{
+			"particle"				"particles/prototype_fx/item_linkens_buff.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_FLOAT"
+				"duration"		"1.0 1.5 2.0 2.5 3.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRuneProtectionStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_lancer_rune_of_protection"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneProtectionCreate"
+					}
+				}	
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRuneProtectionDestroy"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Relentless Spear
+	//=================================================================================================================
+	"lancer_relentless_spear"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_relentless_spear"
+		"AbilityCastRange"				"300"
+		"AbilityCastRangeBuffer"		"50"
+		"AbilityCastPoint"				"0.01"
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"200"
+		"AbilityChannelTime"			"1.05"
+		
+		"precache"
+		{
+			"particle"	"particles/econ/items/morphling/morphling_crown_of_tears/morphling_crown_ambient_trail.vpcf"
+			"particle"	"particles/custom/lancer/lancer_relentless_spear/lancer_relentless_spear.vpcf"
+			"particle"	"particles/custom/lancelot/lancelot_arondite.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.05"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_tooltips"			"60 70 80 90 100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"num_attacks"				"8"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"interval"					"0.15"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction"			"-40 -30 -20 -10 0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"window"					"3"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRelentlessSpearCast"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRelentlessSpearStart"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRelentlessSpearInterrupt"
+			}
+		}
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnRelentlessSpearInterrupt"
+			}
+		}		
+			
+		"Modifiers"
+		{
+			"modifier_relentless_spear"
+			{
+				"Passive"			"0"
+				"IsBuff"			"1"
+				"Duration"			"%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"CASTER"
+						"EffectName"	"particles/custom/lancer/lancer_relentless_spear/lancer_relentless_spear.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_weapon"
+						}
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRelentlessSpearAttack"
+					}
+				}
+				"ThinkInterval"  "%interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRelentlessSpearAttack"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnRelentlessSpearInterrupt"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%damage_reduction"
+					"MODIFIER_PROPERTY_TOOLTIP" "%num_attacks"
+				}
+			}
+			"modifier_wesen_gae_bolg_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnWesenWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnWesenWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/lancer5/lancer_abilities"
+						"Function"		"OnWesenWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Gae Bolg - The Spear of Impaling Barbed Death
+	//=================================================================================================================
+	"lancer_gae_bolg"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_gae_bolg"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"IsCastableWhileHidden"			"1"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+			"particle"		"particles/custom/lancer/lancer_heart_break_txt.vpcf"
+			"particle"		"particles/items_fx/dagon.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastPoint"				"1.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"27.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_time"			"1.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"550 660 770 880 990"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heart_break"		"5 7 9 11 13"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun"				"1.0"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"GBAttachEffect"
+			}
+		}
+		"OnSpellStart"
+		{
+			 "RunScript"
+			 {
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnGBTargetHit"
+			 }
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Gae Bolg - The Spear of Impaling Barbed Death (Upgraded)
+	//=================================================================================================================
+	"lancer_gae_bolg_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_gae_bolg"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"IsCastableWhileHidden"			"1"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+			"particle"		"particles/custom/lancer/lancer_heart_break_txt.vpcf"
+			"particle"		"particles/items_fx/dagon.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastPoint"				"1.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"27.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"1.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"550 660 770 880 990"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heart_break"		"10 12 14 16 18"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_time"			"1.0"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"GBAttachEffect"
+			}
+		}
+		"OnSpellStart"
+		{
+			 "RunScript"
+			 {
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnGBTargetHit"
+			 }
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Wesen Gae Bolg
+	//=================================================================================================================
+	"lancer_wesen_gae_bolg"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_wesen_gae_bolg"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+			"particle"		"particles/custom/screen_red_splash.vpcf"
+			"particle"		"particles/custom/lancer/lancer_heart_break.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_delay"		"1.8"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_duration"		"1"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"1500"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"hb_threshold"		"25"
+			}
+
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"GBAttachEffect"
+			}
+		}
+		"OnSpellStart"
+		{
+			 "RunScript"
+			 {
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnGBComboHit"
+			 }
+		}
+
+		"Modifiers"
+		{
+			"modifier_wesen_gae_bolg_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Lancer : Wesen Gae Bolg (Upgraded)
+	//=================================================================================================================
+	"lancer_wesen_gae_bolg_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_wesen_gae_bolg"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+			"particle"		"particles/custom/screen_red_splash.vpcf"
+			"particle"		"particles/custom/lancer/lancer_heart_break.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_delay"		"1.8"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_duration"		"1"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"1500"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"hb_threshold"		"60"
+			}
+
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"GBAttachEffect"
+			}
+		}
+		"OnSpellStart"
+		{
+			 "RunScript"
+			 {
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnGBComboHit"
+			 }
+		}
+
+		"Modifiers"
+		{
+			"modifier_wesen_gae_bolg_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//====================================
+	// Lancer : Gae Bolg - The Spear of Striking Death Flight
+	//====================================
+	"lancer_gae_bolg_jump"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_gae_bolg_jump"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"0.5"
+		"AOERadius"						"%radius"
+		"IsCastableWhileHidden"			"1"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf"
+			"particle"		"particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_cracks.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_hit.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.6"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"0.6"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"750 975 1200 1425 1650"
+			}
+			
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"550"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"1900"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"knock_duration"	"0.25"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.5"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"disarm"			"3.0"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnCuGBAOECast"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnCuGBAOEStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnCuGBReturn"
+			}
+		}
+		
+		"Modifiers"
+		{	
+			"modifier_self_disarm"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"			"%disarm"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//===============================================================================================================
+	// Lancer : Gae Bolg - The Spear of Striking Death Flight (Upgraded)
+	//===============================================================================================================
+	"lancer_gae_bolg_jump_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_gae_bolg_jump"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"0.5"
+		"AOERadius"						"%radius"
+		"IsCastableWhileHidden"			"1"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf"
+			"particle"		"particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_cracks.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_hit.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.6"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"0.6"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"1050 1275 1500 1725 1950"
+			}
+			
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"550"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1800"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"1900"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"knock_duration"	"0.25"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.5"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"disarm"			"3.0"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnCuGBAOECast"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnCuGBAOEStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/lancer5/lancer_abilities"
+			 	"Function"		"OnCuGBReturn"
+			}
+		}
+		
+		"Modifiers"
+		{	
+			"modifier_self_disarm"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"			"%disarm"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//=======================================
+	// Lancer : Improve Battle Continuation
+	//=======================================
+	"lancer_attribute_improve_battle_continuation"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_attribute_improve_battle_continuation"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"8"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cd_inc"				"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"1300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnImproveBCAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Lancer : Attribute: The Spear of Striking Death Flight
+	//=======================================
+	"lancer_attribute_death_flight"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_attribute_death_flight"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"300"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_range"		"800"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnDeathFlightAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Lancer : Protection from Arrows
+	//=======================================
+	"lancer_attribute_protection_from_arrows"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_attribute_protection_from_arrows"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"11"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"evasion_bonus"			"35"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"4"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_block"		"15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnPFAAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Lancer : The Heartseeker
+	//=======================================
+	"lancer_attribute_the_heartseeker"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_attribute_heartseeker"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"13"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heartbreak_threshold"	"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"combo_heartbreak"			"35"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnHeartseekerAcquired"
+			}
+		}
+	}	
+	//=======================================
+	// Lancer : Celtic Runes
+	//=======================================
+	"lancer_attribute_celtic_runes"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/cu_chulain/cu_chulain_attribute_celtic_runes"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"10"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_reduction"	"75"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/lancer5/lancer_abilities"
+				"Function"		"OnCelticRuneAcquired"
+			}
+		}
+	}	
+}

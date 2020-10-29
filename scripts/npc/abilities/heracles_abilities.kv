@@ -1,0 +1,2634 @@
+"DOTAAbilities"
+{
+	//===================================================
+	// Berserker : Fissure Strike
+	//===================================================
+	"heracles_fissure_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/berserker_5th_fissure_strike"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"2.0"
+		
+		"precache"
+		{
+			"particle"		"particles/custom/berserker/fissure_strike/shockwave.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"250"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"200 250 300 350 400"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"750"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow_amount"				"-20 -30 -40 -50 -60"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"				"3.0 4.0 5.0 6.0 7.0"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"collide_duration"		"1.5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"knockback"				"200 250 300 350 400"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"proj_speed"		"1500"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"wall_damage"		"200"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnFissureStart"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Magnataur.ShockWave.Cast"
+				"Target"			"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnFissureHit"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_fissure_strike_slow"
+			{
+				"Duration"	"%duration"
+				"IsDebuff"	"1"
+			    "Properties"
+			    {
+			    	"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_amount"
+			    }
+			}
+		}
+	}
+	//========================================
+	// Berserker : Courage
+	//========================================
+	"heracles_courage"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/berserker_5th_courage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"AbilityCastPoint"				"0.0"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"400"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6 6 5 5 4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"particle"				"particles/custom/berserker/courage/buff.vpcf"
+			"particle"				"particles/custom/berserker/courage/debuff.vpcf"
+			"particle"				"particles/custom/berserker/courage/stun_explosion.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduction"		"-1 -2 -3 -4 -5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-20 -40 -60 -80 -100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"10 15 20 25 30"
+			}
+
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aspd_debuff"			"-20 -15 -10 -5 0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow"					"-15 -20 -25 -30 -35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self_armor_reduc"		"-5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_stack"				"5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"nine_cdr"				"5"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnCourageStart"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Axe.Berserkers_Call"
+				"Target"			"CASTER"
+			}
+		}
+		
+		
+		
+		"Modifiers"
+		{
+			"modifier_courage_enemy_debuff_stack"
+			{
+				"Duration"		"%duration"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
+				}
+			}
+			"modifier_courage_enemy_debuff"
+			{
+				"Duration"		"%duration"
+				"IsDebuff"		"1"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%damage_reduction"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+
+				"EffectName"		"particles/custom/berserker/courage/debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_courage_self_buff_stack"
+			{
+				"IsHidden"		"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Duration"		"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%self_armor_reduc"
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnCourageBuffThink"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnCourageBuffEnded"
+					}
+				}
+			}
+			"modifier_courage_self_buff"
+			{
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"IsDebuff"		"0"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_debuff"
+				}
+			}
+			"modifier_courage_vfx"
+			{
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsDebuff"		"0"
+				"IsHidden"		"1"
+				"AttachEffect"
+				{
+					"EffectName"        "particles/custom/berserker/courage/buff.vpcf"
+					"EffectAttachType"  "follow_origin"
+					"Target"            "TARGET"
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Courage (Upgraded)
+	//========================================
+	"heracles_courage_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/berserker_5th_courage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"AbilityCastPoint"				"0.0"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"400"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6 6 5 5 4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"particle"				"particles/custom/berserker/courage/buff.vpcf"
+			"particle"				"particles/custom/berserker/courage/debuff.vpcf"
+			"particle"				"particles/custom/berserker/courage/stun_explosion.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduction"		"-1 -2 -3 -4 -5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-20 -40 -60 -80 -100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"10 15 20 25 30"
+			}
+
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aspd_debuff"			"0 5 10 15 20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow"					"-15 -20 -25 -30 -35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self_armor_reduc"		"-5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_stack"				"5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"nine_cdr"				"5"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_chance"			"35"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_damage"			"50"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bash_duration"			"0.2"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bash_cd"				"1.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnCourageStart"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Axe.Berserkers_Call"
+				"Target"			"CASTER"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_courage_enemy_debuff_stack"
+			{
+				"Duration"		"%duration"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_reduction"
+				}
+			}
+			"modifier_courage_enemy_debuff"
+			{
+				"Duration"		"%duration"
+				"IsDebuff"		"1"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%damage_reduction"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+
+				"EffectName"		"particles/custom/berserker/courage/debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+			"modifier_courage_self_buff_stack"
+			{
+				"IsHidden"		"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Duration"		"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%self_armor_reduc"
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnCourageBuffThink"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnCourageBuffEnded"
+					}
+				}
+			}
+			"modifier_courage_self_buff"
+			{
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"IsDebuff"		"0"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_debuff"
+				}
+				"OnAttackLanded"
+				// "%attack_damage" is set to the damage value before mitigation
+				{
+					"Random"
+					{
+						"Chance"			"%bash_chance"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/heracles/heracles_abilities"
+								"Function"		"OnCourageBash"
+							}
+						}
+					}
+				}
+			}
+			"modifier_courage_bash_cooldown"
+			{
+				"Duration"		"%bash_cd"
+				"IsDebuff"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"IsHidden"		"1"
+			}
+		}
+	}
+	//========================================
+	// Berserker : Berserk
+	//========================================
+	"heracles_berserk"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/berserker_5th_berserk"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+
+		"precache"
+		{
+			"particle"	"particles/custom/berserker/berserk/buff.vpcf"
+			"particle"	"particles/custom/berserker/berserk/eternal_rage_shockwave.vpcf"
+			"particle"	"particles/custom/berserker/berserk/mana_conversion.vpcf"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"300"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"800 975 1150 1325 1500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"480 585 690 795 900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"60 70 80 90 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"window"					"4"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnBerserkStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			"modifier_heracles_madman_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Berserk (Eternal Rage SA)
+	//========================================
+	"heracles_berserk_upgrade_1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/berserker_5th_berserk"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+
+		"precache"
+		{
+			"particle"	"particles/custom/berserker/berserk/buff.vpcf"
+			"particle"	"particles/custom/berserker/berserk/eternal_rage_shockwave.vpcf"
+			"particle"	"particles/custom/berserker/berserk/mana_conversion.vpcf"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"300"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"800 975 1150 1325 1500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"480 585 690 795 900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"60 70 80 90 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"4"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eternal_interval"		"1"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_convert"			"20"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnBerserkStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			"modifier_eternal_rage"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%eternal_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnEternalRageThink"
+					}
+				}
+			}
+			"modifier_heracles_madman_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Berserk (Mad Enhancement SA)
+	//========================================
+	"heracles_berserk_upgrade_2"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/berserker_5th_berserk"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+
+		"precache"
+		{
+			"particle"	"particles/custom/berserker/berserk/buff.vpcf"
+			"particle"	"particles/custom/berserker/berserk/eternal_rage_shockwave.vpcf"
+			"particle"	"particles/custom/berserker/berserk/mana_conversion.vpcf"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"300"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"800 975 1150 1325 1500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"480 585 690 795 900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"100 110 120 130 140"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"4"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnBerserkStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+
+			"modifier_heracles_madman_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Berserk (Eternal Rage SA + Mad Enhancement SA)
+	//========================================
+	"heracles_berserk_upgrade_3"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/berserker_5th_berserk"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+
+		"precache"
+		{
+			"particle"	"particles/custom/berserker/berserk/buff.vpcf"
+			"particle"	"particles/custom/berserker/berserk/eternal_rage_shockwave.vpcf"
+			"particle"	"particles/custom/berserker/berserk/mana_conversion.vpcf"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"300"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"800 975 1150 1325 1500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_damage"			"480 585 690 795 900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"100 110 120 130 140"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"4"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eternal_interval"		"1"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_convert"			"20"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnBerserkStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			"modifier_eternal_rage"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%eternal_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnEternalRageThink"
+					}
+				}
+			}
+			"modifier_heracles_madman_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnMadmanWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//===================================================
+	// Berserker : Nine Lives
+	//===================================================
+	"heracles_nine_lives"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/berserker_5th_nine_lives"
+		"AbilityCastAnimation" 			"ACT_DOTA_ITEM_PICKUP"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"		"particles/custom/berserker/nine_lives/hit.vpcf"
+			"particle"		"particles/custom/berserker/nine_lives/last_hit.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"50 60 70 80 90"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_lasthit"	"500"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_lasthit"	"440 580 720 860 1000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mini_stun"			"0.5"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"1.5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"700"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pause_time"		"4"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval"			"0.3"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"total_hit"			"9"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"revoke"			"0.5"
+			}
+			"12"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"post_nine"			"0.4"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnNineCast"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnNineStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	//===================================================
+	// Berserker : Nine Lives (Upgraded)
+	//===================================================
+	"heracles_nine_lives_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/berserker_5th_nine_lives"
+		"AbilityCastAnimation" 			"ACT_DOTA_ITEM_PICKUP"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"		"particles/custom/berserker/nine_lives/hit.vpcf"
+			"particle"		"particles/custom/berserker/nine_lives/last_hit.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"50 60 70 80 90"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_lasthit"	"500"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_lasthit"	"440 580 720 860 1000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mini_stun"			"0.5"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"1.5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"700"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"pause_time"		"4"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval"			"0.3"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"total_hit"			"9"
+			}
+			"11"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"revoke"			"0.5"
+			}
+			"12"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"post_nine"			"0.4"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnNineCast"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnNineStart"
+				"Target"			"POINT"
+			}
+		}
+	}
+	//========================================
+	// Berserker : Madman's Roar
+	//========================================
+	"heracles_madmans_roar"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_madmans_roar"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+		"AbilityCastRange"				"3000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		"precache"
+		{
+			"particle"		"particles/custom/screen_face_splash.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"1500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"berserk_duration"		"4.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage2"				"800"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius2"				"1000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage3"				"500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius3"				"2000"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius4"				"3000"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-50"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"moderate_slow"			"-30"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"3.0"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"madman_duration"		"10.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnRoarStart"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%berserk_duration"
+				"TextureName"		"custom/berserker_5th_berserk"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			
+			"modifier_madmans_roar_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"modifier_madmans_roar_silence"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_madmans_roar_slow_strong"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+			}
+			"modifier_madmans_roar_slow_moderate"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%moderate_slow"
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Madman's Roar (Eternal Rage SA)
+	//========================================
+	"heracles_madmans_roar_upgrade_1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_madmans_roar"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+		"AbilityCastRange"				"3000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		"precache"
+		{
+			"particle"		"particles/custom/screen_face_splash.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"1500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"berserk_duration"		"4.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage2"				"800"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius2"				"1000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage3"				"500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius3"				"2000"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius4"				"3000"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-50"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"moderate_slow"			"-30"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"3.0"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"madman_duration"		"10.0"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eternal_interval"		"1"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_convert"			"20"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnRoarStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%berserk_duration"
+				"TextureName"		"custom/berserker_5th_berserk"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			"modifier_eternal_rage"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%berserk_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%eternal_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnEternalRageThink"
+					}
+				}
+			}
+
+			"modifier_madmans_roar_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"modifier_madmans_roar_silence"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_madmans_roar_slow_strong"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+			}
+			"modifier_madmans_roar_slow_moderate"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%moderate_slow"
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Madman's Roar (Mad Enhancement SA)
+	//========================================
+	"heracles_madmans_roar_upgrade_2"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_madmans_roar"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+		"AbilityCastRange"				"3000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		"precache"
+		{
+			"particle"		"particles/custom/screen_face_splash.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"2000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"berserk_duration"		"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"140"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage2"				"800"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius2"				"1000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage3"				"500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius3"				"2000"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius4"				"3000"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-50"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"moderate_slow"			"-30"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"3.0"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"madman_duration"		"10.0"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eternal_interval"		"1"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_convert"			"20"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnRoarStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%berserk_duration"
+				"TextureName"		"custom/berserker_5th_berserk"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			
+			"modifier_madmans_roar_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"modifier_madmans_roar_silence"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_madmans_roar_slow_strong"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+			}
+			"modifier_madmans_roar_slow_moderate"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%moderate_slow"
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : Madman's Roar (Eternal Rage SA + Mad Enhancement SA)
+	//========================================
+	"heracles_madmans_roar_upgrade_3"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_madmans_roar"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"2.0"
+		"MaxLevel"						"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+		"AbilityCastRange"				"3000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		"precache"
+		{
+			"particle"		"particles/custom/screen_face_splash.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_constant"		"2000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"berserk_duration"		"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"140"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage2"				"800"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius2"				"1000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage3"				"500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius3"				"2000"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius4"				"3000"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-50"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"moderate_slow"			"-30"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"3.0"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"madman_duration"		"10.0"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eternal_interval"		"1"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_convert"			"20"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heracles/heracles_abilities"
+				"Function"			"OnRoarStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_heracles_berserk"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%berserk_duration"
+				"TextureName"		"custom/berserker_5th_berserk"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_aspd"
+				}
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkThink"
+					}
+				}
+				"OnTakeDamage"
+				// "%attack_damage" is set to the damage value after mitigation
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnBerserkTakeDamage"
+						"DamageTaken" 	"%attack_damage"
+					}
+				}
+			}
+			"modifier_eternal_rage"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%berserk_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%eternal_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnEternalRageThink"
+					}
+				}
+			}
+			"modifier_madmans_roar_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"modifier_madmans_roar_silence"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_madmans_roar_slow_strong"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
+				}
+			}
+			"modifier_madmans_roar_slow_moderate"
+			{
+				"Duration"			"%madman_duration"
+				"IsDebuff"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%moderate_slow"
+				}
+			}
+		}
+	}
+	//========================================
+	// Berserker : God Hand
+	//========================================
+	"heracles_god_hand"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_god_hand"
+		"MaxLevel"						"1"
+		"AbilityCastRange"				"600"
+		"precache"
+		{
+			"particle"			"particles/custom/berserker/god_hand/stomp.vpcf"
+			"particle"			"particles/items_fx/aegis_respawn.vpcf"
+			"particle"			"particles/custom/berserker/god_hand/debuff.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_hp"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"11"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"str_penalty"			"-30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"penalty_duration"		"7"
+			}
+		}
+
+		
+		"OnSpellStart"
+		{
+			
+		}
+
+		"Modifiers"
+		{
+			"modifier_berserk_god_hand"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnGodHandDeath"
+					}
+				}
+			}
+			"modifier_god_hand_stock"
+			{
+				"IsHidden"		"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+			}			
+			"modifier_god_hand_debuff"
+			{
+				"Duration"		"%penalty_duration"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_penalty"
+				}
+
+				"EffectName"		"particles/custom/berserker/god_hand/debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+	//========================================
+	// Berserker : Reincarnation
+	//========================================
+	"heracles_reincarnation"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_attribute_reincarnation"
+		"MaxLevel"						"1"
+		"precache"
+		{
+			"particle"			"particles/custom/berserker/reincarnation/regen_buff.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"threshold"				"100"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"health_regen"				"12"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_stack"				"5"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_sustain"				"20000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bonus_count_percentage"		"300"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"				"10"
+			}
+		}
+
+		
+		"OnSpellStart"
+		{
+		}
+
+		"Modifiers"
+		{
+			"modifier_reincarnation"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/heracles/heracles_abilities"
+						"Function"			"OnReincarnationDamageTaken"
+						"DamageTaken"		"%attack_damage"
+					}
+				}
+			}
+			"modifier_reincarnation_stack"
+			{
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heracles/heracles_abilities"
+						"Function"		"OnReincarnationBuffEnded"
+					}
+				}
+			}
+			"modifier_reincarnation_progress"
+			{
+				"IsHidden"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//=======================================
+	// Berserker Attribute : Eternal Rage
+	//=======================================
+	"heracles_attribute_eternal_rage"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/berserker_5th_attribute_berserk"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"18"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bash_chance"		"35"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bash_duration"		"0.2"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bash_damage"		"50"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bash_cd"			"1"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"nine_cdr"			"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_convert"			"20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eternal_interval"		"1"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_convert"			"20"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnEternalRageAcquired"
+			}
+		}
+	}
+	//=======================================
+	// Berserker Attribute : God Hand
+	//=======================================
+	"heracles_attribute_god_hand"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/berserker_5th_attribute_god_hand"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"16"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_hp"			"25"	
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"7"	
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"str_penalty"		"30"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stock"				"11"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius"			"600"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnGodHandAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Berserker Attribute : Reincarnation
+	//=======================================
+	"heracles_attribute_reincarnation"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/berserker_5th_attribute_reincarnation"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"14"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"threshold"				"100"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"health_regen"				"12"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"max_stack"				"5"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage_sustain"				"20000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bonus_count_percentage"		"300"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"				"10"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnReincarnationAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Berserker Attribute : Mad Enhancement
+	//=======================================
+	"heracles_attribute_mad_enhancement"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/heracles/heracles_mad_enhancement"		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"16"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"berserk_duration"		"8.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"nine_revoke"			"0.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_aspd"			"40"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heracles/heracles_abilities"
+				"Function"		"OnMadEnhancementAcquired"
+			}
+		}		
+	}
+}

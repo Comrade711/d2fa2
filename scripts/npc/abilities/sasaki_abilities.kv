@@ -1,0 +1,2239 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Mind's Eye (Fake)
+	//=================================================================================================================
+	"sasaki_minds_eye"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"					"custom/sasaki/sasaki_minds_eye"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"MaxLevel"								"1"
+		
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio"						"0.3"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio_revoked"				"0.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+		}
+		
+		"Modifiers"
+		{
+			"modifier_minds_eye"
+			{
+				"Passive"						"1"
+				"IsHidden"						"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnMindsEyeAttacked"
+						"Ratio"					"%agi_ratio"
+						"RatioRevoked"			"%agi_ratio_revoked"
+					}
+				}
+			}
+			
+			"modifier_minds_eye_crit"
+			{
+				"IsHidden"						"0"
+				//"Passive"						"1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"			"modifier_minds_eye_crit_hit"
+						"Target"				"CASTER"
+					}
+					
+					"Random"
+					{
+						"Chance"				"%critical_rate"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+								"Function"		"OnFACrit"
+							}
+						}
+					}
+				}
+				
+				"States"
+				{
+					//"MODIFIER_STATE_CANNOT_MISS"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			
+			"modifier_minds_eye_crit_hit"
+			{
+				"IsHidden"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"				"%critical_damage"
+				}
+				
+				"OnAttackLanded"
+				{
+			    	"FireEffect"
+			    	{
+			    		"EffectName"			"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			    		"EffectAttachType"		"attach_hitloc"
+			    		"Target"				"TARGET"
+			    	}
+					
+			        "RemoveModifier"
+			        {
+			            "ModifierName"  		"modifier_minds_eye_crit_hit"
+			            "Target"   				"CASTER"
+			        }
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Mind's Eye (Fake) (Mind's Eye SA)
+	//=================================================================================================================
+	"sasaki_minds_eye_upgrade"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"					"custom/sasaki/sasaki_minds_eye"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"MaxLevel"								"1"
+		
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio"						"0.6"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio_revoked"				"1.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+		}
+		
+		"Modifiers"
+		{
+			"modifier_minds_eye"
+			{
+				"Passive"						"1"
+				"IsHidden"						"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnMindsEyeAttacked"
+						"Ratio"					"%agi_ratio"
+						"RatioRevoked"			"%agi_ratio_revoked"
+					}
+				}
+			}
+			
+			"modifier_minds_eye_crit"
+			{
+				"IsHidden"						"0"
+				//"Passive"						"1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"			"modifier_minds_eye_crit_hit"
+						"Target"				"CASTER"
+					}
+					
+					"Random"
+					{
+						"Chance"				"%critical_rate"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+								"Function"		"OnFACrit"
+							}
+						}
+					}
+				}
+				
+				"States"
+				{
+					//"MODIFIER_STATE_CANNOT_MISS"				"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			
+			"modifier_minds_eye_crit_hit"
+			{
+				"IsHidden"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"				"%critical_damage"
+				}
+				
+				"OnAttackLanded"
+				{
+			    	"FireEffect"
+			    	{
+			    		"EffectName"			"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			    		"EffectAttachType"		"attach_hitloc"
+			    		"Target"				"TARGET"
+			    	}
+					
+			        "RemoveModifier"
+			        {
+			            "ModifierName"  		"modifier_minds_eye_crit_hit"
+			            "Target"   				"CASTER"
+			        }
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Gatekeeper
+	//=================================================================================================================
+	"sasaki_gatekeeper"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"					"custom/sasaki/sasaki_gate_keeper"
+		"AbilityCastAnimation" 					"ACT_DOTA_ITEM_PICKUP"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"1"
+		
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+			"particle"							"particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_image.vpcf"
+			"particle"							"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_f.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+		}
+		
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"12"
+		"AbilityManaCost"						"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_hp_regen"				"70 85 100 115 130"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_armor"					"3 6 9 12 15"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movespeed_increase"			"0 20 40 60 80"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_sight"					"50 75 100 125 150"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"window"						"5"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hiken_window"					"3"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnGKStart"
+			}
+			"FireSound"
+			{
+				"EffectName"					"Hero_TemplarAssassin.Refraction"
+				"Target"						"CASTER"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_gate_keeper_self_buff"
+			{
+				"Duration"						"%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_f.vpcf"
+						"EffectAttachType"		"start_at_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_image.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"				"%bonus_hp_regen"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"				"%bonus_armor"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"			"%movespeed_increase"
+					//"MODIFIER_PROPERTY_BONUS_DAY_VISION"					"%bonus_sight"
+					//"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"					"%bonus_sight"
+				}
+
+			}
+			"modifier_sasaki_quickdraw_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+						"Function"		"OnQuickDrawWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+						"Function"		"OnQuickDrawWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+						"Function"		"OnQuickDrawWindowDied"
+					}
+				}
+			}
+			"modifier_hiken_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%hiken_window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+						"Function"		"OnHikenWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+						"Function"		"OnHikenWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/sasaki/sasaki_abilities"
+						"Function"		"OnHikenWindowDied"
+					}
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Heart of Harmony
+	//=================================================================================================================
+	"sasaki_heart_of_harmony"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"					"custom/sasaki/sasaki_heart_of_harmony"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"1"
+		
+		"precache"
+		{
+			"particle"							"particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance.vpcf"
+			"particle"							"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+		
+		"AbilityCastPoint"						"0.1"
+		"AbilityCastRange"						"500"
+		"AbilityCooldown"						"18"
+		"AbilityManaCost"						"0"
+		"AbilityChannelTime"					"1.0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"115 95 75 55 35"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_dr"						"-75"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 120 140 160 180"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_count"					"4"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.0"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"interval"						"0.1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartStart"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_heart_of_harmony"
+			{
+				"Duration"						"%duration"
+				
+				"EffectName"					"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+				"EffectAttachType"				"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleStart"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleDestroy"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnHeartDamageTaken"
+						"DamageTaken"			"%attack_damage"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"				"%bonus_dr"
+				}
+			}			
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Heart of Harmony (Vitrification SA)
+	//=================================================================================================================
+	"sasaki_heart_of_harmony_upgrade_1"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"					"custom/sasaki/sasaki_heart_of_harmony"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"1"
+		
+		"precache"
+		{
+			"particle"							"particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance.vpcf"
+			"particle"							"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+		
+		"AbilityCastPoint"						"0.1"
+		"AbilityCooldown"						"18"
+		"AbilityCastRange"						"800"
+		"AbilityManaCost"						"0"
+		"AbilityChannelTime"					"1.5"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"115 95 75 55 35"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_dr"						"-75"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 120 140 160 180"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_count"					"5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"800"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartStart"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_heart_of_harmony"
+			{
+				"Duration"						"%duration"
+				
+				"EffectName"					"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+				"EffectAttachType"				"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleStart"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleDestroy"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnHeartDamageTaken"
+						"DamageTaken"			"%attack_damage"
+						"Threshold"				"%threshold"
+						"StunDuration"			"%stun_duration"
+						"AttackCount"			"%attack_count"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"				"%bonus_dr"
+				}
+			}			
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Heart of Harmony (Mind's Eyes SA)
+	//=================================================================================================================
+	"sasaki_heart_of_harmony_upgrade_2"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"					"custom/sasaki/sasaki_heart_of_harmony"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"1"
+		
+		"precache"
+		{
+			"particle"							"particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance.vpcf"
+			"particle"							"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+		
+		"AbilityCastPoint"						"0.1"
+		"AbilityCooldown"						"18"
+		"AbilityCastRange"						"500"
+		"AbilityManaCost"						"0"
+		"AbilityChannelTime"					"1.0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"115 95 75 55 35"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_dr"						"-75"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 120 140 160 180"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_count"					"4"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.0"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"interval"						"0.1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartStart"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_heart_of_harmony"
+			{
+				"Duration"						"%duration"
+				
+				"EffectName"					"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+				"EffectAttachType"				"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleStart"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleDestroy"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnHeartDamageTaken"
+						"DamageTaken"			"%attack_damage"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"				"%bonus_dr"
+				}
+			}			
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Heart of Harmony (Vitrification + Mind's Eyes SA)
+	//=================================================================================================================
+	"sasaki_heart_of_harmony_upgrade_3"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"					"custom/sasaki/sasaki_heart_of_harmony"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"1"
+		
+		"precache"
+		{
+			"particle"							"particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance.vpcf"
+			"particle"							"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+		
+		"AbilityCastPoint"						"0.1"
+		"AbilityCooldown"						"18"
+		"AbilityCastRange"						"800"
+		"AbilityManaCost"						"0"
+		"AbilityChannelTime"					"1.5"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"115 95 75 55 35"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_dr"						"-75"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 120 140 160 180"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_count"					"5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"800"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartStart"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnHeartInterrupt"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_heart_of_harmony"
+			{
+				"Duration"						"%duration"
+				
+				"EffectName"					"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+				"EffectAttachType"				"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleStart"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"GKParticleDestroy"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnHeartDamageTaken"
+						"DamageTaken"			"%attack_damage"
+						"Threshold"				"%threshold"
+						"StunDuration"			"%stun_duration"
+						"AttackCount"			"%attack_count"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"				"%bonus_dr"
+				}
+			}			
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Windblade
+	//=================================================================================================================
+	"sasaki_windblade"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_windblade"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 				"3.3"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"30"
+		"AbilityCastRange"						"500"
+		"AbilityManaCost"						"0"
+		
+		"precache"
+		{
+			"particle"							"particles/custom/false_assassin/fa_thunder_clap.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"0.2"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"400 500 600 700 800"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun"							"0.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"knock"							"300"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/sasaki/sasaki_abilities"
+				"Function"					"OnWBStart"
+			}
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Windblade (Ganryu SA)
+	//=================================================================================================================
+	"sasaki_windblade_upgrade"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_windblade"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 				"3.3"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		
+		"AbilityCastPoint"						"0.2"
+		"AbilityCooldown"						"30"
+		"AbilityCastRange"						"500"
+		"AbilityManaCost"						"0"
+		
+		"precache"
+		{
+			"particle"							"particles/custom/false_assassin/fa_thunder_clap.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"0.2"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"400 500 600 700 800"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun"							"0.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"knock"							"300"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_slash"					"1"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/sasaki/sasaki_abilities"
+				"Function"					"OnWBStart"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Tsubame Gaeshi
+	//=================================================================================================================
+	"sasaki_tsubame_gaeshi"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"					"custom/sasaki/sasaki_tsubame_gaeshi"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.5"
+		
+		"AbilityCastPoint"						"0.8"
+		"AbilityCastRange"						"150"
+		"AbilityCastRangeBuffer"				"100"
+		"AbilityCooldown"						"48"
+		"AbilityManaCost"						"0"
+		
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_axe/axe_counterhelix_unused.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_tsubame_gaeshi_first_slash.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_tsubame_gaeshi_second_slash.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_tsubame_gaeshi_third_slash.vpcf"
+			"particle"							"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+			"particle"							"particles/custom/false_assassin/tsubame_gaeshi/slashes.vpcf"
+			"particle"							"particles/custom/false_assassin/tsubame_gaeshi/tsubame_gaeshi_windup_indicator.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"0.8"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"200 250 300 350 400"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"lasthit_damage"				"400 500 600 700 800"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"pause"							"0.8"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"200"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"						"CASTER"
+				"EffectName"					"particles/units/heroes/hero_axe/axe_counterhelix_unused.vpcf"
+				"EffectAttachType"				"start_at_origin"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"TGPlaySound"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnTGStart"
+				"Damage"						"%damage"
+				"LastDamage"					"%lasthit_damage"
+				"StunDuration"					"%stun_duration"
+				"Pause"							"%pause"
+				"Radius"						"%radius"
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName"					"modifier_tg_anim"
+				"Target"						"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"					"modifiers/modifier_ttr_saber"
+				"Function"						"QuestCCheck"
+			}
+		}
+		
+		"Modifiers"
+		{		
+			"modifier_tg_overcharge_effect"
+			{
+				"IsHidden"						"1"
+				"Duration"						"1"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"			"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+						"EffectAttachType"		"attach_hitloc"
+						"Target"				"TARGET"
+						
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_hitloc"
+						}
+					}
+				}
+			}
+			
+			"modifier_tg_anim"
+			{
+				"Duration"						"1"
+				"IsHidden"						"1"
+				"OverrideAnimation"     		"ACT_DOTA_CAST_ABILITY_4"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"CASTER"
+						"EffectName"			"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+						"EffectAttachType"		"follow_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_sword"
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1.5"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Tsubame Gaeshi (Ganryu SA)
+	//=================================================================================================================
+	"sasaki_tsubame_gaeshi_upgrade"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"5"
+		"RequiredLevel"							"1"
+		"LevelsBetweenUpgrades"					"2"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"					"custom/sasaki/sasaki_tsubame_gaeshi"
+		"AbilityType"							"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.5"
+		
+		"AbilityCastPoint"						"0.8"
+		"AOERadius"								"%radius"
+		"AbilityCastRange"						"150"
+		"AbilityCastRangeBuffer"				"100"
+		"AbilityCooldown"						"48"
+		"AbilityManaCost"						"0"
+		
+		"precache"
+		{
+			"particle"							"particles/units/heroes/hero_axe/axe_counterhelix_unused.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_tsubame_gaeshi_first_slash.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_tsubame_gaeshi_second_slash.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_tsubame_gaeshi_third_slash.vpcf"
+			"particle"							"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+			"particle"							"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+			"particle"							"particles/custom/false_assassin/tsubame_gaeshi/slashes.vpcf"
+			"particle"							"particles/custom/false_assassin/tsubame_gaeshi/tsubame_gaeshi_windup_indicator.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"0.8"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"260 310 360 410 460"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"lasthit_damage"				"460 560 660 760 860"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"pause"							"0.8"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"200"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"						"CASTER"
+				"EffectName"					"particles/units/heroes/hero_axe/axe_counterhelix_unused.vpcf"
+				"EffectAttachType"				"start_at_origin"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"TGPlaySound"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnTGStart"
+				"Damage"						"%damage"
+				"LastDamage"					"%lasthit_damage"
+				"StunDuration"					"%stun_duration"
+				"Pause"							"%pause"
+				"Radius"						"%radius"
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName"					"modifier_tg_anim"
+				"Target"						"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"					"modifiers/modifier_ttr_saber"
+				"Function"						"QuestCCheck"
+			}
+		}
+		
+		"Modifiers"
+		{		
+			"modifier_tg_overcharge_effect"
+			{
+				"IsHidden"						"1"
+				"Duration"						"1"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"			"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+						"EffectAttachType"		"attach_hitloc"
+						"Target"				"TARGET"
+						
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_hitloc"
+						}
+					}
+				}
+			}
+			
+			"modifier_tg_anim"
+			{
+				"Duration"						"1"
+				"IsHidden"						"1"
+				"OverrideAnimation"     		"ACT_DOTA_CAST_ABILITY_4"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"CASTER"
+						"EffectName"			"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+						"EffectAttachType"		"follow_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_sword"
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1.5"
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Combo : Hiken/Enbu
+	//=================================================================================================================
+	"sasaki_hiken_enbu"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"					"custom/sasaki/sasaki_tsubame_mai"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"1"
+		
+		"precache"
+		{
+			"particle"							"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+			"particle"							"particles/custom/archer/archer_overedge_slash.vpcf"
+			"particle"							"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+			"particle"							"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_f.vpcf"
+			"particle"							"particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_image.vpcf"
+		}
+		
+		"AbilityCastPoint"						"0.1"
+		"AbilityCooldown"						"180"
+		"AbilityCastRange"						"1000"
+		"AbilityManaCost"						"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"3"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"15"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slash_amount"					"5"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slash_damage_percentage"		"50"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slash_damage"					"-50"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_dr"						"-75"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1000"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnTMStart"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_tsubame_mai_cooldown"
+			{
+				"IsDebuff"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			
+			"modifier_tsubame_mai"
+			{
+				"Duration"						"%duration"
+				"IsHidden"						"1"
+				"EffectName"					"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+				"EffectAttachType"				"follow_origin"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_f.vpcf"
+						"EffectAttachType"		"start_at_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_image.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+						}
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnTMDamageTaken"
+						"DamageTaken"			"%attack_damage"
+						"Threshold"				"%threshold"
+					}
+				}
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnTMLanded"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"				"%bonus_dr"
+				}
+			}
+			
+			"modifier_tsubame_mai_anim"
+			{
+				"Duration"						"0.7"
+				"IsHidden"						"1"
+				"OverrideAnimation"				"ACT_DOTA_ATTACK_EVENT"				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1.0"
+				}
+			}
+			
+			"modifier_tsubame_mai_tg_cast_anim"
+			{
+				"Duration"						"1.5"
+				"IsHidden"						"1"
+				"OverrideAnimation"				"ACT_DOTA_CAST_ABILITY_6"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1.5"
+				}
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"CASTER"
+						"EffectName"			"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+						"EffectAttachType"		"follow_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_sword"
+						}
+					}
+				}
+			}
+			
+			"modifier_tsubame_mai_baseattack_reduction"
+			{
+				"Duration"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"				"%slash_damage"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Combo : Hiken/Enbu (Ganryu SA)
+	//=================================================================================================================
+	"sasaki_hiken_enbu_upgrade"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"					"custom/sasaki/sasaki_tsubame_mai"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		"MaxLevel"								"1"
+		
+		"precache"
+		{
+			"particle"							"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+			"particle"							"particles/custom/archer/archer_overedge_slash.vpcf"
+			"particle"							"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+			"particle"							"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_f.vpcf"
+			"particle"							"particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_image.vpcf"
+		}
+		
+		"AbilityCastPoint"						"0.1"
+		"AbilityCooldown"						"180"
+		"AbilityCastRange"						"1000"
+		"AbilityManaCost"						"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"3"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"15"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slash_amount"					"5"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slash_damage_percentage"		"50"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slash_damage"					"-50"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_dr"						"-75"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1000"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnTMStart"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_tsubame_mai_cooldown"
+			{
+				"IsDebuff"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			
+			"modifier_tsubame_mai"
+			{
+				"Duration"						"%duration"
+				"IsHidden"						"1"
+				"EffectName"					"particles/units/heroes/hero_razor/razor_ambient_g.vpcf"
+				"EffectAttachType"				"follow_origin"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_f.vpcf"
+						"EffectAttachType"		"start_at_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_brewmaster/brewmaster_primal_split_storm_image.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+						}
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnTMDamageTaken"
+						"DamageTaken"			"%attack_damage"
+						"Threshold"				"%threshold"
+					}
+				}
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnTMLanded"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"				"%bonus_dr"
+				}
+			}
+			
+			"modifier_tsubame_mai_anim"
+			{
+				"Duration"						"0.7"
+				"IsHidden"						"1"
+				"OverrideAnimation"				"ACT_DOTA_ATTACK_EVENT"				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1.0"
+				}
+			}
+			
+			"modifier_tsubame_mai_tg_cast_anim"
+			{
+				"Duration"						"1.5"
+				"IsHidden"						"1"
+				"OverrideAnimation"				"ACT_DOTA_CAST_ABILITY_6"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1.5"
+				}
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"CASTER"
+						"EffectName"			"particles/custom/false_assassin/fa_illusory_wanderer_sword_glow.vpcf"
+						"EffectAttachType"		"follow_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_sword"
+						}
+					}
+				}
+			}
+			
+			"modifier_tsubame_mai_baseattack_reduction"
+			{
+				"Duration"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"				"%slash_damage"
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Quickdraw
+	//=================================================================================================================
+	"sasaki_quickdraw"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_quickdraw"
+		"AbilityCastAnimation" 					"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 				"1.0"
+		
+		"precache"
+		{
+			"particle"							"particles/custom/false_assassin/fa_quickdraw.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+		
+		"AbilityCastRange"						"750"
+		"AbilityCastPoint"						"0.1"
+		"AbilityCooldown"						"72"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_damage"					"500"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio"						"12"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"speed"							"1500"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"distance"						"750"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"width"							"150"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+			 	"Function"						"OnQuickdrawStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"					"modifier_qd_anim"
+				"Target"						"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"						"0"
+			"RunScript"
+			{
+			 	"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+			 	"Function"						"OnQuickdrawHit"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_quickdraw_cooldown"
+			{
+				"IsDebuff"						"1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			
+			"modifier_quickdraw_baseattack_reduction"
+			{
+				"Duration"						"0.5"
+				"IsHidden"						"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"				"-100"
+				}
+			}
+			
+			"modifier_qd_anim"
+			{
+				"Duration"						"0.5"
+				"IsHidden"						"1"
+				"OverrideAnimation"     		"ACT_DOTA_CAST_ABILITY_1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"				"1"
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Presence Concealment
+	//=================================================================================================================
+	"sasaki_presence_concealment"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityTextureName"					"custom/sasaki/sasaki_presence_concealment"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityCastPoint"						"1.5"
+		"AbilityCooldown"						"0"
+		"AbilityCastAnimation"					"ACT_DOTA_IDLE"
+		"AnimationPlaybackRate"					"1.0"
+		"MaxLevel"								"1"
+		"AbilityCastRange"						"600"
+		
+		"precache"
+		{
+			"particle"							"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"1.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"600"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_slash"					"1"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_range"					"390"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"						"CASTER"
+				"ModifierName"					"modifier_fa_invis"
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"PCStopOrder"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_fa_passive_blur"
+			{
+				"Passive"						"1"
+				"IsHidden"						"1"
+				"States"
+			    {
+				    "MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"				"MODIFIER_STATE_VALUE_ENABLED"
+			    }
+			}
+			
+			"modifier_fa_invis"
+			{
+				"EffectName"					"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"				"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }
+			    "Properties"
+			    {
+			    	"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%bonus_range"
+			    }
+				
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnPCDeactivate"
+					}
+				}
+
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnPCAttack"
+					}
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnPCDeactivate"
+					}
+				}
+				
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/sasaki/sasaki_abilities"
+						"Function"				"OnPCDeactivate"
+					}
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Attribute - Ganryu
+	//=================================================================================================================
+	"sasaki_attribute_ganryu"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_attribute_ganryu"
+		
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"9999"
+		"AbilityManaCost"						"17"
+		
+		"precache"
+		{
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"200"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_tg"						"60"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnGanryuAcquired"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Attribute - Katana of the Forgotten
+	//=================================================================================================================
+	"sasaki_attribute_katana_of_the_forgotten"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_attribute_quickdraw"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"9999"
+		"AbilityManaCost"						"13"
+		
+		"precache"
+		{
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_damage"					"500"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio"						"12"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"qd_duration"					"5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnQuickdrawAcquired"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Attribute - Vitrification
+	//=================================================================================================================
+	"sasaki_attribute_vitrification"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_attribute_vitrification"
+		
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"9999"
+		"AbilityManaCost"						"11"
+		
+		"precache"
+		{
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_slash"					"1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_duration"				"0.5"
+			}
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_range"					"300"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnVitrificationAcquired"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Attribute - Improve Mind's Eye
+	//=================================================================================================================
+	"sasaki_attribute_improve_minds_eye"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_attribute_improve_minds_eye"
+		
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"9999"
+		"AbilityManaCost"						"9"
+		
+		"precache"
+		{
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio"						"0.6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"agi_ratio_revoked"				"1.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnMindsEyeImproved"
+			}
+		}
+	}
+	//=================================================================================================================
+	//	False Assassin (5th) - Sasaki Kojirou : Attribute - Presence Concealment
+	//=================================================================================================================
+	"sasaki_attribute_presence_concealment"
+	{
+		"BaseClass"								"ability_datadriven"
+		"MaxLevel"								"1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"					"custom/sasaki/sasaki_attribute_presence_concealment"
+		
+		"AbilityCastPoint"						"0"
+		"AbilityCooldown"						"9999"
+		"AbilityManaCost"						"9"
+		
+		"precache"
+		{
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"1.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"600"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"					"abilities/sasaki/sasaki_abilities"
+				"Function"						"OnPresenceConcealmentAcquired"
+			}
+		}
+	}
+}

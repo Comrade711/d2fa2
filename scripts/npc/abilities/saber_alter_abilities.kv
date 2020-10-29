@@ -1,0 +1,2473 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Saber Alter : Mana Shroud
+	//=================================================================================================================
+	"saber_alter_mana_shroud"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/saber_alter_mana_shroud"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen_bonus"		"10"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_mana_shroud"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen_bonus"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Mana Shroud (Upgraded)
+	//=================================================================================================================
+	"saber_alter_mana_shroud_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/saber_alter_mana_shroud"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_regen_bonus"		"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"					"20"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_mana_shroud_upgrade"
+			{
+				"Passive"	"1"
+				"IsHidden"	"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen_bonus"
+					"MODIFIER_PROPERTY_MANA_BONUS"				"%bonus_mana"
+				}
+			}
+		}
+	}
+
+	
+	//=================================================================================================================
+	// Saber Alter : Unleashed Ferocity
+	//=================================================================================================================
+	"saber_alter_unleashed_ferocity"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_unleashed_ferocity"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.5"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"					"particles/custom/saber_alter/saber_alter_unleashed_ferocity.vpcf"
+		}
+		
+		"AbilityCastPoint"				"1.0"
+		"AbilityCooldown"				"17"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"450"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"				"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"explosion_count"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"13"
+			}
+		}
+		
+		"OnSpellStart"
+		{			
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnUFStart"
+				"Radius"		"%radius"
+				"Damage"		"%damage"
+			}
+		}
+		
+			
+		"Modifiers"
+		{
+			"modifier_max_mana_burst_window"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"Duration"			"5"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnMMBWindow"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnMMBWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnMMBWindowDied"
+					}
+				}
+			}
+			"modifier_unleashed_ferocity_caster_VFX_controller"
+			{
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				"Duration"						"2.0"	
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnUFCreateVfx"
+					}
+				}
+				
+				"ThinkInterval"					"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnUFCreateVfx"
+					}
+				}
+			}
+			
+			"modifier_unleashed_ferocity_caster_VFX"
+			{
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				"Duration"						"0.1"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/custom/saber_alter/saber_alter_unleashed_ferocity.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"EffectRadius"			"%radius"
+						"ControlPoints"
+						{
+							"01"				"400 3 0"
+						}
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Unleashed Ferocity (Upgraded)
+	//=================================================================================================================
+	"saber_alter_unleashed_ferocity_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_unleashed_ferocity"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.5"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"					"particles/custom/saber_alter/saber_alter_unleashed_ferocity.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"17"
+		"AbilityManaCost"				"300"
+		"AbilityCastRange"				"450"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"explosion_count"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"13"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_str"				"1.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_int"				"1.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{			
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnUFStart"
+				"Radius"		"%radius"
+				"Damage"		"%damage"
+			}
+		}
+		
+			
+		"Modifiers"
+		{
+			"modifier_max_mana_burst_window"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"Duration"			"4"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnMMBWindow"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnMMBWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnMMBWindowDied"
+					}
+				}
+			}
+			"modifier_unleashed_ferocity_caster_VFX_controller"
+			{
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				"Duration"						"2.0"	
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnUFCreateVfx"
+					}
+				}
+				
+				"ThinkInterval"					"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnUFCreateVfx"
+					}
+				}
+			}
+			
+			"modifier_unleashed_ferocity_caster_VFX"
+			{
+				"IsHidden"						"1"
+				"IsPurgable"					"0"
+				"Duration"						"0.1"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/custom/saber_alter/saber_alter_unleashed_ferocity.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"EffectRadius"			"%radius"
+						"ControlPoints"
+						{
+							"01"				"400 3 0"
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Saber Alter : Darklight attribute passive
+	//=================================================================================================================
+	"saber_alter_darklight_passive"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/saber_alter_darklight_passive"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_atk"				"75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_rate"				"35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_dmg"				"175"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_darklight"
+			{
+				"Passive"		"1"
+				"IsHidden"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_atk"
+				}
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_darklight_crit_hit"
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						}
+					}
+
+					"Random"
+					{
+						"Chance"	"%crit_rate"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+								"Function"		"OnDarklightCrit"
+							}
+						}
+					}
+				}
+			}
+			"modifier_darklight_crit_hit"
+			{
+				"IsHidden"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_dmg"
+				}
+				"OnAttackLanded"
+				{
+			    	"FireEffect"
+			    	{
+			    		"EffectName"		"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			    		"EffectAttachType"	"attach_hitloc"
+			    		"Target"			"TARGET"
+			    	}
+			        "RemoveModifier"
+			        {
+			            "ModifierName"  	"modifier_darklight_crit_hit"
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						}
+  			        }			
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Derange
+	//=================================================================================================================
+	"saber_alter_derange"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/saber_alter_derange"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"13 13 12 12 11"
+		"AbilityManaCost"				"100"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_mana_catalyst.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aspd_modifier"			"10 15 20 25 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mspd_modifier"			"3 6 9 12 15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_modifier"			"20 40 60 80 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-2 -4 -6 -8 -10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"11 12 13 14 15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnDerangeStart"
+			}
+		}
+		
+			
+		"Modifiers"
+		{
+			"modifier_derange"
+			{
+				"Duration"		"%duration"
+				
+				"EffectName"		"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_modifier"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%mspd_modifier"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%dmg_modifier"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDerangeAttackStart"
+					}
+				}
+			}
+			
+			"modifier_armor_reduction"
+			{
+				"Duration"	"1.0"
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"     		"%armor_reduction"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Derange (Upgraded)
+	//=================================================================================================================
+	"saber_alter_derange_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/saber_alter_derange"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"13 13 12 12 11"
+		"AbilityManaCost"				"100"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_mana_catalyst.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aspd_modifier"			"10 15 20 25 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mspd_modifier"			"3 6 9 12 15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_modifier"			"20 40 60 80 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-2 -4 -6 -8 -10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"11 12 13 14 15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_charge"			"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charge"			"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"maximum_charges"		"9"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"10"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_orb_dmg"			"150"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnDerangeStart"
+			}
+		}
+		
+			
+		"Modifiers"
+		{
+			"modifier_derange"
+			{
+				"Duration"		"%duration"
+				
+				"EffectName"		"particles/units/heroes/hero_spectre/spectre_ambient.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_modifier"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%mspd_modifier"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%dmg_modifier"
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDerangeAttackStart"
+					}
+				}
+			}
+			
+			"modifier_armor_reduction"
+			{
+				"Duration"	"1.0"
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"     		"%armor_reduction"
+				}
+			}
+			
+			"modifier_derange_counter"
+			{
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TOOLTIP"	"%bonus_ms"
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDerangeDeath"
+					}
+				}
+			}
+			
+			"modifier_derange_mana_catalyst_VFX"
+			{
+				"IsPurgable"	"0"
+				"IsHidden"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/custom/saber_alter/saber_alter_mana_catalyst.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+						}
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"		"%bonus_ms"
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Saber Alter : Mana Burst
+	//=================================================================================================================
+	"saber_alter_mana_burst"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_mana_burst"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.5"
+		"precache"
+		{
+			"particle"		"particles/items2_fx/skadi_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 380 460 540 620"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cost"			"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"0.2"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+				"EffectAttachType"	"start_at_origin"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_mana_burst_VFX"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnMBStart"
+				"Damage"		"%damage"
+				"Radius"		"%radius"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnManaBlastHit"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Mana Burst (Mana Shroud SA Upgraded)
+	//=================================================================================================================
+	"saber_alter_mana_burst_upgrade_1"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_mana_burst"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.5"
+		"precache"
+		{
+			"particle"		"particles/items2_fx/skadi_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"600"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 380 460 540 620"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cost"			"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"0.2"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+				"EffectAttachType"	"start_at_origin"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_mana_burst_VFX"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnMBStart"
+				"Damage"		"%damage"
+				"Radius"		"%radius"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnManaBlastHit"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Mana Burst (Mana Blast SA Upgraded)
+	//=================================================================================================================
+	"saber_alter_mana_burst_upgrade_2"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_mana_burst"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.5"
+		"precache"
+		{
+			"particle"		"particles/items2_fx/skadi_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 380 460 540 620"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cost"			"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"0.5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"derange_dmg"			"150"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+				"EffectAttachType"	"start_at_origin"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_mana_burst_VFX"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnMBStart"
+				"Damage"		"%damage"
+				"Radius"		"%radius"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnManaBlastHit"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Mana Burst (Mana Blast + Mana Shroud SA Upgraded)
+	//=================================================================================================================
+	"saber_alter_mana_burst_upgrade_3"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_mana_burst"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.5"
+		"precache"
+		{
+			"particle"		"particles/items2_fx/skadi_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"600"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 380 460 540 620"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cost"			"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"0.5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"derange_dmg"			"150"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+				"EffectAttachType"	"start_at_origin"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_mana_burst_VFX"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnMBStart"
+				"Damage"		"%damage"
+				"Radius"		"%radius"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnManaBlastHit"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Saber Alter : MAX Mana Burst
+	//=================================================================================================================
+	"saber_alter_max_mana_burst"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_max_mana_burst"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"0.5"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+			"particle"		"particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
+			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
+			"particle"		"particles/custom/screen_blue_splash.vpcf"
+		}
+		
+		"AbilityCastPoint"				"1.2"
+		"AbilityCooldown"				"180"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"1700"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_ratio"				"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"moderate"				"75"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"inner_range"			"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"low"					"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"medium_range"			"1100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"high"					"100"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+				"EffectAttachType"	"start_at_origin"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_max_mana_burst_VFX"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnMMBStart"
+				"Radius"		"%radius"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_max_mana_burst_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_max_mana_burst_buffer"
+			{
+				"IsHidden"		"1"
+				"IsPurgable"	"0"
+				"IsDebuff"		"1"
+				"Duration"		"1.0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_max_mana_burst_VFX"
+			{
+				"IsHidden"		"1"
+				"IsPurgable"	"0"
+			
+				"Duration"		"1.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPoints"
+						{
+							"01"			"%radius 0 0"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPoints"
+						{
+							"01"			"%radius 0 0"
+							"02"			"1.0 0 0"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPoints"
+						{
+							"02"			"%radius 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : MAX Mana Burst (Upgraded)
+	//=================================================================================================================
+	"saber_alter_max_mana_burst_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_max_mana_burst"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"0.5"
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"particle"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+			"particle"		"particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
+			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
+			"particle"		"particles/custom/screen_blue_splash.vpcf"
+		}
+		
+		"AbilityCastPoint"				"1.2"
+		"AbilityCooldown"				"180"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"1700"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_ratio"			"150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"moderate"				"75"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"inner_range"			"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"low"					"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"medium_range"			"1100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"high"					"100"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+				"EffectAttachType"	"start_at_origin"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_max_mana_burst_VFX"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnMMBStart"
+				"Radius"		"%radius"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_max_mana_burst_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_max_mana_burst_buffer"
+			{
+				"IsHidden"		"1"
+				"IsPurgable"	"0"
+				"IsDebuff"		"1"
+				"Duration"		"1.0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_max_mana_burst_VFX"
+			{
+				"IsHidden"		"1"
+				"IsPurgable"	"0"
+			
+				"Duration"		"1.5"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPoints"
+						{
+							"01"			"%radius 0 0"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPoints"
+						{
+							"01"			"%radius 0 0"
+							"02"			"1.0 0 0"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPoints"
+						{
+							"02"			"%radius 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Saber Alter : Vortigern
+	//=================================================================================================================
+	"saber_alter_vortigern"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_vortigern"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.5"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"particle"	"particles/custom/saber_alter/saber_alter_vortigern_line.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"27"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"600"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"450 550 650 750 850"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"low_end"				"80"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"high_end"				"125"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.6"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+					"ScriptFile"    "abilities/artoria_alter/saber_alter_abilities"
+					"Function"      "OnVortigernStart"
+					"Target"		"POINT"
+					"Radius"		"%radius"
+					"Damage"		"%damage"
+					"StunDuration"	"%stun_duration"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnVortigernHit"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Vortigern (Upgraded)
+	//=================================================================================================================
+	"saber_alter_vortigern_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_vortigern"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.5"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"particle"	"particles/custom/saber_alter/saber_alter_vortigern_line.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"27"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"600"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"297 363 429 495 561"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"low_end"				"80"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"high_end"				"125"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.6"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charge"			"3"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+					"ScriptFile"    "abilities/artoria_alter/saber_alter_abilities"
+					"Function"      "OnVortigernStart"
+					"Target"		"POINT"
+					"Radius"		"%radius"
+					"Damage"		"%damage"
+					"StunDuration"	"%stun_duration"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnVortigernHit"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_vortigern_ferocity_base"
+			{
+				"IsHidden"		"1"
+				"IsBuff"		"1"
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_vortigern_ferocity_show"
+			{
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_vortigern_ferocity_progress"
+			{
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Passive"		"0"
+				"IsPurgable"	"0"
+				"Duration"		"5.0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnVortigernStackGain"
+					}
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Saber Alter : Excalibur Morgan
+	//=================================================================================================================
+	"saber_alter_excalibur"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_alter_excalibur"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"0.9"
+		"precache"
+		{
+			"particle"				"particles/econ/items/doom/doom_f2p_death_effect/doom_bringer_f2p_death_ring_d_black.vpcf"
+			"particle"				"particles/units/heroes/hero_enigma/enigma_blackhole_n.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_overcharge.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_beam.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_beam_charge.vpcf"
+			"particle"				"particles/custom/saber_alter/excalibur/shockwave.vpcf"
+			"particle"				"particles/custom/saber_alter/excalibur/hit.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"2.7"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"1800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"900 1200 1500 1800 2100"
+			}
+			// Extra variables
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pause_duration"		"4.0"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{		
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/artoria_alter/saber_alter_abilities"
+				"Function"      "OnDexStart"
+				"Speed"			"%speed"
+				"Width"			"%width"
+				"Range"		"%length"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnDexHit"
+				"Damage"		"%damage"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/custom/saber_alter/excalibur/hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}	
+		}				
+		
+		"Modifiers"
+		{	
+			"modifier_dex_control"
+			{
+				"Duration"		"1.3"
+				"IsHidden"		"1"
+				"IsPurgable"	"0"			
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "50"
+				}
+			}
+			"dark_excalibur_VFX_controller"
+			{
+				"Duration"		"%pause_duration"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_4"				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDexVfxControllerStart"
+					}
+				}
+			}
+			
+			// VFX section
+			"dark_excalibur_vfx_phase_1"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.5"
+			
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+				}
+				
+				"ThinkInterval"				"1.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDexVfxPhase2Start"
+					}
+				}
+			}
+			
+			"dark_excalibur_vfx_phase_2"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.9"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_beam.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_overcharge.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_enigma/enigma_blackhole_n.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_origin"
+							"TARGET"		"attach_origin"
+						}
+					}
+				}
+			}
+			
+			"dark_excalibur_vfx_phase_3"
+			{
+				"IsHidden"					"1"
+				"Duration"					"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/econ/items/doom/doom_f2p_death_effect/doom_bringer_f2p_death_ring_d_black.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber Alter : Excalibur Morgan (Upgraded)
+	//=================================================================================================================
+	"saber_alter_excalibur_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_alter_excalibur"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"0.9"
+		"precache"
+		{
+			"particle"				"particles/econ/items/doom/doom_f2p_death_effect/doom_bringer_f2p_death_ring_d_black.vpcf"
+			"particle"				"particles/units/heroes/hero_enigma/enigma_blackhole_n.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_overcharge.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_beam.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur.vpcf"
+			"particle"				"particles/custom/saber_alter/saber_alter_excalibur_beam_charge.vpcf"
+			"particle"				"particles/custom/saber_alter/excalibur/shockwave.vpcf"
+			"particle"				"particles/custom/saber_alter/excalibur/hit.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"2.7"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"1800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1300 1600 1900 2200 2500"
+			}
+			// Extra variables
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pause_duration"		"4.0"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{		
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/artoria_alter/saber_alter_abilities"
+				"Function"      "OnDexStart"
+				"Speed"			"%speed"
+				"Width"			"%width"
+				"Range"		"%length"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnDexHit"
+				"Damage"		"%damage"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/custom/saber_alter/excalibur/hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}	
+		}				
+		
+		"Modifiers"
+		{	
+			"modifier_dex_control"
+			{
+				"Duration"		"1.3"
+				"IsHidden"		"1"
+				"IsPurgable"	"0"			
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "50"
+				}
+			}
+			"dark_excalibur_VFX_controller"
+			{
+				"Duration"		"%pause_duration"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_4"				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDexVfxControllerStart"
+					}
+				}
+			}
+			
+			// VFX section
+			"dark_excalibur_vfx_phase_1"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.5"
+			
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+				}
+				
+				"ThinkInterval"				"1.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+						"Function"		"OnDexVfxPhase2Start"
+					}
+				}
+			}
+			
+			"dark_excalibur_vfx_phase_2"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.9"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_beam.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_alter/saber_alter_excalibur_overcharge.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_enigma/enigma_blackhole_n.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_origin"
+							"TARGET"		"attach_origin"
+						}
+					}
+				}
+			}
+			
+			"dark_excalibur_vfx_phase_3"
+			{
+				"IsHidden"					"1"
+				"Duration"					"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/econ/items/doom/doom_f2p_death_effect/doom_bringer_f2p_death_ring_d_black.vpcf"
+						"EffectAttachType"	"start_at_origin"
+					}
+				}
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Alter Attribute : Improve Mana Shroud
+	//=======================================
+	"saber_alter_attribute_mana_shroud"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_alter_attribute_mana_shroud"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_armor"					"20"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_radius"					"200"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"mana_burst_int_ratio"			"3"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_mana"					"300"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnImproveManaShroundAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Alter Attribute : Mana Blast
+	//=======================================
+	"saber_alter_attribute_mana_blast"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_alter_attribute_mana_blast"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"catalyst_numbers_gen_min"		"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"catalyst_numbers_gen_max"		"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_catalyst"			"9"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_ms"				"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"catalyst_damage"		"150"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_burst_mana_ratio"	"20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_max_burst_mana_ratio"	"150"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"extra_mana_cost"		"40"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnManaBlastAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Alter Attribute : Improve Ferocity
+	//=======================================
+	"saber_alter_attribute_improve_ferocity"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_alter_attribute_improve_ferocity"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"vortigern_reduce_damage"			"34"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"vortigern_bonus_stun_duration"		"0.3"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"vortigern_mana_cost"				"200"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"uf_mana_cost"						"100"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"uf_int_ratio"						"1.5"
+			}
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"uf_str_ratio"						"1.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnImproveFerocityAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Alter Attribute : The Sword of Ultimate Darklight
+	//=======================================
+	"saber_alter_attribute_ultimate_darklight"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_alter_attribute_ultimate_darklight"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"11"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_damage"				"75"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"crit_rate"					"35"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"crit_damage"				"175"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"excalibur_bonus_damage"	"400"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria_alter/saber_alter_abilities"
+				"Function"		"OnDarklightAcquired"
+			}
+		}
+	}
+}

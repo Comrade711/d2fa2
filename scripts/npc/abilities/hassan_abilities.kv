@@ -1,0 +1,4111 @@
+"DOTAAbilities"
+{
+	//=====================================
+	// True Assassin : Presence Concealment
+	//=====================================
+	"hassan_presence_concealment"
+	{
+		"BaseClass"          			    "ability_datadriven"
+		"AbilityTextureName"           		"custom/true_assassin_presence_concealment"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"			"1"
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"		"2.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_ta_invis_checker"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+				"Duration"			"%cast_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCActived"
+					}
+				}
+			}
+			"modifier_ta_invis_passive"
+			{
+				"Passive"		"1"	
+				"IsHidden"		"1"
+				
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+				"OnUnitMoved"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCRespawn"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+
+
+			}
+			"modifier_ta_invis"
+			{
+				"EffectName"				"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"			"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }	
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Presence Concealment (Improve Presence Concealment SA)
+	//=====================================
+	"hassan_presence_concealment_upgrade"
+	{
+		"BaseClass"          			    "ability_datadriven"
+		"AbilityTextureName"           		"custom/true_assassin_presence_concealment"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"			"1"
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"		"2.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_ta_invis_checker"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+				"Duration"			"%cast_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCActived"
+					}
+				}
+			}
+			"modifier_ta_invis_passive_upgrade"
+			{
+				"Passive"		"1"	
+				"IsHidden"		"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnPCRespawn"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnPCBroked"
+						"CastDelay"			"%cast_delay"
+					}
+				}
+
+
+			}
+			"modifier_ta_invis"
+			{
+				"EffectName"				"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"			"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }	
+			}
+		}
+	}
+
+	//=====================================
+	// True Assassin : Dirk
+	//=====================================
+	"hassan_dirk"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"custom/true_assassin_dirk"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"5"
+		"AbilityManaCost"				"100"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_dot"			"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_slow"			"-15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"poison_interval"		"1.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_duration"		"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_daggers"			"4"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dagger_recharge"		"5.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"range"					"700"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed"					"1800"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnDirkStart"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_PhantomAssassin.Dagger.Cast"
+				"Target"		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/true_assassin/hassan_abilities"
+				"Function"      "OnDirkHit"
+				"Damage"		"%damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_dirk_daggers_show"
+			{
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_dirk_daggers_base"
+			{
+				"IsHidden"		"1"
+				"IsBuff"		"1"
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDaggerCreate"
+					}
+				}
+			}
+			"modifier_dirk_daggers_progress"
+			{
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Passive"		"0"
+				"IsPurgable"	"0"
+				"Duration"		"%dagger_recharge"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDaggerGain"
+					}
+				}
+			}
+			
+			"modifier_dirk_poison"
+			{		
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"%poison_duration"
+				"ThinkInterval"		"%poison_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnDirkPoisonTick"
+						"Damage"			"%poison_dot"
+					}
+				}			
+			}
+			"modifier_dirk_poison_slow"
+			{
+				"EffectName"		"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"			
+				"IsDebuff"			"1"
+				"IsHidden"			"1"
+				"Duration"			"%poison_duration"		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%poison_slow"
+				}
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Dirk (Upgraded)
+	//=====================================
+	"hassan_dirk_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"custom/true_assassin_dirk"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_dot"			"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_slow"			"-15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_ms_slow_stack"		"-10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_aspd_slow_stack"	"-10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_arm_debuff"		"-3"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"poison_interval"		"1.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"poison_duration"		"2"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_daggers"			"7"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dagger_recharge"		"4.0"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"range"					"1000"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed"					"1800"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnDirkStart"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_PhantomAssassin.Dagger.Cast"
+				"Target"		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/true_assassin/hassan_abilities"
+				"Function"      "OnDirkHit"
+				"Damage"		"%damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_dirk_daggers_show"
+			{
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_dirk_daggers_base"
+			{
+				"IsHidden"		"1"
+				"IsBuff"		"1"
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDaggerCreate"
+					}
+				}
+			}
+			"modifier_dirk_daggers_progress"
+			{
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Passive"		"0"
+				"IsPurgable"	"0"
+				"Duration"		"%dagger_recharge"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDaggerGain"
+					}
+				}
+			}
+			
+			"modifier_dirk_poison"
+			{		
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"%poison_duration"
+				"ThinkInterval"		"%poison_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnDirkPoisonTick"
+						"Damage"			"%poison_dot"
+					}
+				}	
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%poison_arm_debuff"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%poison_ms_slow_stack" 
+				    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%poison_aspd_slow_stack"
+				}		
+			}
+			"modifier_dirk_poison_slow"
+			{
+				"EffectName"		"particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"			
+				"IsDebuff"		"1"
+				"IsHidden"		"1"
+				"Duration"		"%poison_duration"		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%poison_slow"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// TA : Protection from Wind
+	//=================================================================================================================
+	"hassan_protection_from_wind"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_attribute_protection_from_wind"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mr"				"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"penalty_mr"			"-20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mr_change"				"5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mr_timer"				"0.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mr_change_penalty"		"-5"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_wind_protection_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%mr_timer"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnWindProtectionThink"
+					}
+				}
+			}
+			"modifier_wind_protection_bonus"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%mr_change"
+				}
+			}
+			"modifier_wind_protection_penalty"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%mr_change_penalty"
+				}
+			}
+		}
+	}
+
+	//=====================================
+	// True Assassin : Ambush
+	//=====================================
+	"hassan_ambush"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/true_assassin_ambush"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 200 300 400 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"550"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"recover_dagger"		"1 1 2 2 3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"8"
+			}
+		}
+
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"particle"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"		"particles/msg_fx/msg_crit.vpcf"
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+			    "EffectName"	"Hero_BountyHunter.WindWalk"
+			    "Target" "CASTER"
+			}
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnAmbushStart"
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"modifier_ambush"
+			{
+				"Duration"				"%duration"
+				"EffectName"			"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"		"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }
+			    "Properties"
+			    {
+			    	"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movement_speed"
+			    	"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"%bonus_movement_speed"
+			    }
+			    "OnCreated"
+			    {
+				    "FireEffect"
+				    {
+					     "EffectName"  		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk_smoke.vpcf"
+					     "EffectAttachType" "follow_origin"
+					     "Target" 			"CASTER"
+				    }
+			    }
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}
+			}
+			"modifier_first_hit"
+			{
+				"Duration"		"%duration" //Reduced from duration+1 to duration, I assume +1 is to account for travel time of dagger when one breaks ambush at the end of duration. No longer necessary.
+				"IsHidden"		"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}				
+				"OnAttackFailed"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_first_hit"
+						"Target"			"CASTER"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnAbilityCast"
+					}								
+				}
+			}
+			"modifier_thrown"
+			{
+				"Duration"		"1.0" //I don't think any attack takes > 1s to land.
+				"IsHidden"		"1"			
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitLanded"
+						"Damage"			"%damage"
+					}	
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinada_sparks.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"			"TARGET"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/msg_fx/msg_crit.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"01"		"9 %damage 4"	//pre number post
+							"02"		"1 4 0"					//lifetime digits
+							"03"		"255 0 0"				//color
+						}
+					}				
+				}
+			}
+
+			"modifier_delusional_illusion_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Ambush (Improve Presence Concealment SA)
+	//=====================================
+	"hassan_ambush_upgrade_1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/true_assassin_ambush"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 200 300 400 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"550"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"recover_dagger"		"1 1 2 2 3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"detect_range"			"1600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"detect_duration"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"8"
+			}
+		}
+
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"particle"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"		"particles/msg_fx/msg_crit.vpcf"
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+			    "EffectName"	"Hero_BountyHunter.WindWalk"
+			    "Target" "CASTER"
+			}
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnAmbushStart"
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"modifier_ambush"
+			{
+				"Duration"				"%duration"
+				"EffectName"			"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"		"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }
+			    "Properties"
+			    {
+			    	"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movement_speed"
+			    	"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"%bonus_movement_speed"
+			    }
+			    "OnCreated"
+			    {
+				    "FireEffect"
+				    {
+					     "EffectName"  		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk_smoke.vpcf"
+					     "EffectAttachType" "follow_origin"
+					     "Target" 			"CASTER"
+				    }
+			    }
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}
+			}
+			"modifier_first_hit"
+			{
+				"Duration"		"%duration" //Reduced from duration+1 to duration, I assume +1 is to account for travel time of dagger when one breaks ambush at the end of duration. No longer necessary.
+				"IsHidden"		"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}				
+				"OnAttackFailed"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_first_hit"
+						"Target"			"CASTER"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnAbilityCast"
+					}								
+				}
+			}
+			"modifier_thrown"
+			{
+				"Duration"		"1.0" //I don't think any attack takes > 1s to land.
+				"IsHidden"		"1"			
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitLanded"
+						"Damage"			"%damage"
+					}	
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinada_sparks.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"			"TARGET"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/msg_fx/msg_crit.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"01"		"9 %damage 4"	//pre number post
+							"02"		"1 4 0"					//lifetime digits
+							"03"		"255 0 0"				//color
+						}
+					}				
+				}
+			}
+
+			"modifier_delusional_illusion_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Ambush (Improve Dirk SA)
+	//=====================================
+	"hassan_ambush_upgrade_2"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/true_assassin_ambush"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 200 300 400 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"550"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"recover_dagger"		"1 1 2 2 3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"detect_range"			"1600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"detect_duration"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"8"
+			}
+		}
+
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"particle"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"		"particles/msg_fx/msg_crit.vpcf"
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+			    "EffectName"	"Hero_BountyHunter.WindWalk"
+			    "Target" "CASTER"
+			}
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnAmbushStart"
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"modifier_ambush"
+			{
+				"Duration"				"%duration"
+				"EffectName"			"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"		"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }
+			    "Properties"
+			    {
+			    	"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movement_speed"
+			    	"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"%bonus_movement_speed"
+			    }
+			    "OnCreated"
+			    {
+				    "FireEffect"
+				    {
+					     "EffectName"  		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk_smoke.vpcf"
+					     "EffectAttachType" "follow_origin"
+					     "Target" 			"CASTER"
+				    }
+			    }
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}
+			}
+			"modifier_first_hit"
+			{
+				"Duration"		"%duration" //Reduced from duration+1 to duration, I assume +1 is to account for travel time of dagger when one breaks ambush at the end of duration. No longer necessary.
+				"IsHidden"		"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}				
+				"OnAttackFailed"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_first_hit"
+						"Target"			"CASTER"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnAbilityCast"
+					}								
+				}
+			}
+			"modifier_thrown"
+			{
+				"Duration"		"1.0" //I don't think any attack takes > 1s to land.
+				"IsHidden"		"1"			
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitLanded"
+						"Damage"			"%damage"
+					}	
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinada_sparks.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"			"TARGET"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/msg_fx/msg_crit.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"01"		"9 %damage 4"	//pre number post
+							"02"		"1 4 0"					//lifetime digits
+							"03"		"255 0 0"				//color
+						}
+					}				
+				}
+			}
+
+			"modifier_delusional_illusion_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Ambush (Improve Presence Concealment + Poison Dirk SA)
+	//=====================================
+	"hassan_ambush_upgrade_3"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/true_assassin_ambush"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_delay"			"0.8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 200 300 400 500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"550"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"recover_dagger"		"1 1 2 2 3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"detect_range"			"1600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"detect_duration"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"window"				"8"
+			}
+		}
+
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"particle"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+			"particle"		"particles/msg_fx/msg_crit.vpcf"
+			"soundfile"   "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+			    "EffectName"	"Hero_BountyHunter.WindWalk"
+			    "Target" "CASTER"
+			}
+			"FireEffect"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+				"EffectAttachType"	"attach_origin"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnAmbushStart"
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"modifier_ambush"
+			{
+				"Duration"				"%duration"
+				"EffectName"			"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"		"follow_overhead"
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }
+			    "Properties"
+			    {
+			    	"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%bonus_movement_speed"
+			    	"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"%bonus_movement_speed"
+			    }
+			    "OnCreated"
+			    {
+				    "FireEffect"
+				    {
+					     "EffectName"  		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk_smoke.vpcf"
+					     "EffectAttachType" "follow_origin"
+					     "Target" 			"CASTER"
+				    }
+			    }
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}
+			}
+			"modifier_first_hit"
+			{
+				"Duration"		"%duration" //Reduced from duration+1 to duration, I assume +1 is to account for travel time of dagger when one breaks ambush at the end of duration. No longer necessary.
+				"IsHidden"		"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitStart"
+					}					
+				}				
+				"OnAttackFailed"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_first_hit"
+						"Target"			"CASTER"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnAbilityCast"
+					}								
+				}
+			}
+			"modifier_thrown"
+			{
+				"Duration"		"1.0" //I don't think any attack takes > 1s to land.
+				"IsHidden"		"1"			
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+						"Function"			"OnFirstHitLanded"
+						"Damage"			"%damage"
+					}	
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinada_sparks.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"			"TARGET"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/msg_fx/msg_crit.vpcf"
+						"EffectAttachType"	"follow_overhead"
+						"Target"			"TARGET"
+						"ControlPoints"
+						{
+							"01"		"9 %damage 4"	//pre number post
+							"02"		"1 4 0"					//lifetime digits
+							"03"		"255 0 0"				//color
+						}
+					}				
+				}
+			}
+
+			"modifier_delusional_illusion_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnDelusionWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification Think
+	//========================================
+	"hassan_self_modification_think"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"1"
+		
+		"precache"
+		{
+			
+		}
+		
+		"AbilitySpecial"
+		{
+			
+		}
+		
+		"OnSpellStart"
+		{
+			
+		}
+		
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod_thinking"
+			{
+				"Passive"			"1"
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"ThinkInterval"		"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModSwap"
+					}	
+				}				
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (All)
+	//========================================
+	"hassan_self_modification"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}					
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (STR)
+	//========================================
+	"hassan_self_modification_str"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}				
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (INT)
+	//========================================
+	"hassan_self_modification_int"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}				
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (AGI)
+	//========================================
+	"hassan_self_modification_agi"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}				
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (ALL) (Shaytan SA)
+	//========================================
+	"hassan_self_modification_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_str_cooldown"		"0.5"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_str_cooldown_half"		"0.25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_agi_dmg"			"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_agi_dmg_half"		"1.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal"			"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal_half"			"7.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal_aoe"		"500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}				
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+			"modifier_ta_self_mod_agi_dmg"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "1"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (STR) (Shaytan SA)
+	//========================================
+	"hassan_self_modification_upgrade_str"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_str_cooldown"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_agi_dmg"			"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal"			"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal_aoe"		"500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}					
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+			"modifier_ta_self_mod_agi_dmg"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "1"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (AGI) (Shaytan SA)
+	//========================================
+	"hassan_self_modification_upgrade_agi"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_str_cooldown"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_agi_dmg"			"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal"			"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal_aoe"		"500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}		
+				}				
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+			"modifier_ta_self_mod_agi_dmg"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "1"
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Self Modification (INT) (Shaytan SA)
+	//========================================
+	"hassan_self_modification_upgrade_int"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_self_modification"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18"
+		"AbilityCastPoint"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_over_time"		"60 70 80 90 100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stat"			"10 15 20 25 30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_stat_half"		"5 7.5 10 12.5 15"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_str_cooldown"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_agi_dmg"			"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal"			"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal_aoe"		"500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
+				"Target"			"CASTER"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModStart"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSelfModCD"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnSelfModUpgrade"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_ta_self_mod"
+			{
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnSelfModRegen"
+					}	
+				}				
+			}
+			"modifier_ta_self_mod_str"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_agi"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_int"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat"
+				}
+			}
+			"modifier_ta_self_mod_all"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_stat_half"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_stat_half"
+				}
+			}
+			"modifier_ta_self_mod_agi_dmg"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"1"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "1"
+				}
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Snatch Strike
+	//=====================================
+	"hassan_snatch_strike"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_snatch_strike"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"400"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 450 500 550 600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"300"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"curse_damage"			"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_str_dmg"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_agi_dmg"		"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_int_dmg"		"5"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnStealAbilityStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Void"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSnatchStart"
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Snatch Strike (Shadow Strike SA)
+	//=====================================
+	"hassan_snatch_strike_upgrade_1"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_snatch_strike"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"400"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 450 500 550 600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"300"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"curse_damage"			"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_str_dmg"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_agi_dmg"		"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_int_dmg"		"5"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnStealAbilityStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Void"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSnatchStart"
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Snatch Strike (Shaytan Arm SA)
+	//=====================================
+	"hassan_snatch_strike_upgrade_2"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_snatch_strike"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"400"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 450 500 550 600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"300"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"curse_damage"			"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_str_dmg"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_agi_dmg"		"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_int_dmg"		"5"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnStealAbilityStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Void"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSnatchStart"
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Snatch Strike ( Shadow Strike + Shaytan Arm SA)
+	//=====================================
+	"hassan_snatch_strike_upgrade_3"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_snatch_strike"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"300"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"400"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 450 500 550 600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"300"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"curse_damage"			"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_str_dmg"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_agi_dmg"		"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_int_dmg"		"5"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnStealAbilityStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Void"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnSnatchStart"
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Zabaniya
+	//=====================================
+	"hassan_zabaniya"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_zabaniya"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.5"
+
+		"precache"
+		{
+			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+			"particle"		"particles/custom/ta/zabaniya_shadow.vpcf"
+			"particle"		"particles/econ/items/dark_willow/dark_willow_ti8_immortal_head/dw_crimson_ti8_immortal_cursed_crownglow.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+		
+		"AbilityCastPoint"				"0.95"
+		"AbilityCastRange"				"600"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCooldown"				"36"
+		"AbilityManaCost"				"800"
+
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.95"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"700 900 1100 1300 1500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_burn"				"200 250 300 350 400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"curse_duration"		"2.0"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnZabCastStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Trickling_Fear"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnZabStart"
+				"Damage"			"%damage"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/true_assassin/hassan_abilities"
+				"Function"      "OnZabHit"
+				"Damage"		"%damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_zaba_curse"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"Duration"			"%curse_duration"
+		
+				"EffectName"		"particles/econ/items/dark_willow/dark_willow_ti8_immortal_head/dw_crimson_ti8_immortal_cursed_crownglow.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnZabCurseCreate"
+					}
+				}
+		
+				"ThinkInterval"  "0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnZabCurseThink"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnZabCurseDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnTADeath"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// True Assassin : Zabaniya (Shadow Strike SA)
+	//=====================================
+	"hassan_zabaniya_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_zabaniya"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.5"
+
+		"precache"
+		{
+			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
+			"particle"		"particles/custom/ta/zabaniya_shadow.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+		
+		"AbilityCastPoint"				"0.95"
+		"AbilityCastRange"				"600"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCooldown"				"36"
+		"AbilityManaCost"				"800"
+
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.95"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 1200 1400 1600 1800"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_burn"				"300 350 400 450 500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"curse_duration"		"4.0"
+			}
+		}
+
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnZabCastStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Trickling_Fear"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnZabStart"
+				"Damage"			"%damage"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/true_assassin/hassan_abilities"
+				"Function"      "OnZabHit"
+				"Damage"		"%damage"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_zaba_curse"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"Duration"			"%curse_duration"
+		
+				"EffectName"		"particle_name"
+				"EffectAttachType"	"follow_origin"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnZabCurseCreate"
+					}
+				}
+		
+				"ThinkInterval"  "0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnZabCurseThink"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnZabCurseDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+						"Function"		"OnTADeath"
+					}
+				}
+			}
+		}
+	}
+	//========================================
+	// True Assassin : Combo : Delusional Illusion
+	//========================================
+	"hassan_combo"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_combo"
+		"MaxLevel"						"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+		
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150"
+		"AbilityCastPoint"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"625"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"350"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnDIStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_delusional_illusion_show"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+			}
+			"modifier_delusional_illusion_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+		}
+	}
+	//========================================
+	// True Assassin : Combo : Delusional Illusion (Shadow Strike SA)
+	//========================================
+	"hassan_combo_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/true_assassin_combo"
+		"MaxLevel"						"1"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+		
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150"
+		"AbilityCastPoint"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"625"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnDIStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_delusional_illusion_show"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+			}
+			"modifier_delusional_illusion_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+		}
+	}
+	//=====================================
+	// True Assassin : Combo Zabaniya
+	//=====================================
+	"true_assassin_combo_zab"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/ta_zabaniya"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCastPoint"				"0.0"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"precache"
+		{
+			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"		"particles/custom/ta/zabaniya_fiendsgrip_hands_combo.vpcf"
+			"particle"		"particles/custom/ta/zabaniya_ulti_smoke.vpcf"
+			"particle"		"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle" 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+		
+		"AbilityCastRange"				"1500"
+		"AbilityCastRangeBuffer"		"300"
+		"AbilityCooldown"				"0"
+		
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/true_assassin/hassan_abilities"
+				"Function"			"OnDIZabStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/true_assassin/hassan_abilities"
+				"Function"      "OnDIZabHit"
+			}
+		}
+	}
+	//=======================================
+	// TA Attribute : Improve Presence Concealment
+	//=======================================
+	"hassan_attribute_improve_presence_concealment"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/true_assassin_attribute_improve_presence_concealment"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"16"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"search_radius"			"1600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reveal_duration"		"5.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnImprovePresenceConcealmentAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// TA Attribute : Protection from Wind
+	//=======================================
+	"hassan_attribute_protection_from_wind"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/true_assassin_attribute_protection_from_wind"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"14"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mr"				"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"penalty_mr"			"-20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mr_change"				"5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mr_timer"				"0.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnProtectionFromWindAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// TA Attribute : Weakening Venom
+	//=======================================
+	"hassan_attribute_weakening_venom"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/true_assassin_attribute_weakening_venom"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"14"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_dagger"			"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"recharge_time"			"1.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduction"		"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms_slow"					"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aspd_slow"					"10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"recover_dagger"		"1 1 2 2 3"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnWeakeningVenomAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// TA Attribute : Shadow Strike
+	//=======================================
+	"hassan_attribute_shadow_strike"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/true_assassin_attribute_shadow_strike"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zab_curse_dur"			"2.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zab_bonus_damage"		"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"combo_bonus_damage"	"50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"curse_damage"			"500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnShadowStrikeAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// TA Attribute : Arm of Shaytan
+	//=======================================
+	"hassan_attribute_shaytan_arm"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/true_assassin_shaytan_arm"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_str_cooldown"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_agi_dmg"			"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mod_int_heal"			"15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_str_dmg"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_agi_dmg"		"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snatch_int_dmg"		"5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/true_assassin/hassan_abilities"
+				"Function"		"OnShaytanArmAcquired"
+			}
+		}
+	}
+}

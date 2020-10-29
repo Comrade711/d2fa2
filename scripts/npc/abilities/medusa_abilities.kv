@@ -1,0 +1,1493 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Rider : Mystic Eye 
+	//=================================================================================================================
+	"medusa_mystic_eye"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/medusa/medusa_mystic_eye"
+		"MaxLevel"						"1"
+
+		"precache"
+		{
+			"particle"					"particles/custom/rider/rider_mystic_eye_debuff.vpcf"
+		}
+		
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed_modifier"		"-15"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_mystic_eye_passive"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"	
+				"ThinkInterval"  		"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"MysticEyeCheck"
+					}
+				}
+			}	
+			"modifier_mystic_eye_enemy"
+			{
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"0.25"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_modifier"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rider : Mystic Eye (Upgraded)
+	//=================================================================================================================
+	"medusa_mystic_eye_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/medusa/medusa_mystic_eye"
+		"MaxLevel"						"1"
+
+		"precache"
+		{
+			"particle"					"particles/custom/rider/rider_mystic_eye_debuff.vpcf"
+		}
+		
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed_modifier"		"-30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attackspeed_modifier"	"-100"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_mystic_eye_passive"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"	
+				"ThinkInterval"  		"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"MysticEyeCheck"
+					}
+				}
+			}	
+			"modifier_mystic_eye_enemy_upgrade"
+			{
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"0.25"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed_modifier"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_modifier"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Rider : Monstrous Strength passive
+	//=================================================================================================================
+	"medusa_monstrous_strength_passive"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/medusa/medusa_monstrous_strength_passive"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"str"					"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"proc_damage"			"70"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"proc_damage_2"			"200"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_mr"			"5"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_monstrous_strength_passive"
+			{
+				"Passive"		"1"
+				"IsHidden"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%bonus_mr"
+					"MODIFIER_PROPERTY_TOOLTIP"		"%proc_damage"
+					"MODIFIER_PROPERTY_TOOLTIP2"	"%chance"
+				}
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+						"Chance"		"%chance"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/medusa/medusa_abilities"
+								"Function"		"OnMonstrousStrengthProc"
+							}
+						}						
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rider : Riding passive
+	//=================================================================================================================
+	"medusa_riding_passive"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/medusa/medusa_riding"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_ms"				"700"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_medusa_riding_passive"
+			{
+				"IsDebuff"		"0"
+				"IsBuff"		"1"
+				"IsPurgable"	"0"
+				"Passive"		"1"
+				"IsHidden"		"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%max_ms" 
+				    "MODIFIER_PROPERTY_MOVESPEED_MAX" "%max_ms"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%max_ms"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rider : Nail Swing
+	//=================================================================================================================
+	"medusa_nail_swing"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_nail_swing"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.5"
+		
+		"precache"
+		{
+			"particle"	"particles/custom/rider/rider_nail_swing.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"5 5 4 4 3"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"500"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"35 55 75 95 115"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"drag_duration"			"0.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/medusa/medusa_abilities"
+				"Function"      "NailPull"
+				"Radius"		"%radius"
+				"Damage"		"%damage"
+			}
+		}		
+	}
+	
+	//=================================================================================================================
+	// Rider : Breaker Gorgon
+	//=================================================================================================================
+	"medusa_breaker_gorgon"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_breaker_gorgon"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_debuff.vpcf"
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_mark.vpcf"
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_mark_attr.vpcf"
+			"particle"			"particles/status_fx/status_effect_medusa_stone_gaze.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12 11 10 9 8"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"550"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aspd_slow"				"-10 -20 -30 -40 -50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ms_slow"				"-10 -20 -30 -40 -50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"turn_rate"				"-200"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"window"					"7"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBGStart"
+			}
+		}			
+			
+		"Modifiers"
+		{
+			"modifier_breaker_gorgon"
+			{
+				"Duration"			"%duration"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/custom/rider/rider_breaker_gorgon_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%ms_slow"
+				}
+			}
+			"modifier_belle_2_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBelle2WindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBelle2WindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBelle2WindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rider : Breaker Gorgon (Upgraded)
+	//=================================================================================================================
+	"medusa_breaker_gorgon_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_breaker_gorgon"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_debuff.vpcf"
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_mark.vpcf"
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_mark_attr.vpcf"
+			"particle"			"particles/status_fx/status_effect_medusa_stone_gaze.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12 11 10 9 8"
+		"AbilityManaCost"				"200"
+		"AbilityCastRange"				"550"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aspd_slow"				"-20 -40 -60 -80 -100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ms_slow"				"-20 -40 -60 -80 -100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"turn_rate"				"-200"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"window"					"7"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stone"						"3"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stone_rate"				"50"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBGStart"
+			}
+		}			
+			
+		"Modifiers"
+		{
+			"modifier_breaker_gorgon_upgrade"
+			{
+				"Duration"			"%duration"
+				"IsDebuff"			"1"
+				"EffectName"		"particles/custom/rider/rider_breaker_gorgon_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%ms_slow"
+					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"		"%turn_rate"
+				}
+			}
+			"modifier_breaker_gorgon_stone"
+			{
+				"Duration"			"%stone"
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"StatusEffectName" 		"particles/status_fx/status_effect_medusa_stone_gaze.vpcf" 	   
+				"StatusEffectPriority"  "10"
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_belle_2_window"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+			
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBelle2WindowCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBelle2WindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBelle2WindowDied"
+					}
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Rider : Bloodfort Andromeda
+	//=================================================================================================================
+	"medusa_bloodfort_andromeda"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_bloodfort_andromeda"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/custom/rider/rider_spirit.vpcf"
+			"particle"					"particles/units/heroes/hero_warlock/warlock_upheaval.vpcf"
+		}
+		
+		"AbilityCastPoint"				"2.0"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"1000"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"2.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"1000"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aspd_slow"				"-40 -50 -60 -70 -80"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"ms_slow"				"-40 -50 -60 -70 -80"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"5.0"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"100 140 180 220 260"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"absorb"			"50 70 90 110 130"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mp_absorb"			"25 35 45 55 65"
+			}
+			"10"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"seal_interval"		"1.0"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBloodfortCast"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBloodfortStart"
+				"Damage"		"%damage"
+				"Duration"		"%duration"
+				"AbsorbAmount"	"%absorb"
+				"Radius"		"%radius"
+			}
+			
+		}
+		
+			
+		"Modifiers"
+		{
+			"modifier_bloodfort_aura"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"Duration"				"%duration"
+				"Attributes"			"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Aura"					"modifier_bloodfort_dummy"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP "	
+				"ThinkInterval"  		"%seal_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBloodfortSuck"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBloodfortDeath"
+					}
+				}
+			}	
+			"modifier_bloodfort_slow"
+			{
+				"Duration"		"1.5"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%ms_slow"
+				}
+			}
+			"modifier_bloodfort_dummy"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"				
+			}	
+			"modifier_bloodfort_seal"
+			{
+				"Duration"		"0.15"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Rider : Bloodfort Andromeda (Upgraded)
+	//=================================================================================================================
+	"medusa_bloodfort_andromeda_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_bloodfort_andromeda"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/custom/rider/rider_spirit.vpcf"
+			"particle"					"particles/units/heroes/hero_warlock/warlock_upheaval.vpcf"
+		}
+		
+		"AbilityCastPoint"				"2.0"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"1000"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"2.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"1000"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aspd_slow"				"-40 -50 -60 -70 -80"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"ms_slow"				"-40 -50 -60 -70 -80"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"5.0"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"100 140 180 220 260"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"absorb"			"50 70 90 110 130"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"seal_interval"		"1.0"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBloodfortCast"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBloodfortStart"
+				"Damage"		"%damage"
+				"Duration"		"%duration"
+				"AbsorbAmount"	"%absorb"
+				"Radius"		"%radius"
+			}
+			
+		}
+		
+			
+		"Modifiers"
+		{
+			"modifier_bloodfort_aura"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+				"Duration"				"%duration"
+				"Attributes"			"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Aura"					"modifier_bloodfort_dummy"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP "	
+				"ThinkInterval"  		"%seal_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBloodfortSuck"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/medusa/medusa_abilities"
+						"Function"		"OnBloodfortDeath"
+					}
+				}
+			}	
+			"modifier_bloodfort_slow"
+			{
+				"Duration"		"1.5"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aspd_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%ms_slow"
+				}
+			}
+			"modifier_bloodfort_dummy"
+			{
+				"Passive"				"0"
+				"IsHidden"				"1"
+			}	
+			"modifier_bloodfort_seal"
+			{
+				"Duration"		"0.3"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Rider : Bellerophon II
+	//=================================================================================================================
+	"medusa_bellerophon_2"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityU11tTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_bellerophon_2"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.4"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
+			"particle"					"particles/custom/screen_lightblue_splash.vpcf"
+			"particle"					"particles/custom/rider/rider_bellerophon_2_beam_charge.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_emp_charge.vpcf"
+			"particle"					"particles/items_fx/dust_of_appearance_true_sight.vpcf"
+		}
+		
+		"AbilityCastPoint"				"2.5"
+		"AbilityCooldown"				"120"
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_delay"	"2.5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"2500"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"range"		"1500"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"width"		"500"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"stun"			"2"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelle2Cast"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelle2Start"
+				"Range"			"%range"
+				"Width"			"%width"
+			}
+			
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelle2Hit"
+				"Damage"		"%damage"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_bellerophon_2_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rider : Bellerophon II (Upgrade)
+	//=================================================================================================================
+	"medusa_bellerophon_2_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityU11tTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_bellerophon_2"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.4"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
+			"particle"					"particles/custom/screen_lightblue_splash.vpcf"
+			"particle"					"particles/custom/rider/rider_bellerophon_2_beam_charge.vpcf"
+			"particle"					"particles/units/heroes/hero_invoker/invoker_emp_charge.vpcf"
+			"particle"					"particles/items_fx/dust_of_appearance_true_sight.vpcf"
+		}
+		
+		"AbilityCastPoint"				"2.5"
+		"AbilityCooldown"				"120"
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"cast_delay"	"2.5"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"2950"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"range"			"1500"
+			}
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"width"			"500"
+			}
+			"05"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"stun"			"2"
+			}
+			"06"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"agi_ratio"		"12"
+			}
+		}
+		
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelle2Cast"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelle2Start"
+				"Range"			"%range"
+				"Width"			"%width"
+			}
+			
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelle2Hit"
+				"Damage"		"%damage"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_bellerophon_2_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Rider : Bellerophon
+	//=================================================================================================================
+	"medusa_bellerophon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_bellerophon"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"2.0"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"				"particles/custom/rider/rider_bellerophon_1.vpcf"
+			"particle"				"particles/custom/rider/rider_bellerophon_1_alternate.vpcf"
+			"particle"				"particles/custom/rider/rider_bellerophon_1_impact.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.40"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"0.4"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"800 1075 1350 1625 1900"
+			}
+			
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1800"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"			"1.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelleStart"
+				"Target"		"POINT"
+				"Radius"		"%radius"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+			
+		}
+		
+		"Modifiers"
+		{
+			"modifier_belle_hit_check"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"0.11"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Rider : Bellerophon (Upgraded)
+	//=================================================================================================================
+	"medusa_bellerophon_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/medusa/medusa_bellerophon"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"2.0"
+		"AOERadius"						"%radius"
+		
+		"precache"
+		{
+			"particle"				"particles/custom/rider/rider_bellerophon_1.vpcf"
+			"particle"				"particles/custom/rider/rider_bellerophon_1_alternate.vpcf"
+			"particle"				"particles/custom/rider/rider_bellerophon_1_impact.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.40"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"				"0.4"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"1050 1325 1600 1875 2150"
+			}
+			
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1800"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"			"1.5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnBelleStart"
+				"Target"		"POINT"
+				"Radius"		"%radius"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+			
+		}
+		
+		"Modifiers"
+		{
+			"modifier_belle_hit_check"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"0.11"
+			}
+		}
+	}
+	
+	//=======================================
+	// Rider Attribute : Improve Mystic Eyes
+	//=======================================
+	"medusa_attribute_improve_mystic_eyes"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/medusa/medusa_attribute_improve_mystic_eyes"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"9"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"ms_slow"			"30"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"as_slow"			"100"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnImproveMysticEyesAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Rider Attribute : Riding
+	//=======================================
+	"medusa_attribute_riding"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/medusa/medusa_attribute_riding"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"16"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"belle_2_damage"	"12"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_ms"			"700"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_belle_damage"	"250"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_belle2_damage"	"450"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnRidingAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Rider Attribute : Seal
+	//=======================================
+	"medusa_attribute_seal"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/medusa/medusa_attribute_seal"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"14"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"turn_rate"			"200"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_multiply"		"200"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stone_rate"		"50"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stone"				"3"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnSealAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Rider Attribute : Monstrous Strength
+	//=======================================
+	"medusa_attribute_monstrous_strength"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/medusa/medusa_attribute_monstrous_strength"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"proc_damage"		"70"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"bonus_mr"			"5.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"proc_chance"		"50"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"proc_damage_2"		"200"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_str"			"10"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/medusa/medusa_abilities"
+				"Function"		"OnMonstrousStrengthAcquired"
+			}
+		}
+	}
+}
