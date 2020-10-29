@@ -709,6 +709,7 @@ end
 function OnEnumaElishModelChangeDeath(keys)
 	local caster = keys.caster 
 	caster:RemoveModifierByName("modifier_enuma_elish_animation")
+	caster:RemoveModifierByName("modifier_max_enuma_elish_animation")
 end
 
 function OnEnumaElishChargeStart(keys)
@@ -749,8 +750,8 @@ function OnMaxEnumaStart(keys)
 	giveUnitDataDrivenModifier(caster, caster, "jump_pause", cast_delay)
 
 	if caster:HasModifier("modifier_alternate_01") then 
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_enuma_elish_animation", {duration = cast_delay + enumaTime})
-		StartAnimation(caster, {duration=4.5, activity=ACT_DOTA_CAST_ABILITY_6, rate=0.2})
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_max_enuma_elish_animation", {duration = cast_delay + 2.1})
+		StartAnimation(caster, {duration=cast_delay + 2.1, activity=ACT_DOTA_CAST_ABILITY_6, rate=0.15})
 	else
 		ability:ApplyDataDrivenModifier(caster, caster, "max_enuma_elish_anim", {})
 	end
@@ -846,7 +847,7 @@ function OnMaxEnumaStart(keys)
 				EmitGlobalSound("gilgamesh_laugh_3")
 				dummy:RemoveSelf()
 				if caster:HasModifier("modifier_alternate_01") then 
-					caster:RemoveModifierByName("modifier_enuma_elish_animation")
+					caster:RemoveModifierByName("modifier_max_enuma_elish_animation")
 				end
 			end)
 		end
