@@ -1,0 +1,3585 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Archer : Innate : Clairvoyance (F)
+	//=================================================================================================================
+	"archer_clairvoyance"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/archer_5th_clairvoyance"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"					"particles/custom/archer/archer_clairvoyance_dust.vpcf"
+			"particle"					"particles/custom/archer/archer_clairvoyance_circle.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"99999"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"700"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"99999"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"9.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"window"				"8.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    		"abilities/archer5/archer_abilities"
+				"Function"      		"FarSightVision"
+				"Radius"				"%radius"
+				"Target"				"POINT"
+				"Duration"				"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_archer_hrunting_window"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnHruntingWindow"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnHruntingWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnHruntingWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Innate : Clairvoyance Upgraded (F)
+	//=================================================================================================================
+	"archer_clairvoyance_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/archer_5th_clairvoyance"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		"precache"
+		{
+			"particle"					"particles/custom/archer/archer_clairvoyance_dust.vpcf"
+			"particle"					"particles/custom/archer/archer_clairvoyance_circle.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"99999"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"99999"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"9.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"window"				"8.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    		"abilities/archer5/archer_abilities"
+				"Function"      		"FarSightVision"
+				"Radius"				"%radius"
+				"Target"				"POINT"
+				"Duration"				"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_archer_hrunting_window"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%window"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnHruntingWindow"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnHruntingWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnHruntingWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Hrunting (F)
+	//=================================================================================================================
+	"archer_hrunting"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_hrunting"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"0.3"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/events/ti4/teleport_end_ti4.vpcf"
+			"particle"					"particles/custom/archer/archer_hrunting_orb.vpcf"
+			"particle"					"particles/custom/archer/archer_hrunting_area.vpcf"
+			"particle"				"particles/custom/archer/archer_broken_phantasm/archer_broken_phantasm_crosshead.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		}
+		
+		"AbilityCastPoint"				"0.5"
+		"AbilityChannelTime"			"3.5"
+		"AbilityCastRange"				"3000"
+		"AbilityCastRangeBuffer"		"9999"
+		"AbilityCooldown"				"40"
+		"AbilityManaCost"				"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"3.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"3000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_used"				"66"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"325 425 525 625 725"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_bounce"			"2"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounce_damage"			"75"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"40"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnHruntingFilter"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnHruntCast"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.EMP.Charge"
+				"Target"		"CASTER"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnHruntInterrupted"
+			}			
+		}
+		
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnHruntStart"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnHruntHit"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_hrunting_cooldown"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"Duration"			"%cooldown"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Hrunting (Upgraded) (F)
+	//=================================================================================================================
+	"archer_hrunting_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_hrunting"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"0.3"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/events/ti4/teleport_end_ti4.vpcf"
+			"particle"					"particles/custom/archer/archer_hrunting_orb.vpcf"
+			"particle"					"particles/custom/archer/archer_hrunting_area.vpcf"
+			"particle"				"particles/custom/archer/archer_broken_phantasm/archer_broken_phantasm_crosshead.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		}
+		
+		"AbilityCastPoint"				"0.5"
+		"AbilityChannelTime"			"3.5"
+		"AbilityCastRange"				"5000"
+		"AbilityCastRangeBuffer"		"9999"
+		"AbilityCooldown"				"40"
+		"AbilityManaCost"				"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"3.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"5000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_used"				"66"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"325 425 525 625 725"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_bounce"			"2"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounce_damage"			"75"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"40"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnHruntingFilter"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnHruntCast"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.EMP.Charge"
+				"Target"		"CASTER"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnHruntInterrupted"
+			}			
+		}
+		
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnHruntStart"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnHruntHit"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_hrunting_cooldown"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"		"0"
+				"Duration"			"%cooldown"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//=======================================
+	// Archer : Rho Aias (D)
+	//=======================================
+	"archer_rho_aias"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_rho_aias"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"400"
+		"AbilityCooldown"				"24"
+		"AbilityManaCost"				"400"
+
+		"precache"
+		{
+			"particle"					"particles/custom/archer/archer_rhoaias_shield.vpcf"
+			"particle"					"particles/units/heroes/hero_templar_assassin/templar_assassin_refract_hit_sphere.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"shield_amount"			"2000"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"4"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnRhoStart"
+				"ShieldAmount"		"%shield_amount"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_EmberSpirit.FlameGuard.Cast"
+				"Target"			"TARGET"
+			}
+		}		
+
+		"Modifiers"
+		{
+			"modifier_rho_aias"
+			{
+				"IsDebuff"		"0 "
+				"IsPurgable"	"0"
+				"Duration"		"%duration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnRhoCreate"	
+					}
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnRhoThink"	
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnRhoDestroy"	
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnRhoDamaged"
+						"DamageTaken"	"%attack_damage"		
+					}
+				}
+				
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}	
+	}
+	//=======================================
+	// Archer : Shroud of Martin (Passive)
+	//=======================================
+	"archer_shroud_of_martin"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/archer_5th_attribute_shroud_of_martin"
+
+		"precache"
+		{
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mr_bonus"			"5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"armor_bonus"		"10"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"hp_bonus"			"4"
+			}
+		}	
+
+		"Modifiers"
+		{
+			"modifier_shroud_of_martin"
+			{
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"IsHidden"		"0"
+				"IsBuff"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%mr_bonus"
+				    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus" 
+				}
+			}
+			"modifier_shroud_of_martin_hp"
+			{
+				"Passive"		"1"
+				"IsPurgable"	"0"
+				"IsHidden"		"1"
+				"IsBuff"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp_bonus"
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"MartinBonusHp"
+					}
+				}
+			}
+		}	
+	}
+	//=================================================================================================================
+	// Archer : Kanshou & Bakuya (Q)
+	//=================================================================================================================
+	"archer_kanshou_byakuya"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_kanshou_bakuya"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+			"particle"					"particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf"
+			"particle"					"particles/econ/courier/courier_mechjaw/mechjaw_death_sparks.vpcf"
+			"particle"					"particles/custom/archer/archer_byakuya.vpcf"
+			"particle"					"particles/custom/archer/archer_kanshou.vpcf"
+			"particle"					"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"80 95 110 125 140"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_aoe"				"135"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"num_blade"				"2"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"KanshouByakuyaStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/archer5/archer_abilities"
+			 	"Function"		"OnKBHit"
+			}		
+		}
+	}
+	//=================================================================================================================
+	// Archer : Kanshou & Bakuya (Upgraded) (Q)
+	//=================================================================================================================
+	"archer_kanshou_byakuya_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_kanshou_bakuya"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+			"particle"					"particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf"
+			"particle"					"particles/econ/courier/courier_mechjaw/mechjaw_death_sparks.vpcf"
+			"particle"					"particles/custom/archer/archer_byakuya.vpcf"
+			"particle"					"particles/custom/archer/archer_kanshou.vpcf"
+			"particle"					"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"500"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"80 95 110 125 140"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_aoe"				"135"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"num_blade"				"4"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"8"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"0.3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aspd"					"20"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"KanshouByakuyaStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/archer5/archer_abilities"
+			 	"Function"		"OnKBHit"
+			}		
+		}
+		"Modifiers"
+		{
+			"modifier_kanshou_byakuya"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%aspd"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Broken Phantasm
+	//=================================================================================================================
+	"archer_broken_phantasm"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_broken_phantasm"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"%radius"
+		
+		"AbilityCastPoint"				"0.25"
+		"AbilityChannelTime"			"1.75"		
+		"AbilityCastRange"				"2000"
+		"AbilityCastRangeBuffer"		"500"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"200"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"					"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"					"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+			"particle"					"particles/custom/archer/archer_broken_phantasm/archer_broken_phantasm_crosshead.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"1.75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"target_damage"			"100 150 200 250 300"
+			}
+
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"225 275 325 375 425"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"375"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.0 1.0 1.5 1.5 2.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"2000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_damage"			"325 425 525 625 725"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPUpgrade"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPCast"
+			}
+		}
+	
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPInterrupted"
+			}
+		}
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/archer5/archer_abilities"
+				"Function"      "OnBPHit"
+				"Radius"		"%radius"
+				"StunDuration"	"%stun_duration"
+				"TargetDamage"	"%target_damage"
+				"SplashDamage"	"%splash_damage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Broken Phantasm (Upgraded)
+	//=================================================================================================================
+	"archer_broken_phantasm_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_broken_phantasm"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"%radius"
+		
+		"AbilityCastPoint"				"0.25"
+		"AbilityChannelTime"			"1.75"		
+		"AbilityCastRange"				"3000"
+		"AbilityCastRangeBuffer"		"500"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"200"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"					"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"					"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+			"particle"					"particles/custom/archer/archer_broken_phantasm/archer_broken_phantasm_crosshead.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"1.75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"target_damage"			"100 150 200 250 300"
+			}
+
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_damage"			"225 275 325 375 425"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"375"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.0 1.0 1.5 1.5 2.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"3000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_damage"			"325 425 525 625 725"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPUpgrade"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPCast"
+			}
+		}
+	
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPInterrupted"
+			}
+		}
+		"OnChannelSucceeded"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnBPStart"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/archer5/archer_abilities"
+				"Function"      "OnBPHit"
+				"Radius"		"%radius"
+				"StunDuration"	"%stun_duration"
+				"TargetDamage"	"%target_damage"
+				"SplashDamage"	"%splash_damage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Crane Wing (E)
+	//=================================================================================================================
+	"archer_crane_wing"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/emiya_crane_wings"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"3.0"	
+		"precache"
+		{
+			"particle"					"particles/custom/archer/archer_overedge_slash.vpcf"
+			"particle"					"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"26"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"275"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"450 550 650 750 850"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cast_range"		"500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnCraneWingStart"
+				"Target"			"POINT"
+				"Radius"			"%radius"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_overedge_anim"
+			{
+				"OverrideAnimation"		"ACT_DOTA_ATTACK"
+				"Duration"				"0.6"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Crane Wing (Upgraded) (E)
+	//=================================================================================================================
+	"archer_crane_wing_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/emiya_crane_wings"
+		"AOERadius"						"%radius"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate" 		"3.0"	
+		"precache"
+		{
+			"particle"					"particles/custom/archer/archer_overedge_slash.vpcf"
+			"particle"					"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+			"particle"					"particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+			"particle"					"particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf"
+			"particle"					"particles/econ/courier/courier_mechjaw/mechjaw_death_sparks.vpcf"
+			"particle"					"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"26"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"275"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"650 750 850 950 1050"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cast_range"		"500"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"kb_dmg"			"100"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnCraneWingStart"
+				"Target"			"POINT"
+				"Radius"			"%radius"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnTLCWHit"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_overedge_anim"
+			{
+				"OverrideAnimation"		"ACT_DOTA_ATTACK"
+				"Duration"				"0.6"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Chant Unlimited Blade Works
+	//=================================================================================================================
+	"archer_unlimited_bladeworks_chant"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_ubw"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1150"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/custom/archer/archer_ubw_ring.vpcf"
+			"particle"		"particles/custom/archer/ubw/firering.vpcf"
+			"particle"		"particles/custom/archer/ubw/entrance_flash.vpcf"
+			"particle"		"particles/custom/archer/ubw/exit_flash.vpcf"
+			"model"			"models/items/skeleton_king/weapon_shattered/weapon_shattered.vmdl"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"7.0 7.5 8.0 8.5 9.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_set"			"5 6 7 8 9"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_bonus"		"5 10 15 20 25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"form_delay"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ubw_duration"			"15"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chrono_range"			"650"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_interval"		"0.2"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_base_damage"		"55"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_int_ratio"		"0.3"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnUBWChant"
+				"Radius"		"%radius"
+			}
+		}
+
+			
+		"Modifiers"
+		{
+			"modifier_unlimited_bladeworks"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnArcherDead"
+					}
+				}
+			}
+			"modifier_UBW_chant"
+			{
+				"IsBuff"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWChantDestroy"
+					}
+				}
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%movespeed_bonus" 
+				}
+			}
+			"modifier_ubw_choronosphere_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Aura_ApplyToCaster" "0"
+				"Aura"				"modifier_ubw_chronosphere"
+				"Aura_Radius"		"%chrono_range"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Types"		"DOTA_UNIT_TARGET_ALL"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_ubw_chronosphere_self"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_ubw_chronosphere"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"0"
+				"IsHidden"			"0"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_unlimited_bladeworks_auto_blade"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%sword_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnAutoBlade"
+					}
+				}
+			}
+			"modifier_inside_marble"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}	
+	}
+	//=================================================================================================================
+	// Archer : Chant Unlimited Blade Works (Upgraded)
+	//=================================================================================================================
+	"archer_unlimited_bladeworks_chant_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_ubw"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1150"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/custom/archer/archer_ubw_ring.vpcf"
+			"particle"		"particles/custom/archer/ubw/firering.vpcf"
+			"particle"		"particles/custom/archer/ubw/entrance_flash.vpcf"
+			"particle"		"particles/custom/archer/ubw/exit_flash.vpcf"
+			"model"			"models/items/skeleton_king/weapon_shattered/weapon_shattered.vmdl"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"7.0 7.5 8.0 8.5 9.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_set"			"5 6 7 8 9"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_bonus"		"5 10 15 20 25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"form_delay"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ubw_duration"			"15"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chrono_range"			"650"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_interval"		"0.2"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_base_damage"		"55"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_int_ratio"		"0.3"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnUBWChant"
+				"Radius"		"%radius"
+			}
+		}
+
+			
+		"Modifiers"
+		{
+			"modifier_unlimited_bladeworks"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnArcherDead"
+					}
+				}
+			}
+			"modifier_UBW_chant"
+			{
+				"IsBuff"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWChantDestroy"
+					}
+				}
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%movespeed_bonus" 
+				}
+			}
+			"modifier_ubw_choronosphere_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Aura_ApplyToCaster" "0"
+				"Aura"				"modifier_ubw_chronosphere"
+				"Aura_Radius"		"%chrono_range"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Types"		"DOTA_UNIT_TARGET_ALL"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_ubw_chronosphere_self"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_ubw_chronosphere"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"0"
+				"IsHidden"			"0"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_unlimited_bladeworks_auto_blade"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%sword_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnAutoBlade"
+					}
+				}
+			}
+			"modifier_inside_marble"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}	
+	}
+	//=================================================================================================================
+	// Archer : Unlimited Blade Works
+	//=================================================================================================================
+	"archer_unlimited_bladeworks"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_ubw"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1150"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/custom/archer/archer_ubw_ring.vpcf"
+			"particle"		"particles/custom/archer/ubw/firering.vpcf"
+			"particle"		"particles/custom/archer/ubw/entrance_flash.vpcf"
+			"particle"		"particles/custom/archer/ubw/exit_flash.vpcf"
+			"model"			"models/items/skeleton_king/weapon_shattered/weapon_shattered.vmdl"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"7.0 7.5 8.0 8.5 9.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_set"			"5 6 7 8 9"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_bonus"		"5 10 15 20 25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"form_delay"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ubw_duration"			"15"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chrono_range"			"650"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_interval"		"0.2"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_base_damage"		"55"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_int_ratio"		"0.3"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnUBWChant"
+				"Radius"		"%radius"
+			}
+		}
+
+			
+		"Modifiers"
+		{
+			"modifier_unlimited_bladeworks"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnArcherDead"
+					}
+				}
+			}
+			"modifier_UBW_chant"
+			{
+				"IsBuff"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWChantDestroy"
+					}
+				}
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%movespeed_bonus" 
+				}
+			}
+			"modifier_ubw_choronosphere_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Aura_ApplyToCaster" "0"
+				"Aura"				"modifier_ubw_chronosphere"
+				"Aura_Radius"		"%chrono_range"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Types"		"DOTA_UNIT_TARGET_ALL"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_ubw_chronosphere_self"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_ubw_chronosphere"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"0"
+				"IsHidden"			"0"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_unlimited_bladeworks_auto_blade"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%sword_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnAutoBlade"
+					}
+				}
+			}
+			"modifier_inside_marble"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}		
+	}
+	//=================================================================================================================
+	// Archer : Chant Unlimited Blade Works (Upgraded)
+	//=================================================================================================================
+	"archer_unlimited_bladeworks_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_ubw"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1150"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/custom/archer/archer_ubw_ring.vpcf"
+			"particle"		"particles/custom/archer/ubw/firering.vpcf"
+			"particle"		"particles/custom/archer/ubw/entrance_flash.vpcf"
+			"particle"		"particles/custom/archer/ubw/exit_flash.vpcf"
+			"model"			"models/items/skeleton_king/weapon_shattered/weapon_shattered.vmdl"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"7.0 7.5 8.0 8.5 9.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_set"			"5 6 7 8 9"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_bonus"		"5 10 15 20 25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"form_delay"			"2"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ubw_duration"			"15"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chrono_range"			"650"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_interval"		"0.2"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_base_damage"		"55"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_int_ratio"		"0.3"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnUBWChant"
+				"Radius"		"%radius"
+			}
+		}
+
+			
+		"Modifiers"
+		{
+			"modifier_unlimited_bladeworks"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWCreate"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnArcherDead"
+					}
+				}
+			}
+			"modifier_UBW_chant"
+			{
+				"IsBuff"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnUBWChantDestroy"
+					}
+				}
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%movespeed_bonus" 
+				}
+			}
+			"modifier_ubw_choronosphere_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Aura_ApplyToCaster" "0"
+				"Aura"				"modifier_ubw_chronosphere"
+				"Aura_Radius"		"%chrono_range"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Types"		"DOTA_UNIT_TARGET_ALL"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_ubw_chronosphere_self"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"%form_delay"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_ubw_chronosphere"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff"			"0"
+				"IsHidden"			"0"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_PROVIDES_VISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"ChronoStop"
+					}
+				}
+			}
+			"modifier_unlimited_bladeworks_auto_blade"
+			{
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  	"%sword_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnAutoBlade"
+					}
+				}
+			}
+			"modifier_inside_marble"
+			{
+				"IsPurgable"		"0"
+				"IsHidden"			"1"
+				"Duration"			"%ubw_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}		
+	}
+	//=====================================
+	// Archer : Sword Barrage - Retreat Shot
+	//=====================================
+	"archer_sword_barrage_retreat_shot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"custom/archer_5th_sword_barrage_retreat_shot"
+		"AbilityCastAnimation" 			"ACT_DOTA_ITEM_PICKUP"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"					"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"					"particles/custom/archer/archer_sword_barrage_model_test.vpcf"
+			"particle"					"particles/custom/archer/archer_sword_barrage_model.vpcf"
+			"particle"					"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 125 150 175 200"
+			}
+			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"retreat_distance"		"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_count"			"6"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"		"abilities/archer5/archer_abilities"
+			 	"Function"			"OnUBWBarrageRetreatStart"
+			 	"RetreatDist"		"%retreat_distance"
+			 	"Damage"			"%damage"
+			 	"Range"				"%range"
+			 	
+			}
+		}
+	}	
+	//=====================================
+	// Archer : Sword Barrage - Retreat Shot (Upgraded)
+	//=====================================
+	"archer_sword_barrage_retreat_shot_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_sword_barrage_retreat_shot"
+		"AbilityCastAnimation" 			"ACT_DOTA_ITEM_PICKUP"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"					"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"					"particles/custom/archer/archer_sword_barrage_model_test.vpcf"
+			"particle"					"particles/custom/archer/archer_sword_barrage_model.vpcf"
+			"particle"					"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 125 150 175 200"
+			}
+			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"retreat_distance"		"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_count"			"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"root"					"1.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"root_cd"				"4.0"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"		"abilities/archer5/archer_abilities"
+			 	"Function"			"OnUBWBarrageRetreatStart"
+			 	"RetreatDist"		"%retreat_distance"
+			 	"Damage"			"%damage"
+			 	"Range"				"%range"
+			 	
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_retreat_root_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%root_cd"
+				"IsHidden"	"1"
+			}
+		}
+	}	
+	//=====================================
+	// Archer : Sword Barrage - Confine
+	//=====================================
+	"archer_sword_barrage_confine"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/archer_5th_sword_barrage_confine"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"2.0"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"1500"
+		"AbilityCooldown"				"7.0"
+		"AbilityManaCost"				"50"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_dazzle/dazzle_weave_circle_trace.vpcf"
+			"particle"				"particles/custom/archer/ubw/confine_ring_trail.vpcf"
+			"particle"				"models/items/wraith_king/kings_spite_weapon/kings_spite_weapon.vmdl"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"250 300 350 400 450"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"trap_duration"			"3.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.35"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduce"			"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mr_reduce"				"40"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnUBWBarrageConfineStart"
+				"Target"			"POINT"
+				"Damage"			"%damage"
+				"Radius"			"%radius"
+				"Delay"				"%delay"
+				"TrapDuration"		"%trap_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_sword_barrage_confine"
+			{
+				"IsDebuff"					"1"
+				"Duration"					"%trap_duration"
+				"EffectName"				"particles/units/heroes/hero_dazzle/dazzle_weave_circle_trace.vpcf"	
+				"EffectAttachType"			"follow_origin"
+			}
+			"modifier_sword_barrage_confine_armor"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"					"%trap_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnBarrageConfineArmor"
+					}
+				}
+			}
+		}
+	}
+	//=====================================
+	// Archer : Sword Barrage - Confine (Upgraded)
+	//=====================================
+	"archer_sword_barrage_confine_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/archer_5th_sword_barrage_confine"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"2.0"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"1500"
+		"AbilityCooldown"				"7.0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_dazzle/dazzle_weave_circle_trace.vpcf"
+			"particle"				"particles/custom/archer/ubw/confine_ring_trail.vpcf"
+			"particle"				"models/items/wraith_king/kings_spite_weapon/kings_spite_weapon.vmdl"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"250 300 350 400 450"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"trap_duration"			"3.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.35"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduce"			"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mr_reduce"				"40"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/archer5/archer_abilities"
+				"Function"			"OnUBWBarrageConfineStart"
+				"Target"			"POINT"
+				"Damage"			"%damage"
+				"Radius"			"%radius"
+				"Delay"				"%delay"
+				"TrapDuration"		"%trap_duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_sword_barrage_confine"
+			{
+				"IsDebuff"					"1"
+				"Duration"					"%trap_duration"
+				"EffectName"				"particles/units/heroes/hero_dazzle/dazzle_weave_circle_trace.vpcf"	
+				"EffectAttachType"			"follow_origin"
+			}
+			"modifier_sword_barrage_confine_armor"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"					"%trap_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnBarrageConfineArmor"
+					}
+				}
+			}
+			"modifier_sword_barrage_confine_mr"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+				"Duration"					"%trap_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "-1"
+				}
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/archer5/archer_abilities"
+						"Function"		"OnBarrageConfineMR"
+					}
+				}
+			}
+		}
+	}
+	//====================================
+	// Archer : Gae Bolg 
+	//====================================
+	"archer_gae_bolg"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/lancer_5th_gae_bolg_jump"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"0.5"
+		"AOERadius"						"%radius"
+		"IsCastableWhileHidden"			"1"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf"
+			"particle"		"particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_cracks.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_hit.vpcf"
+			"particle"  	"particles/custom/lancer/soaring/spear.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"500 700 900 1100 1300"
+			}
+			
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1200"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnEmiyaGBAOEStart"
+			}
+		}
+	}
+	//====================================
+	// Archer : Gae Bolg (Upgraded)
+	//====================================
+	"archer_gae_bolg_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/lancer_5th_gae_bolg_jump"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"0.5"
+		"AOERadius"						"%radius"
+		"IsCastableWhileHidden"			"1"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf"
+			"particle"		"particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_cracks.vpcf"
+			"particle"		"particles/custom/lancer/lancer_gae_bolg_hit.vpcf"
+			"particle"  	"particles/custom/lancer/soaring/spear.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"800 1000 1200 1400 1600"
+			}
+			
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1200"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnEmiyaGBAOEStart"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Emiya Shirou : Sword Barrage (F)
+	//=================================================================================================================
+	"archer_sword_barrage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"custom/archer_5th_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"%radius"	
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_model.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"1500"
+		"AbilityCastPoint"						"0.1"
+		//"AbilityChannelTime"			"4"		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"80 125 170 215 260"
+			}
+			
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"450"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"blade_rof"						"0.055"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/archer5/archer_abilities"
+			 	"Function"		"OnUBWBarrageStart"
+			 	"Target"		"POINT"
+			 	"Damage"		"%damage"
+			 	"Radius"		"%radius"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Emiya Shirou : Sword Barrage (Upgraded) (F)
+	//=================================================================================================================
+	"archer_sword_barrage_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_sword_barrage"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"%radius"	
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"		"particles/custom/archer/archer_sword_barrage_model.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"						"1500"
+		"AbilityCastPoint"						"0.1"
+		//"AbilityChannelTime"			"4"		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"						"3"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"						"200"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"120 165 210 255 300"
+			}
+			
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"450"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"blade_rof"						"0.055"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/archer5/archer_abilities"
+			 	"Function"		"OnUBWBarrageStart"
+			 	"Target"		"POINT"
+			 	"Damage"		"%damage"
+			 	"Radius"		"%radius"
+			}
+		}
+	}
+	//===================================================
+	// Archer : Nine Lives
+	//===================================================
+	"archer_nine_lives"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_nine_lives"
+		"AbilityCastAnimation" 			"ACT_DOTA_ITEM_PICKUP"
+		"AOERadius"						"%radius"		
+		
+		"precache"
+		{
+			"particle"					"particles/custom/berserker/nine_lives/hit.vpcf"
+			"particle"					"particles/custom/berserker/nine_lives/last_hit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"40 50 60 70 80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_lasthit"		"500"
+			}
+
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_lasthit"		"400 500 600 700 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"700"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_hit"				"9"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnNineCast"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnNineStart"
+			}
+		}
+	}
+	//===================================================
+	// Archer : Nine Lives (Upgraded)
+	//===================================================
+	"archer_nine_lives_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_nine_lives"
+		"AbilityCastAnimation" 			"ACT_DOTA_ITEM_PICKUP"	
+		"AOERadius"						"%radius"	
+		
+		"precache"
+		{
+			"particle"					"particles/custom/berserker/nine_lives/hit.vpcf"
+			"particle"					"particles/custom/berserker/nine_lives/last_hit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"50 60 70 80 90"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_lasthit"		"500"
+			}
+
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_lasthit"		"600 700 800 900 1000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"700"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_hit"				"9"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnNineCast"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnNineStart"
+			}
+		}
+	}
+	//=======================================
+	// Archer Attribute : Eagle Eye
+	//=======================================
+	"archer_attribute_eagle_eye"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/archer_5th_attribute_eagle_eye"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"13"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cv_radius_bonus"			"200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cv_cd_reduce"				"8"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bp_range"					"1000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hrunt_range"				"2000"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnEagleEyeAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Archer Attribute : Hrunting
+	//=======================================
+	"archer_attribute_hrunting"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/archer_5th_attribute_hrunting"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf"
+		}
+
+		"AbilitySpecial"
+		{					
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"3.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_range"			"3000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_used"				"66"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bounce"				"2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bp_damage"				"100"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnHruntingAcquired"
+			}
+		}
+	}
+	//=======================================
+	// Archer Attribute : Shroud of Martin
+	//=======================================
+	"archer_attribute_shroud_of_martin"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/archer_5th_attribute_shroud_of_martin"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mr_bonus"			"5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"armor_bonus"		"10"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"hp_bonus"			"4"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rho_amount"		"2000"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"rho_duration"		"4"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnShroudOfMartinAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Archer Attribute : Improve Projection
+	//=======================================
+	"archer_attribute_improve_projection"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/archer_5th_attribute_improve_projection"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"18"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_interval"		"0.2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sword_base_damage"		"55"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sword_int_ratio"		"0.3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"retreat_root"			"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"retreat_cd"			"4"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"confine_mr"			"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_gae"				"300"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_barrage"			"40"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_nine_live"		"10"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_nine_live_last"	"200"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_nine_live_stun"	"2"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnImproveProjectionAcquired"
+			}
+		}
+	}	
+
+	//=======================================
+	// Archer Attribute : Kanshou Bakuya Overedge
+	//=======================================
+	"archer_attribute_overedge"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/archer_5th_attribute_overedge"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_blades"			"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stack"				"2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_crane"			"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"8"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aspd"					"20"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnOveredgeAcquired"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Archer : Combo : Arrow Rain
+	//=================================================================================================================
+	"archer_arrow_rain"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/archer_5th_arrow_rain"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+			"particle"			"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"particle"			"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"			"particles/custom/archer/archer_arrow_rain_model.vpcf"
+			"particle"			"particles/custom/archer/archer_sword_barrage_impact_circle.vpcf"
+			"particle"			"particles/custom/screen_brown_splash.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"180"
+		"AbilityManaCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"arrow_amount"			"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"arrow_damage"			"175"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bp_shot_amount"		"5"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/archer5/archer_abilities"
+				"Function"		"OnRainStart"
+				"Damage"		"%arrow_damage"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/archer5/archer_abilities"
+				"Function"      "OnArrowRainBPHit"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Sven.StormBoltImpact"
+			}
+		}
+			
+		"Modifiers"
+		{
+			"modifier_arrow_rain_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_arrow_rain_anim"
+			{
+				"Duration"	"1.0"
+				"IsHidden"	"0"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"3"
+				}
+			}
+		}
+	}
+}
