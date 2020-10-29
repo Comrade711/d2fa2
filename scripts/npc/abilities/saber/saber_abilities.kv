@@ -1,0 +1,2682 @@
+
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Saber : Charisma
+	//=================================================================================================================
+	"saber_charisma"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/saber_charisma"
+		"MaxLevel"						"1"
+		//"DisplayAdditionalHeroes"   	"1"
+		"precache"
+		{
+			"particle"					"particles/items2_fx/rod_of_atos_debuff_glow.vpcf"
+			"particle"					"particles/items2_fx/rod_of_atos_debuff_ground.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"Range"					"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed_modifier"		"10"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_charisma_aura"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+				"Aura"					"modifier_charisma_aura_buff"
+				"Aura_Radius"			"%Range"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP "
+			}
+			
+			"modifier_charisma_aura_buff"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/items2_fx/rod_of_atos_debuff_glow.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/items2_fx/rod_of_atos_debuff_ground.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_modifier"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_modifier"
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Saber : Instinct
+	//=================================================================================================================
+	"saber_instinct"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/saber_instinct"
+		"MaxLevel"						"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"evasion_rate"			"15"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_instinct_evasion"
+			{
+				"Passive"		"1"
+				"IsHidden"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion_rate"
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Saber : Improved Instinct
+	//=================================================================================================================
+	"saber_improved_instinct"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/saber_instinct"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"15"
+		"precache"
+		{
+			"particle"		"particles/prototype_fx/item_linkens_buff.vpcf"
+			"particle"		"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"evasion_rate"			"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_rate"				"45"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_multiplier"		"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spellshield_duration"	"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/artoria/saber_ability"
+				"Function"			"OnInstinctStart"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_instinct_evasion"
+			{
+				"Passive"		"1"
+				"IsHidden"		"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%evasion_rate"
+				}
+			}
+			"modifier_instinct_active"
+			{
+				"Duration"		"%spellshield_duration"
+			}
+			"modifier_instinct_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%cooldown"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}			
+			"modifier_instinct_crit"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_instinct_crit_hit"
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						}
+					}
+					"Random"
+					{
+						"Chance"	"%crit_rate"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile"			"abilities/artoria/saber_ability"
+								"Function"				"OnInstinctCrit"
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_instinct_crit_hit"
+			{
+				"IsHidden"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_multiplier"
+				}
+				"OnAttackLanded"
+				{
+			    	"FireEffect"
+			    	{
+			    		"EffectName"		"particles/units/heroes/hero_juggernaut/jugg_crit_blur_impact.vpcf"
+			    		"EffectAttachType"	"attach_hitloc"
+			    		"Target"			"TARGET"
+			    	}
+			        "RemoveModifier"
+			        {
+			            "ModifierName"  	"modifier_instinct_crit_hit"
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						}
+   			        }			
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Saber : Invisible Air
+	//=================================================================================================================
+	"saber_invisible_air"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_invisible_air"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"			"2.5"
+		
+		// Ability stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastRangeBuffer"		"100"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"5.0 5.0 5.0 5.0 5.0"
+		"AbilityManaCost"				"100"
+		
+		// Ability special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"700"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"10 20 30 40 50"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"						
+		{
+			"particle"				"particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_blur_sparrowhawk.vpcf"
+			"particle"				"particles/custom/saber/saber_invisible_air_trail.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_tornado_trail.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_tornado_base.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/artoria/saber_ability"
+				"Function"				"CreateWind"
+			}
+			
+			"TrackingProjectile"
+			{
+				"Target"			"TARGET"
+				"MoveSpeed"			"%speed"
+				"TargetTeams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Dodgeable"			"1"
+			}
+	
+			"FireSound"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"Ability.Focusfire"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/artoria/saber_ability"
+				"Function"      "InvisibleAirPull"
+				"Damage"		"%damage"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invisible_air_target"
+			{
+				"IsHidden"				"1"
+				"IsDebuff"				"1"
+				"Duration"				"1.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_blur_sparrowhawk.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointsEntities"
+						{
+							"TARGET"			"attach_origin"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_invoker/invoker_tornado_base.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+						}
+					}
+				}
+			}
+			"modifier_invisible_air"
+			{
+				"IsHidden"		"1"
+				"Passive"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber : Invisible Air (Upgraded)
+	//=================================================================================================================
+	"saber_invisible_air_upgrade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_invisible_air"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate"			"2.5"
+		
+		// Ability stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastRangeBuffer"		"100"
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"5.0 5.0 5.0 5.0 5.0"
+		"AbilityManaCost"				"100"
+		
+		// Ability special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"350 400 450 500 550"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"700"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"1000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage"		"10 20 30 40 50"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"						
+		{
+			"particle"				"particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_blur_sparrowhawk.vpcf"
+			"particle"				"particles/custom/saber/saber_invisible_air_trail.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_tornado_trail.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_tornado_base.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/artoria/saber_ability"
+				"Function"				"CreateWind"
+			}
+			
+			"TrackingProjectile"
+			{
+				"Target"			"TARGET"
+				"MoveSpeed"			"%speed"
+				"TargetTeams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Dodgeable"			"1"
+			}
+	
+			"FireSound"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"Ability.Focusfire"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"1"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/artoria/saber_ability"
+				"Function"      "InvisibleAirPull"
+				"Damage"		"%damage"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_invisible_air_target"
+			{
+				"IsHidden"				"1"
+				"IsDebuff"				"1"
+				"Duration"				"1.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_blur_sparrowhawk.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointsEntities"
+						{
+							"TARGET"			"attach_origin"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_invoker/invoker_tornado_base.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+							"TARGET"			"attach_origin"
+						}
+					}
+				}
+			}
+			"modifier_invisible_air"
+			{
+				"IsHidden"		"1"
+				"Passive"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+				}
+			}
+		}
+	}
+	
+	
+	//=================================================================================================================
+	// Saber : Caliburn
+	//=================================================================================================================
+	"saber_caliburn"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_caliburn"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK" // Change the animation from "ACT_DOTA_CAST_ABILITY_1" to match the timing of the ability
+		"AnimationPlaybackRate" 		"1.2"
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_impact.vpcf"
+			"particle"				"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_birds.vpcf"
+			"particle"				"particles/custom/saber/caliburn/explosion.vpcf"
+			"particle"				"particles/custom/saber/caliburn/slash.vpcf"
+		}
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"250"
+		"AbilityCastRangeBuffer"		"75"
+		"AbilityCastPoint"				"0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"400 500 600 700 800"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"aoe_damage_percent"	"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"200"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"600"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aoe_damage_percent_tooltip"	"50"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_amount"	"-35 -40 -45 -50 -55"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_duration"		"3"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnSpellStart"
+		{
+		    "RunScript"
+            {
+                "ScriptFile"        "abilities/artoria/saber_ability"
+                "Function"          "CaliburnSlash"
+            }
+		
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/artoria/saber_ability"
+				"Function"			"CaliburnExplode"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/artoria/saber_ability"
+				"Function"			"OnCaliburnHit"
+				"Damage"			"%damage"
+				"AoEDamage"			"%aoe_damage_percent"
+				"Radius"			"%radius"
+			}
+		}
+		
+		
+		"Modifiers"
+		{
+			"modifier_caliburn_slow"
+			{
+				"Duration"		"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_birds.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_amount"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber : Caliburn (Upgraded)
+	//=================================================================================================================
+	"saber_caliburn_upgrade"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_caliburn"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK" // Change the animation from "ACT_DOTA_CAST_ABILITY_1" to match the timing of the ability
+		"AnimationPlaybackRate" 		"1.2"
+		"AOERadius"						"%radius"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_impact.vpcf"
+			"particle"				"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_birds.vpcf"
+			"particle"				"particles/custom/saber/caliburn/explosion.vpcf"
+			"particle"				"particles/custom/saber/caliburn/slash.vpcf"
+		}
+		
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"250"
+		"AbilityCastRangeBuffer"		"75"
+		"AbilityCastPoint"				"0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"600 700 800 900 1000"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"aoe_damage_percent"	"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"200"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"600"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aoe_damage_percent_tooltip"	"50"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_amount"		"-50 -55 -60 -65 -70"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow_duration"		"3"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnSpellStart"
+		{
+		    "RunScript"
+            {
+                "ScriptFile"        "abilities/artoria/saber_ability"
+                "Function"          "CaliburnSlash"
+            }
+		
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/artoria/saber_ability"
+				"Function"			"CaliburnExplode"
+			}
+		
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/artoria/saber_ability"
+				"Function"			"OnCaliburnHit"
+				"Damage"			"%damage"
+				"AoEDamage"			"%aoe_damage_percent"
+				"Radius"			"%radius"
+			}
+		}
+		
+		
+		"Modifiers"
+		{
+			"modifier_caliburn_slow"
+			{
+				"Duration"		"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt_birds.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+						}
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_amount"
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Saber : Excalibur
+	//=================================================================================================================
+	"saber_excalibur"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_excalibur"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.1"				// Adjust playback rate to reflect the ability was 0.9
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+			"particle"				"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_sun_strike_beam.vpcf"
+			"particle"				"particles/custom/saber_excalibur_charge.vpcf"
+			"particle"				"particles/custom/saber_excalibur.vpcf"
+			"particle"				"particles/custom/saber/excalibur/hit.vpcf"
+			"particle"				"particles/custom/saber/excalibur/shockwave.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_sun_strike_sparks.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"37.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		// AbilitySpecial
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"1.9"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"1800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1200"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"750 975 1200 1425 1650"
+			}
+			// Extra variables
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pause_duration"		"4.0"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/artoria/saber_ability"
+			 	"Function"		"OnExcaliburStart"
+			 	"Target"		"POINT"
+			 	"StartRadius"	"%width"
+			 	"EndRadius"		"%width"
+			 	"Speed"			"%speed"
+			 	"Range"			"%length"
+			 	"Delay"			"%cast_delay"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/artoria/saber_ability"
+			 	"Function"		"OnExcaliburHit"
+			 	"Damage"		"%damage"
+			}	
+			"FireEffect"
+			{
+				"EffectName"        "particles/custom/saber/excalibur/hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+			"RunScript"
+			{
+			 	"ScriptFile"	"modifiers/modifier_ttr_saber"
+			 	"Function"		"Quest4Check"
+			}		
+		}
+		
+		"Modifiers"
+		{
+			"modifier_excalibur"
+			{
+				"Duration"		"%delay"
+				"IsHidden"		"1"
+			}
+			"saber_anim_vfx"
+			{
+				"Duration"		"%pause_duration"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_3"		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1.5"
+				}		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/artoria/saber_ability"
+					 	"Function"		"OnExcaliburVfxStart"
+					}
+				}
+			}
+			
+			// VFX section
+			"excalibur_vfx_phase_1"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.5"
+			
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/artoria/saber_ability"
+					 	"Function"		"OnExcaliburSwordVfxStart"
+					}	
+				}
+			}
+			
+			"excalibur_vfx_phase_2"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.9"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_invoker/invoker_sun_strike_beam.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+				}
+			}
+			
+			"excalibur_vfx_phase_3"
+			{
+				"IsHidden"					"1"
+				"Duration"					"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"01"			"400 -1 -1"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"01"			"350 0 0"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"01"			"300 1 1"
+						}
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber : Excalibur (Upgraded)
+	//=================================================================================================================
+	"saber_excalibur_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_excalibur"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.1"				// Adjust playback rate to reflect the ability was 0.9
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+			"particle"				"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_sun_strike_beam.vpcf"
+			"particle"				"particles/custom/saber_excalibur_charge.vpcf"
+			"particle"				"particles/custom/saber_excalibur.vpcf"
+			"particle"				"particles/custom/saber/excalibur/hit.vpcf"
+			"particle"				"particles/custom/saber/excalibur/shockwave.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_sun_strike_sparks.vpcf"
+		}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"37.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		// AbilitySpecial
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"1.9"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"1800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1200"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1100 1325 1550 1775 2000"
+			}
+			// Extra variables
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pause_duration"		"4.0"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/artoria/saber_ability"
+			 	"Function"		"OnExcaliburStart"
+			 	"Target"		"POINT"
+			 	"StartRadius"	"%width"
+			 	"EndRadius"		"%width"
+			 	"Speed"			"%speed"
+			 	"Range"			"%length"
+			 	"Delay"			"%cast_delay"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/artoria/saber_ability"
+			 	"Function"		"OnExcaliburHit"
+			 	"Damage"		"%damage"
+			}	
+			"FireEffect"
+			{
+				"EffectName"        "particles/custom/saber/excalibur/hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+			"RunScript"
+			{
+			 	"ScriptFile"	"modifiers/modifier_ttr_saber"
+			 	"Function"		"Quest4Check"
+			}		
+		}
+		
+		"Modifiers"
+		{
+			"modifier_excalibur"
+			{
+				"Duration"		"%delay"
+				"IsHidden"		"1"
+			}
+			"saber_anim_vfx"
+			{
+				"Duration"		"%pause_duration"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_3"		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1.5"
+				}		
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/artoria/saber_ability"
+					 	"Function"		"OnExcaliburVfxStart"
+					}
+				}
+			}
+			
+			// VFX section
+			"excalibur_vfx_phase_1"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.5"
+			
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/artoria/saber_ability"
+					 	"Function"		"OnExcaliburSwordVfxStart"
+					}	
+				}
+			}
+			
+			"excalibur_vfx_phase_2"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.9"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_invoker/invoker_sun_strike_beam.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+				}
+			}
+			
+			"excalibur_vfx_phase_3"
+			{
+				"IsHidden"					"1"
+				"Duration"					"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"01"			"400 -1 -1"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"01"			"350 0 0"
+						}
+					}
+				
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"01"			"300 1 1"
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Saber : Avalon
+	//=================================================================================================================
+	"saber_avalon"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_avalon"
+		"MaxLevel"						"5"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1"
+		"precache"
+		{
+			"particle"					"particles/custom/saber_avalon_floor.vpcf"
+			"particle"					"particles/custom/saber_avalon_impact.vpcf"
+			"particle"					"particles/custom/saber_avalon_explosion.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+		}
+		
+		// Cast
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastRange"				"3000"
+		"AbilityCooldown"				"35"
+		"AbilityManaCost"				"400"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"3000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_threshold"		"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"800 1000 1200 1400 1600"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe"					"250"
+			}
+		}
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnAvalonStart"
+			}
+		}
+				
+		"Modifiers"
+		{
+			"modifier_avalon"
+			{
+				"Duration"		"%duration"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						} 
+						"EffectName"		"particles/custom/saber_avalon_floor.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/artoria/saber_ability"
+						"Function"      "AvalonOnTakeDamage"
+						"Threshold"		"%damage_threshold"
+						"DamageTaken"	"%attack_damage"
+						"Damage"		"%damage"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"100"
+				}
+			}
+
+			"avalon_pause"
+			{
+				"Duration"		"0.1"
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_max_excalibur_window"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"Duration"			"3"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxExcaWindow"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxExcaWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxExcaWindowDied"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber : Avalon (Upgraded)
+	//=================================================================================================================
+	"saber_avalon_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_avalon"
+		"MaxLevel"						"5"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1"
+		"precache"
+		{
+			"particle"					"particles/custom/saber_avalon_floor.vpcf"
+			"particle"					"particles/custom/saber_avalon_impact.vpcf"
+			"particle"					"particles/custom/saber_avalon_explosion.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+		}
+		
+		// Cast
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"35"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"3000"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"3000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_threshold"		"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"800 1000 1200 1400 1600"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"regen"					"500"
+			}
+		}
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+		
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnAvalonStart"
+			}
+		}
+				
+		"Modifiers"
+		{
+			"modifier_avalon"
+			{
+				"Duration"		"%duration"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						} 
+						"EffectName"		"particles/custom/saber_avalon_floor.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/artoria/saber_ability"
+						"Function"      "AvalonOnTakeDamage"
+						"Threshold"		"%damage_threshold"
+						"DamageTaken"	"%attack_damage"
+						"Damage"		"%damage"
+					}
+				}
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"100"
+				}
+			}
+
+			"avalon_pause"
+			{
+				"Duration"		"0.1"
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"			"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_everdistant_utopia"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"0"
+				"TextureName"		"custom/arturia/everdistant_utopia"
+				"Duration"			"%duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%regen"
+				}
+			}
+
+			"modifier_max_excalibur_window"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsHidden"			"1"
+				"Duration"			"3"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxExcaWindow"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxExcaWindowDestroy"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxExcaWindowDied"
+					}
+				}
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Attribute : Improve Excalibur
+	//=======================================
+	"saber_attribute_improve_excalibur"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_attribute_improve_excalibur"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"excal_bonus_damage"				"350"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_excal_bonus_damage"			"5500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnImproveExcaliburAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Attribute : Improve Instinct
+	//=======================================
+	"saber_attribute_improve_instinct"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_attribute_improve_instinct"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"10"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"evasion_rate"			"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_rate"				"45"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_multiplier"		"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spellshield_duration"	"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnImproveInstinctAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Attribute : Chivalry
+	//=======================================
+	"saber_attribute_chivalry"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_attribute_chivalry"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"10"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"invis_air_bonus_damage"	"150"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"caliburn_bonus_damage"		"200"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"caliburn_slow"				"15"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnChivalryAcquired"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Attribute : Strike Air
+	//=======================================
+	"saber_attribute_strike_air"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/saber_attribute_strike_air"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"5000"				// I think it's better to reduce the speed, 10000 is too fast and projectile will not show up
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_time"				"0.90"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_bonus_damage"		"400"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"wall_stun"				"2.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"600"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"100"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knock"					"500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ad_ratio"				"1.3"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"knockup_duration"		"1.25"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_up_damage"			"150"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnStrikeAirAcquired"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Saber : Strike Air
+	//=================================================================================================================
+	"saber_strike_air"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_strike_air"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.5"
+		"precache"
+		{
+			"particle"				"particles/custom/saber_strike_air_blast.vpcf"
+			"particle"				"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+			"particle"				"particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf"
+			"particle"				"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1600"
+		"AbilityCastPoint"				"0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"23.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"400"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"length"				"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"5000"				// I think it's better to reduce the speed, 10000 is too fast and projectile will not show up
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_time"				"0.90"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_bonus_damage"		"400"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"wall_stun"				"2.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"600"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"100"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knock"					"500"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/artoria/saber_ability"
+				"Function"      "OnStrikeAirStart"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/artoria/saber_ability"
+				"Function"      "StrikeAirPush"
+				"Damage"		"%damage"
+				"Speed"			"%speed"
+				"WallDamage"	"%wall_bonus_damage"
+				"WallStun"		"%wall_stun"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"saber_strike_air_anim_vfx"
+			{
+				"IsHidden"		"1"
+				"Duration"		"1.75"
+				
+				"EffectName"		"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_3"	
+				
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_strike_air_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}	
+			"modifier_strike_air_animation"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"Duration"			"1.0"
+				"OverrideAnimation"	"ACT_DOTA_ATTACK"
+			}
+			
+			"modifier_strike_air_target_VFX"
+			{
+				"IsHidden"			"1"
+				"Duration"			"0.5"
+				"EffectName"		"particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+
+	//=======================================
+	// Saber Attribute : Everdistant Utopia
+	//=======================================
+	"saber_attribute_everdistant_utopia"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/arturia/everdistant_utopia"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"regen"					"500"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnSAAvalonAcquired"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Saber : Strike Air-Upstream
+	//=================================================================================================================
+	"saber_strike_air_upstream"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/saber_strike_air"
+		"MaxLevel"						"1"
+		"precache"
+		{
+			"particle"				"particles/custom/saber/strike_air_upstream/strike_air_upstream.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ad_ratio"				"1.3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"knockup_duration"		"1.25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"150"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_strike_air_upstream_ready"
+			{
+				"IsPurgable"		"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"IsBuff"			"1"
+				"IsHidden"			"0"
+				"Duration"			"3.0"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/artoria/saber_ability"
+						"Function"				"OnUpstreamHit"
+						"Damage"				"%ad_ratio"
+						"KnockupDuration"		"%knockup_duration"
+					}
+				}
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Saber : Max Excalibur
+	//=================================================================================================================
+	"saber_max_excalibur"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_max_excalibur"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.9"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+			"particle"				"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+			"particle"				"particles/custom/saber_excalibur_max_beam.vpcf"
+			"particle"				"particles/custom/saber_excalibur.vpcf"
+			"particle"				"particles/custom/saber_excalibur_max_charge.vpcf"
+			"particle"				"particles/custom/saber_excalibur_circle.vpcf"
+			"parictle"				"particles/custom/saber_excalibur_max_rock_emitter.vpcf"
+			"particle"				"particles/custom/saber_excalibur_max_burn.vpcf"
+			"particle"				"particles/custom/screen_yellow_splash.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/charge.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/shockwave_2_versiona.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/shockwave_2_versionc.vpcf"
+			"particle"				"particles/custom/saber/excalibur/hit.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_time"				"3.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"3000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"9000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"2500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"600"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnMaxStart"
+				"Target"		"POINT"
+				"Speed"			"%speed"
+				"Range"			"%range"
+				"Width"			"%width"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnMaxHit"
+				"Damage"		"%damage"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/custom/saber/excalibur/hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_max_excalibur_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}	
+			"modifier_max_excalibur"
+			{
+				"Duration"		"3.0"
+				"IsHidden"		"1"
+			}
+			"saber_max_excalibur_anim_vfx"
+			{
+				"Duration"		"5.0"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_3"						
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxVfxStart"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1"
+				}
+			}
+			
+			// VFX section
+			"excalibur_vfx_phase_1"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.5"
+			
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/artoria/saber_ability"
+					 	"Function"		"OnMaxSwordVfxStart"
+					}
+				}
+			}
+			
+			"excalibur_vfx_phase_2"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.9"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_max_beam.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+				}
+			}
+			
+			"excalibur_vfx_phase_3"
+			{
+				"IsHidden"					"1"
+				"Duration"					"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_max_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"02"			"255 255 0"
+							"15" 			"255 255 0"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_circle.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"EffectRadius"		"600"
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Saber : Max Excalibur (Upgraded)
+	//=================================================================================================================
+	"saber_max_excalibur_upgrade"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"custom/saber_max_excalibur"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"0.9"
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+			"particle"				"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+			"particle"				"particles/custom/saber_excalibur_max_beam.vpcf"
+			"particle"				"particles/custom/saber_excalibur.vpcf"
+			"particle"				"particles/custom/saber_excalibur_max_charge.vpcf"
+			"particle"				"particles/custom/saber_excalibur_circle.vpcf"
+			"parictle"				"particles/custom/saber_excalibur_max_rock_emitter.vpcf"
+			"particle"				"particles/custom/saber_excalibur_max_burn.vpcf"
+			"particle"				"particles/custom/screen_yellow_splash.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/charge.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/shockwave_2_versiona.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/shockwave_2_versionc.vpcf"
+			"particle"				"particles/custom/saber/excalibur/hit.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+		
+		// Ability Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_time"				"3.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"3000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"9000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"8000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"600"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnMaxStart"
+				"Target"		"POINT"
+				"Speed"			"%speed"
+				"Range"			"%range"
+				"Width"			"%width"
+			}
+		}
+		
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"0"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/artoria/saber_ability"
+				"Function"		"OnMaxHit"
+				"Damage"		"%damage"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/custom/saber/excalibur/hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_max_excalibur_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}	
+			"modifier_max_excalibur"
+			{
+				"Duration"		"3.0"
+				"IsHidden"		"1"
+			}
+			"saber_max_excalibur_anim_vfx"
+			{
+				"Duration"		"5.0"
+				"IsHidden"	"1"
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_3"						
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/artoria/saber_ability"
+						"Function"		"OnMaxVfxStart"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1"
+				}
+			}
+			
+			// VFX section
+			"excalibur_vfx_phase_1"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.5"
+			
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/artoria/saber_ability"
+					 	"Function"		"OnMaxSwordVfxStart"
+					}
+				}
+			}
+			
+			"excalibur_vfx_phase_2"
+			{
+				"IsHidden"					"1"
+				"Duration"					"1.9"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_max_beam.vpcf"
+						"EffectAttachType"	"attach_origin"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"TARGET"		"attach_sword"
+						}
+					}
+				}
+			}
+			
+			"excalibur_vfx_phase_3"
+			{
+				"IsHidden"					"1"
+				"Duration"					"3.0"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_max_charge.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"ControlPoints"
+						{
+							"02"			"255 255 0"
+							"15" 			"255 255 0"
+						}
+					}
+					
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/custom/saber_excalibur_circle.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"EffectRadius"		"600"
+					}
+				}
+			}
+		}
+	}	
+}
