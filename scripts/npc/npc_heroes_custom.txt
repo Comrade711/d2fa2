@@ -1,0 +1,60 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+
+#base "heroes/npc_fate_hero_arturia.kv"
+#base "heroes/npc_fate_hero_arturia_alter.kv"
+#base "heroes/npc_fate_hero_astolfo.kv"
+#base "heroes/npc_fate_hero_atalanta.kv"
+#base "heroes/npc_fate_hero_avenger.kv"
+#base "heroes/npc_fate_hero_chloe.kv"
+#base "heroes/npc_fate_hero_cu_chulain.kv"
+#base "heroes/npc_fate_hero_diarmuid.kv"
+#base "heroes/npc_fate_hero_emiya.kv"
+#base "heroes/npc_fate_hero_gawain.kv"
+#base "heroes/npc_fate_hero_gilgamesh.kv"
+#base "heroes/npc_fate_hero_gilles.kv"
+#base "heroes/npc_fate_hero_heracles.kv"
+#base "heroes/npc_fate_hero_iskandar.kv"
+#base "heroes/npc_fate_hero_jeanne.kv"
+#base "heroes/npc_fate_hero_jtr.kv"
+#base "heroes/npc_fate_hero_karna.kv"
+#base "heroes/npc_fate_hero_lancelot.kv"
+#base "heroes/npc_fate_hero_li_shuwen.kv"
+#base "heroes/npc_fate_hero_medea.kv"
+#base "heroes/npc_fate_hero_medusa.kv"
+#base "heroes/npc_fate_hero_nero.kv"
+#base "heroes/npc_fate_hero_nursery_rhyme.kv"
+#base "heroes/npc_fate_hero_sasaki.kv"
+#base "heroes/npc_fate_hero_semiramis.kv"
+#base "heroes/npc_fate_hero_tamamo.kv"
+#base "heroes/npc_fate_hero_true_assassin.kv"
+#base "heroes/npc_fate_hero_vlad.kv"
+#base "heroes/npc_fate_hero_okita.kv"
+#base "heroes/npc_fate_hero_drake.kv"
+#base "heroes/npc_fate_hero_scathach.kv"
+#base "heroes/npc_fate_hero_mordred.kv"
+
+"DOTAHeroes"
+{
+    "npc_dota_hero_dummy"
+    {
+        "override_hero"                 "npc_dota_hero_wisp"
+        "Model"					    	"models/development/invisiblebox.vmdl"
+        "DrawParticlesWhileHidden"      "1"
+        "DisableWearables"              "1"
+
+        "AbilityLayout"                 "1"
+        "Ability1"                      "dummy_pause"
+        "Ability2"                      ""
+        "Ability3"                      ""
+        "Ability4"                      ""
+        "Ability5"                      ""
+        "Ability6"                      ""
+        "Ability7"                      ""
+        "Ability8"                      ""
+        
+		"VisionDaytimeRange"            "0"
+		"VisionNighttimeRange"          "0"
+	}
+}

@@ -1,0 +1,3200 @@
+// Dota Heroes File
+
+#base "abilities/heroes/heroes.kv"
+#base "abilities/astolfo/astolfo_abilities.kv"
+#base "abilities/atalanta/atalanta_abilities.kv"
+#base "abilities/avenger/avenger_abilities.kv"
+#base "abilities/cu_chulain/lancer_abilities.kv"
+#base "abilities/diarmuid/diarmuid_abilities.kv"
+#base "abilities/archer5/archer_abilities.kv"
+#base "abilities/gawain/gawain_abilities.kv"
+#base "abilities/gilgamesh/gilgamesh_abilities.kv"
+#base "abilities/gilles/gilles_abilities.kv"
+#base "abilities/heracles/heracles_abilities.kv"
+#base "abilities/iskandar/iskandar_abilities.kv"
+#base "abilities/jeanne/jeanne_abilities.kv"
+#base "abilities/jtr/jtr_abilities.kv"
+#base "abilities/karna/karna_abilities.kv"
+#base "abilities/kuro/kuro_abilities.kv"
+#base "abilities/lancelot/lancelot_abilities.kv"
+#base "abilities/li_shuwen/li_shuwen_abilities.kv"
+#base "abilities/medea/medea_abilities.kv"
+#base "abilities/medusa/medusa_abilities.kv"
+#base "abilities/nero/nero_abilities.kv"
+#base "abilities/nursery_rhyme/nursery_rhyme_abilities.kv"
+#base "abilities/sasaki/sasaki_abilities.kv"
+#base "abilities/saber/saber_abilities.kv"
+#base "abilities/saber_alter/saber_alter_abilities.kv"
+#base "abilities/semiramis/semiramis_abilities.kv"
+#base "abilities/tamamo/tamamo_abilities.kv"
+#base "abilities/true_assassin/hassan_abilities.kv"
+#base "abilities/vlad/vlad_abilities.kv"
+#base "abilities/okita/okita_abilities.kv"
+#base "abilities/drake/drake_abilities.kv"
+#base "abilities/scathach/scathach_abilities.kv"
+#base "abilities/mordred/mordred_abilities.kv"
+#base "abilities/master/master_abilities.kv"
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	"hero_base_stats_bonus"
+    {
+        "BaseClass" 			"ability_lua"
+        "ScriptFile"			"abilities/general/hero_base_stats_bonus"
+        "AbilityBehavior"   	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"   "attribute_bonus"
+        "MaxLevel"  			"1"
+        //"LevelsBetweenUpgrades" "2"
+        //"RequiredLevel" "5"
+
+        "AbilitySpecial"
+        {
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"24"
+			}
+		}
+    }
+
+
+    "dummy_pause"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+		"MaxLevel"						"1"
+		//"DisplayAdditionalHeroes"   	"1"
+		
+		"Modifiers"
+		{
+			"modifier_dummy_pause"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+                "States"
+                {
+                	"MODIFIER_STATE_NO_HEALTH_BAR" 		"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_INVULNERABLE" 		"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_UNSELECTABLE" 		"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_NO_UNIT_COLLISION" 	"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_NOT_ON_MINIMAP" 	"MODIFIER_STATE_VALUE_ENABLED"
+                	"MODIFIER_STATE_OUT_OF_GAME" 		"MODIFIER_STATE_VALUE_ENABLED"
+            	}
+			}
+		}
+	}		
+
+	//================================================
+	// dummy unit passve (collection of global modifiers)
+	//================================================
+	"dummy_unit_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	//================================================
+	// dummy unit passve (collection of global modifiers)
+	//================================================
+	"dummy_unit_passive_no_fly"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	//================================================
+	// simple dummy passive
+	//================================================
+	"dummy_unit_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	//================================================
+	// simple dummy passive(for visible unit)
+	//================================================
+	"dummy_visible_unit_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	//================================================
+	// simple dummy passive(for visible unit)(without flying property and collision)
+	//================================================
+	"dummy_visible_unit_passive_no_fly"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	//================================================
+	// Artificial Sun Passive
+	//================================================
+	"gawain_artificial_sun_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+
+		
+		"Modifiers"
+		{
+			"artificial_sun_passive"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"CASTER"
+						"EffectName"		"particles/custom/gawain/gawain_artificial_sun.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"ThinkInterval"				"0.033"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"gawain_ability"
+						"Function"		"OnSunPassiveThink"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"gawain_ability"
+						"Function"		"OnSunCleanup"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	//=================================================================================================================
+	// Gawain : Divine Meltdown
+	//=================================================================================================================
+	"gawain_artificial_sun_divine_meltdown"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/gawain_blessing_of_fairy"
+
+		"precache"
+		{
+
+		}
+		
+		"OnSpellStart"
+		{
+		}
+
+		"Modifiers"
+		{
+			"modifier_gawain_revive"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"            "TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_origin"
+							"TARGET"	"attach_origin"
+						}
+					}						
+				}
+			}
+		}
+	}
+	//================================================
+	// Ping sign passive
+	//================================================
+	"ping_sign_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+	"alternative_01"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"rubick_empty1"
+		"MaxLevel"						"1"
+		"DisplayAdditionalHeroes"   	"1"
+		"precache"
+		{
+			"model"  	"models/updated_by_seva_and_hudozhestvenniy_film_spizdili/gilgamesh/gilgameshcasualunanim.vmdl"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_alternate_01"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+                "Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnCreated"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"modifiers/modifier_alternate"
+                		"Function"		"Alternate01Create"
+                	}
+                }
+                "OnDestroy"
+                {
+                	"RunScript"
+                	{
+                		"ScriptFile"	"modifiers/modifier_alternate"
+                		"Function"		"Alternate01Destroy"
+                	}
+                }
+			}
+		}
+	}	
+	//================================================
+	// master passive
+	//================================================
+	"master_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		"DisplayAdditionalHeroes"   "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+			"modifier_combo_checker"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"ThinkInterval"				"0.3"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"master_ability"
+					 	"Function"		"OnComboCheck"
+					}
+				}
+			}
+			"combo_unavailable"
+			{
+				"IsDebuff"		"1"
+				"IsHidden"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"combo_cooldown"
+			{
+				"IsDebuff"		"1"
+				"IsHidden"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+	//================================================
+	// master passive
+	//================================================
+	"master_2_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+		"DisplayAdditionalHeroes"   "1"
+		
+		"Modifiers"
+		{
+			"dummy_unit"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					//"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+	//=================================================================================================================
+	// Passive Presence Detection
+	//=================================================================================================================
+	"presence_detection_passive"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/magnus_shockwave"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle"	"particles/ui_mouseactions/ping_world.vpcf"
+			"particle"	"particles/units/heroes/hero_elder_titan/elder_titan_ancestral_spirit_cast.vpcf"
+			"particle"	"particles/generic_gameplay/generic_silence.vpcf"
+			"particle"	"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield_mark.vpcf"
+			"particle"	"particles/units/heroes/hero_oracle/oracle_fortune_purge.vpcf"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+			"particle"	"particles/generic_gameplay/generic_disarm.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+		}
+		"Modifiers"
+		{
+			"modifier_detect"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"ThinkInterval"				"0.5"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"master_ability"
+					 	"Function"		"OnPresenceDetectionThink"
+					}
+				}
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"master_ability"
+						"Function"		"OnHeroRespawn"
+					}
+				}
+			}
+			"modifier_damage_collection"
+			{
+				"Passive"                       "1"
+				"IsPurgable"					"0"
+				"IsHidden"                      "1"
+				"Attributes"					"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"    
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"libraries/util"
+						"Function"		"OnHeroTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+			}
+			"pause_sealenabled"
+			{
+				"TextureName"	"custom/stunned"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			
+			"drag_pause"
+			{
+				"TextureName"	"custom/stunned"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"pause_sealdisabled"
+			{
+				"TextureName"	"custom/revoked"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"rb_sealdisabled"
+			{
+				"TextureName"	"custom/revoked"
+				"IsDebuff"		"1"
+			}
+			"silenced"
+			{
+				"TextureName"	"silencer_last_word"
+				"IsDebuff"		"1"
+				"EffectName"			"particles/generic_gameplay/generic_silence.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}				
+			}
+			"stunned"
+			{
+				"TextureName"	"custom/stunned"
+				"IsDebuff"		"1"
+				"EffectName"			"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"		"follow_overhead"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}						
+			}
+			"revoked"
+			{
+				"TextureName"	"custom/revoked"
+				"IsDebuff"		"1"
+				"EffectName"			"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_shield_mark.vpcf"
+				"EffectAttachType"		"follow_overhead"
+			}
+			"locked"
+			{
+				"TextureName"	"shadow_shaman_shackles"
+				"IsDebuff"		"1"
+				"EffectName"			"particles/units/heroes/hero_oracle/oracle_fortune_purge.vpcf"
+				"EffectAttachType"		"follow_origin"
+			}
+			"rooted"
+			{
+				"TextureName"	"lone_druid_spirit_bear_entangle"
+				"IsDebuff"		"1"
+				"EffectName"	"particles/units/heroes/hero_winter_wyvern/wyvern_cold_embrace_borealis.vpcf"
+				"EffectAttachType"		"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_quest_000"
+			{
+				"IsHidden"		"1"
+				"IsDebuff"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval"  "2"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"QuestHercCheck"
+					}
+				}
+			}
+			"modifier_quest_0000"
+			{
+				"IsHidden"		"1"
+				"IsDebuff"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"Quest1Create"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"QuestEnd"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"QuestFail"
+					}
+				}
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"Quest16Finish"
+					}
+				}
+			}
+			"modifier_quest_01"
+			{
+				"IsHidden"		"1"
+				"IsDebuff"		"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED" 	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"Quest1Create"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"Quest1Finish"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"QuestEnd"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"QuestFail"
+					}
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"modifiers/modifier_ttr_saber"
+						"Function"		"QuestBCheck"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+			}
+			"disarmed"
+			{
+				"TextureName"	"troll_warlord_berserkers_rage"
+				"IsDebuff"		"1"
+				"EffectName"	"particles/generic_gameplay/generic_disarm.vpcf"
+				"EffectAttachType"		"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"dragged"
+			{
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED" 	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}			
+			}
+			"can_be_executed"
+			{
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED" 	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"zero_attack_damage"
+			{
+				"IsDebuff"		"1"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"-100"
+				}
+			}
+			"out_of_game"
+			{
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_astolfo_disable_mstrength"
+			{
+				"IsHidden"	"1"
+			}
+			"jump_pause"
+			{
+				"TextureName"	"faceless_void_time_lock"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"jump_pause_nosilence"
+			{
+				"TextureName"	"faceless_void_time_lock"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED" 	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"jump_pause_postdelay"
+			{
+				"TextureName"	"faceless_void_time_lock"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"jump_pause_postlock"
+			{
+				"TextureName"	"faceless_void_time_lock"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"round_pause"
+			{
+				"TextureName"	"faceless_void_time_lock"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"spawn_invulnerable"
+			{
+				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+				"EffectAttachType"		"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"10"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"10"			
+				}
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"gille_attack_speed_boost"
+			{
+				"IsDebuff"		"0"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"50"
+				}
+			}
+			"modifier_ward_dmg_reduce"
+			{
+				"IsPassive"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "3000"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "items"
+						"Function"      "WardOnTakeDamage"
+					}
+				}
+			}
+			"modifier_isekai_check"
+ 			{
+  				"IsHidden"  "1"
+  				"IsPurgable"  "0"
+  				"IsBuff"    "1"
+  				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"		
+ 			}
+ 
+ 			"modifier_isekai_abuser"
+ 			{
+ 	 			"IsHidden"  "1"
+  				"IsPurgable"  "0"
+  				"IsDebuff"  "1"
+  				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"		
+  				"OnCreate"
+  				{
+    				"RunScript"
+					{
+						"ScriptFile"    "master_ability"
+						"Function"      "OnIsekaiFixCreate"
+					}
+  				}
+  				"ThinkInterval" "0.1"
+  				"OnThink" // ย้ายกลับมา
+  				{
+    				"RunScript"
+					{
+						"ScriptFile"    "master_ability"
+						"Function"      "OnIsekaiFixThink"
+					}
+  				}
+			}
+		}
+	}
+
+	"stash_blink" 
+	{
+	    "BaseClass"    "ability_datadriven"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityTextureName"			"custom/antimage_blink"
+	    "AbilityCooldown"				"10"
+	    "AbilityCastRange"				"99999"
+	    "precache"
+	    {
+	    	"particle"	"particles/items_fx/blink_dagger_start.vpcf"
+	    	"particle"	"particles/items_fx/blink_dagger_end.vpcf"
+	    }
+
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"StashBlink"
+				"Target"		"POINT"
+			}
+	    }
+	}
+
+	
+	//=================================================================================================================
+	// Ward Conversion
+	//=================================================================================================================
+	"ward_conversion"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/obs_ward"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityGoldCost"				"400"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision"				"375"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"true_sight"			"1400"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"items"
+			 	"Function"		"BecomeWard"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 1st Command Seal
+	//=================================================================================================================
+	"cmd_seal_1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/cmd_seal_1"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"2"
+
+		"precache"
+		{
+			"particle"		"particles/items2_fx/hand_of_midas_radial.vpcf"
+			"particle"		"particles/units/heroes/hero_elder_titan/elder_titan_ancestral_spirit_cast.vpcf"
+			"particle"		"particles/custom/misc/cmd_seal_1_a.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"			"20"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnSeal1Start"
+			 	"Duration"		"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_command_seal_1"
+			{
+				"Duration"		"%duration"
+				"EffectName"		"particles/custom/misc/cmd_seal_1_a.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// 2nd Command Seal
+	//=================================================================================================================
+	"cmd_seal_2"
+	{
+		//"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/master/cmd_seal_2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/cmd_seal_2"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+			"particle"			"particles/items2_fx/refresher.vpcf"
+			"soundfile"			"soundevents/sounds_test.vsndevts"
+		}
+		
+		//"OnSpellStart"
+		//{
+		//	"RunScript"
+		//	{
+		//	 	"ScriptFile"	"master_ability"
+		//	 	"Function"		"OnSeal2Start"
+		//	}
+		//}
+		//"Modifiers"
+		//{
+		//	"modifier_command_seal_2"
+		//	{
+		//		"IsDebuff"		"1"
+		//		"Duration"		"30"
+		//		"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+		//	}
+		//}		
+	}
+
+	//=================================================================================================================
+	// 3rd Command Seal
+	//=================================================================================================================
+	"cmd_seal_3"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/cmd_seal_3"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"1"
+		
+		"precache"
+		{
+			"particle"		"particles/items2_fx/urn_of_shadows_heal_c.vpcf"
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnSeal3Start"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_command_seal_3"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"30"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}	
+	}
+
+	//=================================================================================================================
+	// 4th Command Seal
+	//=================================================================================================================
+	"cmd_seal_4"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/cmd_seal_4"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"1"
+		//"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnSeal4Start"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_command_seal_4"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"30"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}	
+	}
+
+	//=================================================================================================================
+	// Presence Resonator
+	//=================================================================================================================
+	"master_presence_resonator"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/master/master_resonator"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"30"		
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnPRStart"
+			}
+		}
+		"Modifiers"
+		{
+		}	
+	}
+
+	//=================================================================================================================
+	// Item Transfer
+	//=================================================================================================================
+	"master_item_transfer_1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/master_item_transfer_1"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"TransferItem"
+				"Slot"			"1"
+			}
+		}
+		"Modifiers"
+		{
+		}		
+	}
+
+	//=================================================================================================================
+	// Item Transfer
+	//=================================================================================================================
+	"master_item_transfer_2"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/master_item_transfer_2"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"TransferItem"
+				"Slot"			"2"
+			}
+		}
+		"Modifiers"
+		{
+		}		
+	}
+
+	//=================================================================================================================
+	// Item Transfer
+	//=================================================================================================================
+	"master_item_transfer_3"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/master_item_transfer_3"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"TransferItem"
+				"Slot"			"3"
+			}
+		}
+		"Modifiers"
+		{
+		}		
+	}
+
+	//=================================================================================================================
+	// Item Transfer
+	//=================================================================================================================
+	"master_item_transfer_4"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/master_item_transfer_4"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"TransferItem"
+				"Slot"			"4"
+			}
+		}
+		"Modifiers"
+		{
+		}		
+	}
+	//=================================================================================================================
+	// Item Transfer
+	//=================================================================================================================
+	"master_item_transfer_5"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/master_item_transfer_5"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"TransferItem"
+				"Slot"			"5"
+			}
+		}
+		"Modifiers"
+		{
+		}		
+	}
+	//=================================================================================================================
+	// Item Transfer
+	//=================================================================================================================
+	"master_item_transfer_6"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/master_item_transfer_6"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"TransferItem"
+				"Slot"			"6"
+			}
+		}
+		"Modifiers"
+		{
+		}		
+	}
+
+	//=================================================================================================================
+	// All stats +2
+	//=================================================================================================================
+    "attribute_bonus_custom"
+    {
+        "BaseClass" "ability_datadriven"
+        "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"   "attribute_bonus"
+        "MaxLevel"  "7"
+        "LevelsBetweenUpgrades" "2"
+        "RequiredLevel" "5"
+
+        "AbilitySpecial"
+        {
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stats"					"2 4 6 8 10 12 14"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_all_stats"
+			{
+				"Passive"	"1"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stats"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%stats"
+				}
+			}
+		}	
+    }
+
+    //=================================================================================================================
+	// Str Agi +2
+	//=================================================================================================================
+    "attribute_bonus_custom_no_int"
+    {
+        "BaseClass" 			"ability_datadriven"
+        "AbilityBehavior"   	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"   "attribute_bonus"
+        "MaxLevel"  			"7"
+        "LevelsBetweenUpgrades" "2"
+        "RequiredLevel" 		"5"
+
+        "AbilitySpecial"
+        {
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stats"					"2 4 6 8 10 12 14"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_all_stats"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					//"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stats"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%stats"
+				}
+			}
+		}	
+    }
+
+	//=================================================================================================================
+	// Attribute List
+	//=================================================================================================================
+	"master_attribute_list"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/invoker_invoke"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnAttributeListOpen"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Close List
+	//=================================================================================================================
+	"master_close_list"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"silencer_last_word"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnListClose"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Close Stat List
+	//=================================================================================================================
+	"master_close_stat_list"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"silencer_last_word"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnStatListClose"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Stat List
+	//=================================================================================================================
+	"master_stat_list1"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/attribute_bonus"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnStatList1Open"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Stat List
+	//=================================================================================================================
+	"master_stat_list2"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/attribute_bonus"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnStatList2Open"
+			}
+		}
+	}
+
+
+
+	//=================================================================================================================
+	// Shard of Holy Grail
+	//=================================================================================================================
+	"master_shard_of_holy_grail"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/shard_of_holy_grail"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnShardOpen"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Shard of Avarice
+	//=================================================================================================================
+	"master_shard_of_avarice"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/shard_of_avarice"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnAvariceAcquired"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Shard of Anti-Magic
+	//=================================================================================================================
+	"master_shard_of_anti_magic"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/shard_of_anti_magic"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnAMAcquired"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Shard of Replenishment
+	//=================================================================================================================
+	"master_shard_of_replenishment"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/shard_of_replenishment"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnReplenishmentAcquired"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Shard of Prosperity
+	//=================================================================================================================
+	"master_shard_of_prosperity"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/shard_of_prosperity"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnProsperityAcquired"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Gain Strength Stat
+	//=================================================================================================================
+	"master_strength"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/strength"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnStrengthGain"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Gain Agiliy Stat
+	//=================================================================================================================
+	"master_agility"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/agility"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnAgilityGain"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Gain Intelligence Stat
+	//=================================================================================================================
+	"master_intelligence"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/intelligence"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnIntelligenceGain"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Gain Damage Stat
+	//=================================================================================================================
+	"master_damage"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/stat_damage"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnDamageGain"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Gain Armor Stat
+	//=================================================================================================================
+	"master_armor"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/stat_armor"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnArmorGain"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Gain Health Regen Stat
+	//=================================================================================================================
+	"master_health_regen"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/stat_health_regen"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnHPRegenGain"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Gain Mana Regen Stat
+	//=================================================================================================================
+	"master_mana_regen"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/stat_mana_regen"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnManaRegenGain"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Gain Movement Speed Stat
+	//=================================================================================================================
+	"master_movement_speed"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/stat_movement_speed"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"1"
+		
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+			 	"ScriptFile"	"master_ability"
+			 	"Function"		"OnMovementSpeedGain"
+			}
+		}
+	}
+	
+
+	//=================================================================================================================
+	// C Scroll 
+	//=================================================================================================================
+	"dummy_c_scroll"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_invisible_air"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"10.0"
+		"AbilityDamage"					"100"
+		"AbilityManaCost"				"0"
+
+	    "precache"
+	    {
+	    	"particle"				"particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+	    	"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	    }		
+		"OnSpellStart"
+		{
+			"TrackingProjectile"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+				"MoveSpeed"			"1200"
+				"TargetTeams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Dodgeable"			"1"
+				"VisionRadius"		"0"
+			}
+		}
+		
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"true"
+            "RunScript"
+            {
+ 			 	"ScriptFile"	"items"
+			 	"Function"		"CScrollHit"           	
+            }
+		}
+
+		"OnProjectileFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"CScrollEnd"
+			}
+		}
+	}
+
+	"lancer_trap_passive"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "1"
+
+		"Modifiers"
+		{
+			"lancer_trap"
+			{
+				"Passive"                        "1"
+				"IsHidden"                        "1"    
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+		  	}
+		}
+	}
+
+	"fate_experience_thinker"
+	{
+		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+		"MaxLevel"                      "3"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1300 1800 2500"
+			}
+		}
+		"Modifiers"
+		{
+			"fate_experience_passive_aura"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"Aura"			"fate_experience_passive"
+				"Aura_Radius"	"%range"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO"
+				"Aura_Flags"  	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		  	}
+			"fate_experience_passive"
+			{ 
+				"ThinkInterval"					"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"libraries/util"
+						"Function"		"OnExperienceZoneThink"
+					}
+				}
+		  	}
+		}
+	}
+
+	//=================================================================================================================
+	// Divinity Servant A
+	//=================================================================================================================
+	"divinity_servant_a"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"AbilityManaCost"				"0"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/divinity"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"0"
+
+		"AbilitySpecial"
+		{
+		}
+		"Modifiers"
+		{
+			"modifier_divine_a"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsBuff"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Divinity Servant B
+	//=================================================================================================================
+	"divinity_servant_b"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
+		"AbilityManaCost"				"0"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"custom/divinity"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"0"
+
+		"AbilitySpecial"
+		{
+		}
+		"Modifiers"
+		{
+			"modifier_divine_b"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsBuff"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+		}
+	}
+
+	"fate_empty1"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}
+	"fate_empty_nothidden"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}	
+	"fate_empty2"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}	
+	"fate_empty3"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}	
+	"fate_empty4"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}	
+	"fate_empty5"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}	
+	"fate_empty6"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}	
+	"fate_empty7"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}
+	"fate_empty8"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel"						"0"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+	}
+
+       "item_blink"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_blades_of_attack"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_broadsword"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_chainmail"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_claymore"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_helm_of_iron_will"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_javelin"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mithril_hammer"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_platemail"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_quarterstaff"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_quelling_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ring_of_protection"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_stout_shield"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_gauntlets"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_slippers"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mantle"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_branches"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_belt_of_strength"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_boots_of_elves"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_robe"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_circlet"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ogre_axe"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_blade_of_alacrity"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_staff_of_wizardry"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ultimate_orb"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_gloves"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_lifesteal"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ring_of_regen"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_sobi_mask"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_gem"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_cloak"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_talisman_of_evasion"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_cheese"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_magic_stick"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_magic_wand"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_magic_wand"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ghost"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_clarity"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_flask"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_dust"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_bottle"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ward_observer"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ward_sentry"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_tango"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_tango_single"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_courier"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_tpscroll"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_travel_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_travel_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_phase_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_phase_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_demon_edge"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_eagle"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_reaver"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_relic"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_hyperstone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ring_of_health"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_void_stone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mystic_staff"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_energy_booster"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_point_booster"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_vitality_booster"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_power_treads"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_power_treads"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_hand_of_midas"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_hand_of_midas"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_oblivion_staff"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_oblivion_staff"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_pers"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_pers"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_poor_mans_shield"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_poor_mans_shield"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_bracer"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_bracer"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_wraith_band"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_wraith_band"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_null_talisman"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_null_talisman"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_mekansm"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mekansm"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_vladmir"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_vladmir"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_flying_courier"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_buckler"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_buckler"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_ring_of_basilius"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ring_of_basilius"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_pipe"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_pipe"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_urn_of_shadows"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_urn_of_shadows"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_headdress"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_headdress"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_sheepstick"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_sheepstick"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_orchid"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_orchid"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_cyclone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_cyclone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_force_staff"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_force_staff"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_dagon"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_dagon_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_dagon_3"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_dagon_4"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_dagon_5"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_dagon"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_dagon_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_dagon_3"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_dagon_4"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_dagon_5"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_necronomicon"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_necronomicon_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_necronomicon_3"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_necronomicon"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_necronomicon_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_necronomicon_3"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_ultimate_scepter"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ultimate_scepter"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_refresher"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_refresher"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_assault"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_assault"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_heart"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_heart"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_black_king_bar"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_black_king_bar"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_aegis"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_shivas_guard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_shivas_guard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_bloodstone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_bloodstone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_sphere"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_sphere"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_vanguard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_blade_mail"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_blade_mail"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_soul_booster"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_soul_booster"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_hood_of_defiance"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_hood_of_defiance"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_rapier"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_rapier"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_monkey_king_bar"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_monkey_king_bar"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_radiance"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_radiance"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_butterfly"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_butterfly"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_greater_crit"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_greater_crit"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_basher"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_basher"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_bfury"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_bfury"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_manta"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_manta"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_lesser_crit"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_lesser_crit"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_armlet"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_armlet"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_invis_sword"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_invis_sword"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_sange_and_yasha"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_sange_and_yasha"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_satanic"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_satanic"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_mjollnir"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mjollnir"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_skadi"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_skadi"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_sange"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_sange"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_helm_of_the_dominator"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_helm_of_the_dominator"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_maelstrom"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_maelstrom"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_desolator"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_desolator"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_yasha"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_yasha"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_mask_of_madness"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mask_of_madness"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_diffusal_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_diffusal_blade_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_diffusal_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_diffusal_blade_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_ethereal_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ethereal_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_soul_ring"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_soul_ring"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_arcane_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_arcane_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_orb_of_venom"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_ancient_janggo"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ancient_janggo"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_medallion_of_courage"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_medallion_of_courage"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_smoke_of_deceit"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_veil_of_discord"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_veil_of_discord"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_rod_of_atos"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_rod_of_atos"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_abyssal_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_abyssal_blade"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_heavens_halberd"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_heavens_halberd"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_ring_of_aquila"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_ring_of_aquila"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_tranquil_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_tranquil_boots"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_shadow_amulet"
+	{
+		"ItemPurchasable" "0"
+	}
+
+	"item_halloween_candy_corn"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mystery_hook"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mystery_arrow"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mystery_missile"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mystery_toss"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_mystery_vacuum"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_halloween_rapier"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_greevil_whistle"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_greevil_whistle_toggle"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_present"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_stocking"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_skates"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_cake"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_cookie"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_coco"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_ham"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_kringle"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_mushroom"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_greevil_treat"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_greevil_garbage"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_winter_greevil_chewy"
+	{
+		"ItemPurchasable" "0"
+	}
+
+	"item_recipe_moon_shard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_moon_shard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_enchanted_mango"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_travel_boots_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_travel_boots_2"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_lotus_orb"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_lotus_orb"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_crimson_guard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_crimson_guard"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_silver_edge"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_silver_edge"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_octarine_core"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_octarine_core"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_solar_crest"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_solar_crest"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_guardian_greaves"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_guardian_greaves"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_glimmer_cape"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_glimmer_cape"
+	{
+		"ItemPurchasable" "0"
+	}
+
+	"item_dragon_lance"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_dragon_lance"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_blight_stone"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_echo_sabre"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_echo_sabre"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_infused_raindrop"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_tome_of_knowledge"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_hurricane_pike"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_hurricane_pike"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_bloodthorn"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_bloodthorn"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_faerie_fire"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_iron_talon"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_iron_talon"
+	{
+		"ItemPurchasable" "0"
+	}
+	"item_recipe_aether_lens"
+	{
+		"ItemPurchasable" "0"
+	}
+}
+
