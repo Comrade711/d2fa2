@@ -1,0 +1,68 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	//	Archer(4th) - Gilgamesh
+	//=================================================================================================================
+	"npc_dota_hero_gilgamesh"
+	{
+		"override_hero"			"npc_dota_hero_skywrath_mage"
+		"DisableWearables" 			"1"
+		"Model"					"models/gilgamesh/gilgamesh.vmdl"
+		//"Model"					"models/development/invisiblebox.vmdl"
+		"ModelScale"			"1.00"
+		//"HeroID"					"120"
+		"DrawParticlesWhileHidden" "1"
+
+		"AbilityLayout"			"6"
+		"Ability1"				"gilgamesh_enkidu"
+		"Ability2"				"gilgamesh_sword_barrage"   			//"gilgamesh_gram"
+		"Ability3"				"gilgamesh_gate_of_babylon"
+		"Ability4"				"gilgamesh_golden_rule"
+		"Ability5"				"gilgamesh_gram"
+		"Ability6"				"gilgamesh_enuma_elish"
+		"Ability7"				"gilgamesh_max_enuma_elish"
+		"Ability8"				"gilgamesh_gate_of_babylon_toggle"
+		"Ability9"				"gilgamesh_enuma_elish_activate"
+		"Ability10"				"gilgamesh_combo_final_hour"
+		"Ability11"				"presence_detection_passive"
+		"Ability12"				"attribute_bonus_custom"
+		"Ability13"				"divinity_servant_a"
+
+		"Combo"						"gilgamesh_max_enuma_elish"
+		"Combo2"					"gilgamesh_combo_final_hour"
+		"AttributeNumber"			"4"
+		"Attribute1"				"gilgamesh_attribute_improve_golden_rule"
+		"Attribute2"				"gilgamesh_attribute_power_of_sumer"
+		"Attribute3"				"gilgamesh_attribute_rain_of_swords"
+		"Attribute4"				"gilgamesh_attribute_sword_of_creation"
+		"ManaCost"					"20"
+
+		"StatusHealth"					"1300"
+		"StatusHealthRegen"				"5"
+		"StatusMana"					"1000"
+		"StatusManaRegen"				"5.0"
+		
+		"ArmorPhysical"					"4"
+		"MagicalResistance"				"5"
+		
+		"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRange"					"150"
+		"AttackDamageMin"				"40"
+		"AttackDamageMax"				"52"
+		"AttackRate"					"1.30"
+		
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"2.1"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"1.6"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"2.3"
+		
+		"MovementSpeed"					"345"
+		"MovementTurnRate"				"0.8"
+
+		"VisionDaytimeRange"			"950"
+		"VisionNighttimeRange"			"950"
+	}
+}
